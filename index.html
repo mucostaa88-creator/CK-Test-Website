@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CK Viagens — Experiências Exclusivas</title>
+  <meta name="description" content="Curadoria de viagens de luxo para quem exige o extraordinário em cada detalhe. Experiências exclusivas ao redor do mundo.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#060d15',
+              900: '#0d1b2a',
+              800: '#122234',
+              700: '#1a2f44',
+              600: '#1e3a52',
+            },
+            silver: {
+              50:  '#f4f7f9',
+              100: '#eef2f5',
+              200: '#d8e2ea',
+              300: '#b8cad6',
+              400: '#9aabb8',
+              500: '#7b8e9a',
+              600: '#5f7180',
+            },
+            gold: {
+              200: '#f5e8ba',
+              300: '#e8c870',
+              400: '#d4a537',
+              500: '#c9a047',
+              600: '#a07830',
+            }
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'serif'],
+            body: ['Raleway', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #0d1b2a;
+      color: #eef2f5;
+      font-family: 'Raleway', sans-serif;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #060d15; }
+    ::-webkit-scrollbar-thumb { background: #c9a047; border-radius: 2px; }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.038;
+      pointer-events: none;
+      z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* ── Navigation ── */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      transition:
+        background-color 0.5s cubic-bezier(0.4,0,0.2,1),
+        backdrop-filter  0.5s cubic-bezier(0.4,0,0.2,1),
+        box-shadow       0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    #main-nav.scrolled {
+      background-color: rgba(10, 20, 34, 0.94);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 1px 0 rgba(154,171,184,0.08), 0 6px 24px rgba(6,13,21,0.5);
+    }
+
+    .nav-link {
+      position: relative;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      color: rgba(184,202,214,0.75);
+      transition: color 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: #c9a047;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .nav-link:hover { color: #eef2f5; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:focus-visible { outline: 1px solid rgba(201,160,71,0.7); outline-offset: 4px; border-radius: 1px; }
+
+    /* ── Buttons ── */
+    .btn-gold {
+      display: inline-block;
+      background: linear-gradient(135deg, #c9a047 0%, #d4a537 50%, #c9a047 100%);
+      background-size: 200% 100%;
+      background-position: 0% 50%;
+      color: #060d15;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      padding: 14px 34px;
+      cursor: pointer;
+      transition:
+        background-position 0.5s cubic-bezier(0.4,0,0.2,1),
+        transform           0.2s cubic-bezier(0.4,0,0.2,1),
+        box-shadow          0.35s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 4px 20px rgba(201,160,71,0.28), 0 1px 4px rgba(0,0,0,0.35);
+    }
+    .btn-gold:hover {
+      background-position: 100% 50%;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201,160,71,0.42), 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .btn-gold:active { transform: translateY(0); }
+    .btn-gold:focus-visible { outline: 2px solid #c9a047; outline-offset: 3px; }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(184,202,214,0.28);
+      color: #eef2f5;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      padding: 14px 34px;
+      cursor: pointer;
+      transition:
+        border-color      0.3s cubic-bezier(0.4,0,0.2,1),
+        background-color  0.3s cubic-bezier(0.4,0,0.2,1),
+        transform         0.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-outline:hover {
+      border-color: rgba(184,202,214,0.65);
+      background-color: rgba(184,202,214,0.06);
+      transform: translateY(-2px);
+    }
+    .btn-outline:active { transform: translateY(0); }
+    .btn-outline:focus-visible { outline: 1px solid rgba(184,202,214,0.5); outline-offset: 3px; }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #25D366, #1aad56);
+      color: #fff;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      padding: 16px 40px;
+      cursor: pointer;
+      transition:
+        transform  0.2s cubic-bezier(0.4,0,0.2,1),
+        box-shadow 0.35s cubic-bezier(0.4,0,0.2,1),
+        filter     0.3s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.3);
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.45);
+      filter: brightness(1.08);
+    }
+    .btn-whatsapp:active { transform: translateY(-1px); }
+    .btn-whatsapp:focus-visible { outline: 2px solid #25D366; outline-offset: 3px; }
+
+    /* ── Typography helpers ── */
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+    .text-label {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+    }
+
+    /* ── Decorative lines ── */
+    .line-gold-h {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,160,71,0.8), transparent);
+    }
+    .line-gold-left {
+      display: inline-block;
+      width: 36px; height: 1px;
+      background: linear-gradient(90deg, #c9a047, transparent);
+      vertical-align: middle;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 70% 55% at 20% 80%, rgba(18,50,80,0.75) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 70% at 80% 20%, rgba(14,36,62,0.6) 0%, transparent 60%),
+        radial-gradient(ellipse 90% 70% at 50% 50%, rgba(16,32,50,0.85) 0%, rgba(6,13,21,1) 100%);
+    }
+
+    .hero-grid-overlay {
+      background-image:
+        linear-gradient(rgba(154,171,184,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(154,171,184,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* ── Hero text animations ── */
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+    @keyframes lineGrow { from { width:0; } to { width:56px; } }
+    @keyframes pulse    { 0%,100% { transform:translateY(0); } 50% { transform:translateY(7px); } }
+    @keyframes pathReveal { from { stroke-dashoffset: 3000; } to { stroke-dashoffset: 0; } }
+    @keyframes glowPulse  { 0%,100% { opacity:0.22; } 50% { opacity:0.40; } }
+    .path-draw   { animation: pathReveal 3.5s 0.4s cubic-bezier(0.4,0,0.2,1) both; stroke-dasharray: 10 14; }
+    .glow-pulse  { animation: glowPulse 3s ease-in-out infinite; }
+
+    .anim-label  { animation: fadeIn  1s    0.2s  both; }
+    .anim-h1a    { animation: fadeUp  1s    0.45s both cubic-bezier(0.4,0,0.2,1); }
+    .anim-h1b    { animation: fadeUp  1s    0.60s both cubic-bezier(0.4,0,0.2,1); }
+    .anim-rule   { animation: lineGrow 0.9s 1.0s  both; }
+    .anim-sub    { animation: fadeUp  0.9s  1.1s  both cubic-bezier(0.4,0,0.2,1); }
+    .anim-ctas   { animation: fadeUp  0.9s  1.25s both cubic-bezier(0.4,0,0.2,1); }
+    .anim-scroll { animation: fadeIn  1s    1.8s  both; }
+    .anim-scroll-bounce { animation: pulse 2.2s 2s infinite; }
+
+    @keyframes logoReveal {
+      0%   { opacity:0; transform:scale(0.90) translateY(18px); }
+      65%  { opacity:1; transform:scale(1.04)  translateY(-5px); }
+      100% { opacity:1; transform:scale(1.0)   translateY(0); }
+    }
+    @keyframes logoGlowPulse {
+      0%,100% { opacity:0.85; transform:scale(1); }
+      50%     { opacity:1.15; transform:scale(1.07); }
+    }
+    @keyframes logoBreathe {
+      0%,100% { transform:scale(1.0); }
+      50%     { transform:scale(1.013); }
+    }
+    .anim-logo       { animation:logoReveal 1.6s 0.3s cubic-bezier(0.34,1.2,0.64,1) both; }
+    .logo-glow-layer { animation:logoGlowPulse 5.5s ease-in-out infinite; transform-origin:center; }
+    .logo-img-breathe { animation:logoBreathe 10s ease-in-out 1.8s infinite; transform-origin:center; }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity   0.85s cubic-bezier(0.4,0,0.2,1),
+        transform 0.85s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+
+    /* ── Destination cards ── */
+    .dest-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .dest-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(6,13,21,0.92) 0%,
+        rgba(6,13,21,0.45) 45%,
+        rgba(6,13,21,0.05) 100%
+      );
+      z-index: 1;
+      transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .dest-card:hover::after { opacity: 0.75; }
+
+    .dest-bg {
+      position: absolute; inset: 0;
+      transition: transform 0.9s cubic-bezier(0.4,0,0.2,1);
+    }
+    .dest-card:hover .dest-bg { transform: scale(1.07); }
+
+    .dest-info {
+      position: absolute; bottom:0; left:0; right:0;
+      padding: 2rem;
+      z-index: 2;
+    }
+    .dest-more {
+      display: flex; align-items: center; gap: 6px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition:
+        opacity   0.4s cubic-bezier(0.4,0,0.2,1) 0.05s,
+        transform 0.4s cubic-bezier(0.4,0,0.2,1) 0.05s;
+    }
+    .dest-card:hover .dest-more { opacity:1; transform:translateY(0); }
+
+    /* Destination gradient palettes */
+    .dest-maldives {
+      background:
+        radial-gradient(ellipse 60% 40% at 40% 30%, rgba(6,180,212,0.4) 0%, transparent 70%),
+        linear-gradient(170deg, #063a5c 0%, #0a6090 35%, #0d98b8 65%, #10cad8 100%);
+    }
+    .dest-santorini {
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 15%, rgba(255,255,255,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 75% 85%, rgba(220,130,60,0.25) 0%, transparent 60%),
+        linear-gradient(170deg, #1c1550 0%, #2e3a90 35%, #5070c0 60%, #90b8e0 90%, #c8daf0 100%);
+    }
+    .dest-toscana {
+      background:
+        radial-gradient(ellipse 60% 40% at 30% 30%, rgba(200,180,50,0.3) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 35% at 70% 70%, rgba(80,120,20,0.4) 0%, transparent 60%),
+        linear-gradient(170deg, #18280a 0%, #3a5a10 30%, #6a9020 58%, #c0b040 80%, #ddd080 100%);
+    }
+
+    /* ── Services ── */
+    .svc-item {
+      border-top: 1px solid rgba(154,171,184,0.12);
+      transition: border-color 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .svc-item:hover { border-color: rgba(201,160,71,0.4); }
+
+    .svc-icon-ring {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,160,71,0.28);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .svc-item:hover .svc-icon-ring { border-color: rgba(201,160,71,0.65); }
+
+    /* ── About ── */
+    .about-frame {
+      position: relative;
+    }
+    .about-frame::before {
+      content: '';
+      position: absolute;
+      top: 14px; right: -14px;
+      width: 100%; height: 100%;
+      border: 1px solid rgba(201,160,71,0.2);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Testimonial cards ── */
+    .testi-card {
+      border: 1px solid rgba(154,171,184,0.1);
+      background: linear-gradient(140deg, rgba(18,34,52,0.65), rgba(26,47,68,0.4));
+      backdrop-filter: blur(12px);
+      transition:
+        border-color 0.35s cubic-bezier(0.4,0,0.2,1),
+        transform    0.35s cubic-bezier(0.4,0,0.2,1),
+        box-shadow   0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .testi-card:hover {
+      border-color: rgba(201,160,71,0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 48px rgba(6,13,21,0.55), 0 0 0 1px rgba(201,160,71,0.1);
+    }
+
+    /* ── Footer links ── */
+    .footer-link {
+      color: #9aabb8;
+      font-size: 0.85rem;
+      transition: color 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .footer-link:hover { color: #eef2f5; }
+    .footer-link:focus-visible { outline: 1px solid rgba(201,160,71,0.6); outline-offset: 3px; }
+
+    .social-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(154,171,184,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: #9aabb8;
+      transition:
+        border-color 0.3s cubic-bezier(0.4,0,0.2,1),
+        color        0.3s cubic-bezier(0.4,0,0.2,1),
+        transform    0.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .social-btn:hover {
+      border-color: rgba(201,160,71,0.55);
+      color: #c9a047;
+      transform: translateY(-2px);
+    }
+    .social-btn:focus-visible { outline: 1px solid #c9a047; outline-offset: 3px; }
+
+    /* ── Mobile menu ── */
+    #mobile-drawer {
+      position: fixed; inset: 0;
+      z-index: 600;
+      background: rgba(6,13,21,0.98);
+      backdrop-filter: blur(24px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    #mobile-drawer.open { transform: translateX(0); }
+    .mobile-nav-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: #b8cad6;
+      letter-spacing: -0.01em;
+      transition: color 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .mobile-nav-link:hover { color: #c9a047; }
+
+    /* ── Stat numbers ── */
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1;
+      color: #c9a047;
+    }
+
+    /* ── CTA section background ── */
+    #cta {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(24,52,80,0.65) 0%, rgba(6,13,21,1) 72%);
+    }
+  </style>
+  <link rel="stylesheet" href="shiny-buttons.css">
+  <script src="hover-button.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════ -->
+  <nav id="main-nav" aria-label="Navegação principal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+
+      <a href="index.html" aria-label="CK Viagens — início" class="flex-shrink-0">
+        <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-14 w-auto">
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-7">
+        <div class="nav-dropdown">
+          <a href="destinos.html" class="nav-link">Destinos <svg class="nav-dd-caret" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+          <div class="nav-dd-menu">
+            <a href="destinos.html" class="nav-dd-item"><span class="nav-dd-icon">✦</span><div><span class="nav-dd-label">Principais Destinos</span><span class="nav-dd-sub">Américas, Europa, Ásia e mais</span></div></a>
+            <a href="destinos.html#cruzeiros" class="nav-dd-item"><span class="nav-dd-icon">⚓</span><div><span class="nav-dd-label">Cruzeiros</span><span class="nav-dd-sub">Brasil, Caribe, Mediterrâneo, Fiords</span></div></a>
+            <a href="eventos.html" class="nav-dd-item"><span class="nav-dd-icon">◈</span><div><span class="nav-dd-label">Eventos</span><span class="nav-dd-sub">Feiras globais · F1 · Tênis · Futebol</span></div></a>
+          </div>
+        </div>
+        <a href="hoteis.html"   class="nav-link">Hospedagem</a>
+        <a href="aereo.html"    class="nav-link">Aéreo</a>
+        <a href="vistos.html"   class="nav-link">Vistos</a>
+        <a href="seguros.html"  class="nav-link">Seguros</a>
+        <a href="rentals.html"  class="nav-link">Aluguel</a>
+        <a href="sobre.html"    class="nav-link">Sobre</a>
+      </div>
+
+      <div class="hidden md:flex items-center">
+        <a href="contato.html" class="btn-gold">Fale Conosco</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="menu-open"
+        class="md:hidden p-2 flex flex-col gap-1.5 focus-visible:outline focus-visible:outline-1 focus-visible:outline-gold-400"
+        aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span id="b1" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+        <span id="b2" class="block w-6 h-px bg-silver-300 transition-opacity duration-300"></span>
+        <span id="b3" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <button id="menu-close" class="absolute top-6 right-6 p-2 text-silver-400 hover:text-silver-100 focus-visible:outline focus-visible:outline-1 focus-visible:outline-gold-400" aria-label="Fechar menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="mobile-dd-group">
+      <span class="mobile-dd-trigger">Destinos <svg width="12" height="8" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="mobile-dd-sub">
+        <a href="destinos.html" class="mobile-sub-link drawer-link">Principais Destinos</a>
+        <a href="destinos.html#cruzeiros" class="mobile-sub-link drawer-link">Cruzeiros</a>
+        <a href="eventos.html" class="mobile-sub-link drawer-link">Eventos</a>
+      </div>
+    </div>
+    <a href="hoteis.html"   class="mobile-nav-link drawer-link">Hospedagem</a>
+    <a href="aereo.html"    class="mobile-nav-link drawer-link">Aéreo</a>
+    <a href="vistos.html"   class="mobile-nav-link drawer-link">Vistos</a>
+    <a href="seguros.html"  class="mobile-nav-link drawer-link">Seguros</a>
+    <a href="rentals.html"  class="mobile-nav-link drawer-link">Aluguel</a>
+    <a href="sobre.html"    class="mobile-nav-link drawer-link">Sobre</a>
+    <a href="contato.html"  class="btn-gold drawer-link mt-2">Fale Conosco</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section id="hero">
+    <!-- Grid overlay -->
+    <div class="hero-grid-overlay absolute inset-0 pointer-events-none"></div>
+
+    <!-- Ambient orbs -->
+    <div class="absolute pointer-events-none" style="top:20%;left:12%;width:380px;height:380px;background:radial-gradient(ellipse,rgba(24,60,96,0.5),transparent 70%);filter:blur(50px);"></div>
+    <div class="absolute pointer-events-none" style="bottom:28%;right:10%;width:280px;height:280px;background:radial-gradient(ellipse,rgba(201,160,71,0.07),transparent 70%);filter:blur(36px);"></div>
+
+    <!-- Bottom fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-52 pointer-events-none" style="background:linear-gradient(to top, #0d1b2a, transparent);"></div>
+
+    <!-- Flight path SVG — detailed commercial aircraft, continuous animation -->
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="z-index:2;">
+      <defs>
+        <radialGradient id="planeGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#d4a537" stop-opacity="0.52"/>
+          <stop offset="55%"  stop-color="#c9a047" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#c9a047" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Dashed route arc — revealed on page load; id referenced by animateMotion -->
+      <path id="flight-route" class="path-draw"
+        d="M -160 960 C 320 680, 940 270, 1640 0"
+        fill="none"
+        stroke="rgba(201,160,71,0.26)"
+        stroke-width="1.5"
+        stroke-linecap="round"/>
+
+      <!-- Plane — flies the full route endlessly, auto-rotates to face direction of travel -->
+      <g>
+        <!-- Soft gold glow halo that travels with the plane -->
+        <ellipse class="glow-pulse" rx="95" ry="75" fill="url(#planeGlow)"/>
+        <!--
+          Pre-transform (right-to-left):
+          1. translate(-12,-12)  center the 24×24 icon at local origin
+          2. rotate(90)           nose from −Y → +X so rotate="auto" tracks path tangent
+          3. scale(4)             enlarge to ~96 px display size
+        -->
+        <g transform="scale(4) rotate(90) translate(-12,-12)">
+
+          <!-- ── Fuselage body ── -->
+          <path d="M12,2 C13.6,2 14.2,4.5 14.2,8 L14,17.5 Q13.2,20.2 12,21.8 Q10.8,20.2 10,17.5 L9.8,8 C9.8,4.5 10.4,2 12,2 Z"
+            fill="#ddb840"/>
+          <!-- Belly shading for depth -->
+          <path d="M13.4,4.5 L13.6,16 Q13.2,19 12.7,21.2"
+            stroke="rgba(120,80,8,0.40)" stroke-width="0.65" fill="none" stroke-linecap="round"/>
+          <!-- Nose highlight streak -->
+          <path d="M12,2.4 C12.5,2.8 12.9,5 13,9"
+            stroke="rgba(255,248,150,0.62)" stroke-width="0.55" fill="none" stroke-linecap="round"/>
+
+          <!-- ── Right main wing (swept) ── -->
+          <path d="M13.8,10 L22.5,16.5 L21.5,18.5 L13.2,13.5 Z"
+            fill="#c9a040"/>
+          <!-- ── Left main wing (swept) ── -->
+          <path d="M10.2,10 L1.5,16.5 L2.5,18.5 L10.8,13.5 Z"
+            fill="#c9a040"/>
+          <!-- Wing leading-edge highlights -->
+          <line x1="13.8" y1="10.5" x2="21.5" y2="16.2" stroke="rgba(255,245,150,0.38)" stroke-width="0.5"/>
+          <line x1="10.2" y1="10.5" x2="2.5"  y2="16.2" stroke="rgba(255,245,150,0.38)" stroke-width="0.5"/>
+
+          <!-- ── Right engine nacelle ── -->
+          <ellipse cx="19.5" cy="14.5" rx="1.1" ry="2.5"
+            fill="#8a6018" opacity="0.88" transform="rotate(-38, 19.5, 14.5)"/>
+          <ellipse cx="19.5" cy="14.5" rx="0.55" ry="1.1"
+            fill="rgba(255,220,80,0.25)" transform="rotate(-38, 19.5, 14.5)"/>
+          <!-- ── Left engine nacelle ── -->
+          <ellipse cx="4.5" cy="14.5" rx="1.1" ry="2.5"
+            fill="#8a6018" opacity="0.88" transform="rotate(38, 4.5, 14.5)"/>
+          <ellipse cx="4.5" cy="14.5" rx="0.55" ry="1.1"
+            fill="rgba(255,220,80,0.25)" transform="rotate(38, 4.5, 14.5)"/>
+
+          <!-- ── Right horizontal tail stabilizer ── -->
+          <path d="M13.5,20 L18,22.5 L17.5,23.8 L13,21.5 Z"
+            fill="#c9a040"/>
+          <!-- ── Left horizontal tail stabilizer ── -->
+          <path d="M10.5,20 L6,22.5 L6.5,23.8 L11,21.5 Z"
+            fill="#c9a040"/>
+          <!-- ── Vertical tail fin ── -->
+          <path d="M11.5,19.5 L12,23.5 L12.5,19.5 Q12.8,18.8 12,18.5 Q11.2,18.8 11.5,19.5 Z"
+            fill="#b89030"/>
+
+        </g>
+
+        <animateMotion dur="28s" repeatCount="indefinite" rotate="auto">
+          <mpath href="#flight-route"/>
+        </animateMotion>
+      </g>
+    </svg>
+
+    <!-- Hero content — logo as centerpiece -->
+    <div class="relative text-center px-6 max-w-3xl mx-auto pt-24" style="z-index:10;">
+
+      <!-- Logo (transparent PNG — centrepiece) -->
+      <div class="anim-logo relative inline-block mb-2">
+        <!-- Multi-layer gold aurora glow -->
+        <div class="logo-glow-layer absolute pointer-events-none"
+          style="inset:-100px;z-index:0;
+            background:
+              radial-gradient(ellipse 52% 44% at 50% 52%,rgba(201,160,71,0.18) 0%,transparent 50%),
+              radial-gradient(ellipse 88% 72% at 50% 56%,rgba(201,160,71,0.08) 0%,transparent 66%),
+              radial-gradient(ellipse 135% 112% at 50% 56%,rgba(180,130,40,0.04) 0%,transparent 76%);
+            filter:blur(24px);">
+        </div>
+        <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens — Experiências Exclusivas"
+          class="logo-img-breathe relative"
+          style="z-index:2;height:clamp(300px,38vw,510px);width:auto;display:block;margin:0 auto;
+            filter:brightness(1.06);">
+      </div>
+
+      <!-- Subtle rule -->
+      <div class="anim-rule mx-auto mt-8 mb-7 h-px" style="width:56px;background:linear-gradient(90deg,transparent,#c9a047,transparent);"></div>
+
+      <!-- Sub tagline -->
+      <p class="anim-sub text-silver-400 font-light leading-relaxed mx-auto" style="font-size:clamp(0.85rem,1.6vw,1rem);max-width:480px;letter-spacing:0.04em;line-height:1.9;">
+        Curadoria de viagens para quem exige o extraordinário em cada detalhe da jornada.
+      </p>
+
+      <!-- CTAs -->
+      <div class="anim-ctas flex flex-wrap items-center justify-center gap-4 mt-10">
+        <a href="https://www.expedia.com" target="_blank" rel="noopener noreferrer" class="btn-gold">Explorar Destinos</a>
+        <a href="#sobre"    class="btn-outline">Nossa História</a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="anim-scroll absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
+      <span class="text-label text-silver-600" style="font-size:0.6rem;">Scroll</span>
+      <div class="anim-scroll-bounce w-px h-9" style="background:linear-gradient(to bottom, #7b8e9a, transparent);"></div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       DESTINATIONS
+  ═══════════════════════════════════════ -->
+  <section id="destinos" class="py-28" style="background:#0a1720;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Header -->
+      <div class="reveal mb-16 max-w-xl">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Alguns de nossos destinos</span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:1.05;letter-spacing:-0.015em;">
+          Onde o Mundo<br><em class="not-italic" style="color:#c9a047;">Surpreende</em>
+        </h2>
+        <p class="text-silver-500 mt-4 leading-relaxed text-sm" style="max-width:400px;line-height:1.8;">
+          Destinos cuidadosamente curados para experiências que transcendem o ordinário.
+        </p>
+      </div>
+
+      <!-- Grid (1 tall left + 2 stacked right on larger screens) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Cancún -->
+        <div class="reveal dest-card rounded-sm" style="height:500px;">
+          <div class="dest-bg" style="background-image:url('IMG_3354.JPEG');background-size:cover;background-position:center;"></div>
+          <div class="dest-info">
+            <span class="text-label text-gold-400 mb-1 block">México</span>
+            <h3 class="font-display font-light text-silver-50" style="font-size:2.1rem;letter-spacing:-0.01em;">Cancún</h3>
+            <p class="text-silver-400 mt-1" style="font-size:0.78rem;letter-spacing:0.03em;">Praias turquesa e ruínas maias</p>
+            <div class="dest-more mt-3 text-gold-400">
+              <span class="text-label" style="font-size:0.62rem;">Explorar</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Santorini -->
+        <div class="reveal reveal-d1 dest-card rounded-sm" style="height:500px;">
+          <div class="dest-bg dest-santorini"></div>
+          <div class="dest-info">
+            <span class="text-label text-gold-400 mb-1 block">Grécia</span>
+            <h3 class="font-display font-light text-silver-50" style="font-size:2.1rem;letter-spacing:-0.01em;">Santorini</h3>
+            <p class="text-silver-400 mt-1" style="font-size:0.78rem;letter-spacing:0.03em;">Pôr do sol sobre o Mar Egeu</p>
+            <div class="dest-more mt-3 text-gold-400">
+              <span class="text-label" style="font-size:0.62rem;">Explorar</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toscana -->
+        <div class="reveal reveal-d2 dest-card rounded-sm" style="height:500px;">
+          <div class="dest-bg dest-toscana"></div>
+          <div class="dest-info">
+            <span class="text-label text-gold-400 mb-1 block">Itália</span>
+            <h3 class="font-display font-light text-silver-50" style="font-size:2.1rem;letter-spacing:-0.01em;">Toscana</h3>
+            <p class="text-silver-400 mt-1" style="font-size:0.78rem;letter-spacing:0.03em;">Vinhedos dourados e castelos medievais</p>
+            <div class="dest-more mt-3 text-gold-400">
+              <span class="text-label" style="font-size:0.62rem;">Explorar</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="reveal mt-12 text-center">
+        <a href="destinos.html" class="btn-outline">Ver Todos os Destinos</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════ -->
+  <section id="servicos" class="py-28" style="background:linear-gradient(180deg,#0a1720 0%,#0d1b2a 100%);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="reveal mb-16 max-w-xl">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Como Podemos Ajudar</span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:1.05;letter-spacing:-0.015em;">
+          Nossos<br><em class="not-italic" style="color:#c9a047;">Serviços</em>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2">
+
+        <!-- 01 -->
+        <div class="svc-item reveal p-8 group cursor-default">
+          <div class="flex items-start gap-6">
+            <div class="svc-icon-ring">
+              <svg class="w-5 h-5" style="color:#c9a047;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 22h20M4 22V10l8-5 8 5v12M10 22v-6h4v6M10 13h4"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-label text-silver-600 mb-2" style="font-size:0.62rem;">01</div>
+              <h3 class="font-display font-light text-silver-100 mb-2" style="font-size:1.45rem;">Hospedagem</h3>
+              <p class="text-silver-500 text-sm leading-relaxed" style="line-height:1.8;">
+                Hotéis, resorts e cabines de cruzeiro — selecionamos as melhores opções em cada destino, com condições exclusivas e reservas personalizadas ao seu perfil.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 -->
+        <div class="svc-item reveal reveal-d1 p-8 group cursor-default">
+          <div class="flex items-start gap-6">
+            <div class="svc-icon-ring">
+              <svg class="w-5 h-5" style="color:#c9a047;" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-label text-silver-600 mb-2" style="font-size:0.62rem;">02</div>
+              <h3 class="font-display font-light text-silver-100 mb-2" style="font-size:1.45rem;">Aéreo</h3>
+              <p class="text-silver-500 text-sm leading-relaxed" style="line-height:1.8;">
+                Emissão de passagens nacionais e internacionais com as melhores tarifas, classes e conexões para a sua viagem.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="svc-item reveal reveal-d2 p-8 group cursor-default">
+          <div class="flex items-start gap-6">
+            <div class="svc-icon-ring">
+              <svg class="w-5 h-5" style="color:#c9a047;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="4" y="2" width="16" height="20" rx="2"/>
+                <path d="M8 7h8M8 11h8M8 15h5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-label text-silver-600 mb-2" style="font-size:0.62rem;">03</div>
+              <h3 class="font-display font-light text-silver-100 mb-2" style="font-size:1.45rem;">Consultoria de Vistos &amp; Documentações</h3>
+              <p class="text-silver-500 text-sm leading-relaxed" style="line-height:1.8;">
+                Orientação completa sobre vistos, documentos e exigências de entrada em cada destino — sem surpresas na hora de viajar.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 -->
+        <div class="svc-item reveal reveal-d3 p-8 group cursor-default">
+          <div class="flex items-start gap-6">
+            <div class="svc-icon-ring">
+              <svg class="w-5 h-5" style="color:#c9a047;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-label text-silver-600 mb-2" style="font-size:0.62rem;">04</div>
+              <h3 class="font-display font-light text-silver-100 mb-2" style="font-size:1.45rem;">Seguros Viagem</h3>
+              <p class="text-silver-500 text-sm leading-relaxed" style="line-height:1.8;">
+                As melhores coberturas do mercado para proteger você e sua família durante toda a jornada, onde quer que vá.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 -->
+        <div class="svc-item reveal reveal-d4 p-8 group cursor-default">
+          <div class="flex items-start gap-6">
+            <div class="svc-icon-ring">
+              <svg class="w-5 h-5" style="color:#c9a047;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="1" y="9" width="22" height="9" rx="1"/><path d="M5 9V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-label text-silver-600 mb-2" style="font-size:0.62rem;">05</div>
+              <h3 class="font-display font-light text-silver-100 mb-2" style="font-size:1.45rem;">Aluguel de Carros</h3>
+              <p class="text-silver-500 text-sm leading-relaxed" style="line-height:1.8;">
+                Mobilidade completa no seu destino — frota ampla para todos os perfis, nacionais e internacionais, em parceria com a plataforma Mobility.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════ -->
+  <section id="sobre" class="py-28 overflow-hidden" style="background:#0d1b2a;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+        <!-- Image -->
+        <div class="reveal">
+          <div class="about-frame relative z-10">
+            <img src="ChatGPT%20Image%20Jun%2012%2C%202026%2C%2006_43_11%20PM.png" alt="Família viajando com a CK Viagens" class="relative z-10 w-full block" style="filter:contrast(0.92) brightness(0.88) saturate(0.9);object-fit:cover;">
+            <!-- Colour-treatment overlay — ties the vivid photo into the dark brand palette -->
+            <div class="absolute inset-0 z-10 pointer-events-none" style="background:linear-gradient(to top,rgba(13,27,42,0.82) 0%,rgba(13,27,42,0.18) 55%,transparent 100%);"></div>
+            <div class="absolute inset-0 z-10 pointer-events-none" style="background:rgba(13,27,42,0.08);mix-blend-mode:multiply;"></div>
+            <!-- Year badge -->
+            <div class="absolute bottom-8 left-8 z-20 px-5 py-4" style="background:rgba(18,34,52,0.92);backdrop-filter:blur(8px);border:1px solid rgba(201,160,71,0.3);">
+              <div class="text-label text-gold-400 mb-1" style="font-size:0.6rem;">Fundada em</div>
+              <div class="font-display font-light text-silver-100" style="font-size:2.4rem;line-height:1;">2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="reveal reveal-d2">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="line-gold-left"></span>
+            <span class="text-label text-gold-500">Nossa História</span>
+          </div>
+
+          <h2 class="font-display font-light text-silver-100 mb-6" style="font-size:clamp(2rem,3.8vw,3.2rem);line-height:1.1;letter-spacing:-0.015em;">
+            Transformamos Sonhos<br>em <em class="not-italic" style="color:#c9a047;">Experiências Reais</em>
+          </h2>
+
+          <p class="text-silver-400 leading-relaxed mb-5" style="font-size:0.93rem;line-height:1.85;">
+            A CK Viagens nasceu da união de um casal que dedicou mais de quatro décadas ao universo do turismo, transformando jornadas em memórias inesquecíveis e sonhos em realidade. Movidos pela paixão de conectar pessoas a experiências únicas, construíram ao longo dos anos uma sólida rede de parceiros e relacionamentos baseada em confiança, excelência e credibilidade.
+          </p>
+
+          <p class="text-silver-400 leading-relaxed mb-9" style="font-size:0.93rem;line-height:1.85;">
+            Hoje, esse legado ganha continuidade por meio da CK Viagens, uma empresa criada para oferecer experiências exclusivas, atendimento personalizado e viagens cuidadosamente planejadas para cada cliente. Mais do que organizar roteiros, a CK Viagens tem como propósito tornar cada viagem uma história especial para ser vivida e lembrada.
+          </p>
+
+          <ul class="space-y-3 mb-10">
+            <li class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#c9a047;"></span>
+              <span class="text-silver-300 text-sm">Curadoria personalizada para cada viajante</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#c9a047;"></span>
+              <span class="text-silver-300 text-sm">Suporte 24h durante toda a sua viagem</span>
+            </li>
+          </ul>
+
+          <a href="#contato" class="btn-gold">Fale com um Consultor</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ═══════════════════════════════════════
+       CTA
+  ═══════════════════════════════════════ -->
+  <section id="contato" class="relative py-36 overflow-hidden" style="background:#060d15;">
+    <div id="cta" class="absolute inset-0 pointer-events-none"></div>
+    <div class="hero-grid-overlay absolute inset-0 pointer-events-none opacity-40"></div>
+    <!-- Glow -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div style="width:700px;height:350px;background:radial-gradient(ellipse,rgba(201,160,71,0.07),transparent 70%);filter:blur(50px);"></div>
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+      <div class="reveal flex items-center justify-center gap-4 mb-6">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">Comece Sua Jornada</span>
+        <span class="line-gold-left" style="transform:rotate(180deg);"></span>
+      </div>
+
+      <h2 class="reveal reveal-d1 font-display font-light text-silver-100 mb-6" style="font-size:clamp(2.6rem,6vw,5rem);line-height:1.0;letter-spacing:-0.02em;">
+        Pronto Para<br><em class="not-italic" style="color:#c9a047;">Viver o Extraordinário?</em>
+      </h2>
+
+      <p class="reveal reveal-d2 text-silver-400 leading-relaxed mb-11 mx-auto" style="font-size:0.93rem;line-height:1.85;max-width:460px;">
+        Fale com nossos consultores especializados e planeje a viagem dos seus sonhos. Atendimento personalizado e sem compromisso.
+      </p>
+
+      <div class="reveal reveal-d3 flex flex-wrap items-center justify-center gap-4">
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Falar no WhatsApp
+        </a>
+        <a href="mailto:contato@ckviagens.com.br" class="btn-outline">Enviar E-mail</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer style="background:#060d15;border-top:1px solid rgba(154,171,184,0.1);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+
+        <!-- Brand col -->
+        <div class="lg:col-span-2">
+          <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-16 w-auto mb-5">
+          <p class="text-silver-500 text-sm leading-relaxed" style="max-width:320px;line-height:1.85;">
+            Curadoria de experiências exclusivas para quem viaja em grande estilo. Seu sonho, nossa missão.
+          </p>
+          <div class="flex gap-3 mt-7">
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Nav links -->
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Navegação</h3>
+          <ul class="space-y-3.5">
+            <li><a href="destinos.html" class="footer-link">Destinos</a></li>
+            <li><a href="hoteis.html"   class="footer-link">Hospedagem</a></li>
+            <li><a href="aereo.html"    class="footer-link">Aéreo</a></li>
+            <li><a href="vistos.html"   class="footer-link">Vistos</a></li>
+            <li><a href="seguros.html"  class="footer-link">Seguros</a></li>
+            <li><a href="sobre.html"    class="footer-link">Sobre Nós</a></li>
+            <li><a href="contato.html"  class="footer-link">Contato</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Contato</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm">
+              <svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.93h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+              +55 (00) 00000-0000
+            </li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm">
+              <svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              contato@ckviagens.com.br
+            </li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm">
+              <svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Seg–Sex: 9h às 18h
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="line-gold-h mb-8"></div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-silver-600 text-xs" style="letter-spacing:0.06em;">© 2025 CK Viagens. Todos os direitos reservados.</p>
+        <p class="text-label text-silver-700" style="font-size:0.6rem;">EXPERIÊNCIAS EXCLUSIVAS</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════ -->
+  <script>
+    // ── Nav scroll ──────────────────────────
+    const nav = document.getElementById('main-nav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ── Mobile drawer ───────────────────────
+    const drawer      = document.getElementById('mobile-drawer');
+    const btnOpen     = document.getElementById('menu-open');
+    const btnClose    = document.getElementById('menu-close');
+    const b1 = document.getElementById('b1');
+    const b2 = document.getElementById('b2');
+    const b3 = document.getElementById('b3');
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      btnOpen.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      b1.style.transform = 'translateY(6px) rotate(45deg)';
+      b2.style.opacity = '0';
+      b3.style.transform = 'translateY(-6px) rotate(-45deg)';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      btnOpen.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      b1.style.transform = '';
+      b2.style.opacity  = '';
+      b3.style.transform = '';
+    }
+
+    btnOpen.addEventListener('click', openDrawer);
+    btnClose.addEventListener('click', closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(l => l.addEventListener('click', closeDrawer));
+    document.querySelectorAll('.mobile-dd-trigger').forEach(t=>t.addEventListener('click',()=>t.closest('.mobile-dd-group').classList.toggle('mobile-dd-open')));
+    drawer.addEventListener('click', e => { if (e.target === drawer) closeDrawer(); });
+
+    // Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+    });
+
+    // ── Scroll reveal ───────────────────────
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Smooth anchor scroll ────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(id);
+        if (!target) return;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>

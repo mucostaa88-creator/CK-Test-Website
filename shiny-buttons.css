@@ -1,0 +1,644 @@
+/*
+  CK Viagens — Shiny Button Animations
+  Applies rotating conic-gradient border glow + shimmer to .btn-gold and .btn-outline.
+  This file overrides base button styles defined in each page's <style> block.
+*/
+
+/* ── Animatable CSS custom properties ── */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --gradient-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --gradient-percent {
+  syntax: "<percentage>";
+  initial-value: 5%;
+  inherits: false;
+}
+@property --gradient-shine {
+  syntax: "<color>";
+  initial-value: #f5e8ba;
+  inherits: false;
+}
+
+/* ── Keyframes ── */
+@keyframes ck-spin {
+  to { --gradient-angle: 360deg; }
+}
+@keyframes ck-shimmer {
+  to { rotate: 360deg; }
+}
+@keyframes ck-breathe {
+  from, to { scale: 1; }
+  50%       { scale: 1.2; }
+}
+
+/* ══════════════════════════════════════════
+   GOLD BUTTON  (.btn-gold)
+   Fill: solid #c9a047 | Shine: cream-gold
+══════════════════════════════════════════ */
+.btn-gold {
+  --ck-highlight:    #e8c870;
+  --ck-subtle:       #f5e8ba;
+  --ck-duration:     3.5s;
+  --ck-shadow-sz:    2px;
+  --ck-transition:   800ms cubic-bezier(0.25, 1, 0.5, 1);
+
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+
+  /* Conic-gradient spinning border replaces the old solid border */
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#c9a047, #c9a047) padding-box,
+    conic-gradient(
+      from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+      transparent,
+      var(--ck-highlight)    var(--gradient-percent),
+      var(--ck-subtle)       calc(var(--gradient-percent) * 2),
+      var(--ck-highlight)    calc(var(--gradient-percent) * 3),
+      transparent            calc(var(--gradient-percent) * 4)
+    ) border-box;
+
+  transition:
+    --gradient-angle-offset var(--ck-transition),
+    --gradient-percent      var(--ck-transition),
+    --gradient-shine        var(--ck-transition),
+    transform               0.2s  cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow              0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Idle: slow background spin; second layer paused until hover */
+  animation:
+    ck-spin linear infinite var(--ck-duration),
+    ck-spin linear infinite calc(var(--ck-duration) / 0.4) reverse paused;
+  animation-composition: add;
+}
+
+/* Pseudo-element base */
+.btn-gold::before,
+.btn-gold::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+}
+
+/* Dots texture that tracks the spin */
+.btn-gold::before {
+  --pos:  2px;
+  width:  calc(100% - var(--ck-shadow-sz) * 3);
+  height: calc(100% - var(--ck-shadow-sz) * 3);
+  background: radial-gradient(
+      circle at var(--pos) var(--pos),
+      rgba(255, 255, 255, 0.55) calc(var(--pos) / 4),
+      transparent 0
+    ) padding-box;
+  background-size: calc(var(--pos) * 2) calc(var(--pos) * 2);
+  background-repeat: space;
+  mask-image: conic-gradient(
+    from calc(var(--gradient-angle) + 45deg),
+    black,
+    transparent 10% 90%,
+    black
+  );
+  border-radius: inherit;
+  opacity: 0.4;
+  animation:
+    ck-spin linear infinite var(--ck-duration),
+    ck-spin linear infinite calc(var(--ck-duration) / 0.4) reverse paused;
+  animation-composition: add;
+}
+
+/* Rotating shimmer sweep */
+.btn-gold::after {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(-50deg, transparent, #e8c870, transparent);
+  mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+  opacity: 0;
+  animation: ck-shimmer linear infinite var(--ck-duration) paused;
+}
+
+/* Hover / focus: expand shine + play all layers */
+.btn-gold:is(:hover, :focus-visible) {
+  --gradient-percent:       20%;
+  --gradient-angle-offset:  95deg;
+  --gradient-shine:         #f5e8ba;
+  transform:  translateY(-2px);
+  box-shadow: 0 10px 36px rgba(201, 160, 71, 0.55),
+              0  2px  8px rgba(0, 0, 0, 0.4);
+}
+
+.btn-gold:is(:hover, :focus-visible),
+.btn-gold:is(:hover, :focus-visible)::before,
+.btn-gold:is(:hover, :focus-visible)::after {
+  animation-play-state: running;
+}
+
+.btn-gold:is(:hover, :focus-visible)::after {
+  opacity: 0.45;
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 20px rgba(201, 160, 71, 0.28),
+              0 1px  4px rgba(0, 0, 0, 0.35);
+}
+
+/* ══════════════════════════════════════════
+   OUTLINE BUTTON  (.btn-outline)
+   Glass morphism + mouse-tracking gold glow circles
+══════════════════════════════════════════ */
+.btn-outline {
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  animation: none;
+
+  border: 1px solid rgba(184, 202, 214, 0.22);
+  background: transparent;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  /* Layered inset shadow — depth + subtle gold undertone */
+  box-shadow:
+    inset 0 0 0 1px rgba(184, 202, 214, 0.10),
+    inset 0 0 18px 0  rgba(201, 160, 71, 0.04),
+    inset 0 -3px 10px 0 rgba(201, 160, 71, 0.05),
+    0 1px  3px 0 rgba(0, 0, 0, 0.45),
+    0 4px 14px 0 rgba(0, 0, 0, 0.38);
+
+  transition:
+    border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow   0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform    0.2s  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Remove any pseudo-element overrides from the old conic approach */
+.btn-outline::before,
+.btn-outline::after {
+  content: none;
+}
+
+.btn-outline:is(:hover, :focus-visible) {
+  transform: translateY(-2px);
+  border-color: rgba(201, 160, 71, 0.38);
+  box-shadow:
+    inset 0 0 0 1px rgba(201, 160, 71, 0.18),
+    inset 0 0 22px 0  rgba(201, 160, 71, 0.09),
+    inset 0 -3px 12px 0 rgba(201, 160, 71, 0.12),
+    0 4px 20px 0 rgba(0, 0, 0, 0.5),
+    0 8px 28px 0 rgba(0, 0, 0, 0.42);
+}
+
+.btn-outline:active {
+  transform: scale(0.977) translateY(0);
+}
+
+.btn-outline:focus-visible {
+  outline: 1px solid rgba(201, 160, 71, 0.55);
+  outline-offset: 3px;
+}
+
+/* ── Hover glow circles (injected by hover-button.js) ── */
+.btn-hover-circle {
+  position: absolute;
+  width:  52px;
+  height: 52px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(20px);
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  will-change: opacity;
+}
+
+.btn-hover-circle.fade-in {
+  opacity: 0.65;
+}
+
+.btn-hover-circle.fade-out {
+  opacity: 0;
+  transition: opacity 1200ms ease;
+}
+
+/* ══════════════════════════════════════════
+   NAV DROPDOWN  (.nav-dropdown)
+   Hover dropdown on Destinos nav link
+══════════════════════════════════════════ */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dd-caret {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 3px;
+  opacity: 0.55;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s;
+}
+
+.nav-dropdown:hover .nav-dd-caret,
+.nav-dropdown:focus-within .nav-dd-caret {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.nav-dd-menu {
+  position: absolute;
+  top: calc(100% + 18px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  min-width: 272px;
+  background: rgba(6, 12, 20, 0.98);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(201, 160, 71, 0.18);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.6),
+    0 6px 20px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(201, 160, 71, 0.06);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity   0.2s ease,
+    transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 400;
+}
+
+/* Invisible bridge so moving to the menu doesn't dismiss it */
+.nav-dd-menu::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 18px;
+}
+
+/* Arrow pip */
+.nav-dd-menu::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 9px;
+  height: 9px;
+  background: rgba(6, 12, 20, 0.98);
+  border-left: 1px solid rgba(201, 160, 71, 0.18);
+  border-top: 1px solid rgba(201, 160, 71, 0.18);
+}
+
+.nav-dropdown:hover .nav-dd-menu,
+.nav-dropdown:focus-within .nav-dd-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dd-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: #9aabb8;
+  border-bottom: 1px solid rgba(184, 202, 214, 0.05);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-dd-item:last-child { border-bottom: none; }
+
+.nav-dd-item:hover {
+  background: rgba(201, 160, 71, 0.07);
+  color: #eef2f5;
+}
+
+.nav-dd-icon {
+  font-size: 0.72rem;
+  color: #c9a047;
+  margin-top: 2px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.nav-dd-label {
+  display: block;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #d8e2ea;
+  margin-bottom: 3px;
+}
+
+.nav-dd-sub {
+  display: block;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.62rem;
+  color: #5f7180;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+/* ── Mobile sub-links (shown inside open drawer) ── */
+.mobile-dd-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-dd-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #b8cad6;
+  letter-spacing: -.01em;
+  transition: color 0.3s;
+}
+
+.mobile-dd-trigger:hover { color: #c9a047; }
+
+.mobile-dd-trigger svg {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.mobile-dd-open .mobile-dd-trigger svg {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.mobile-dd-sub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity    0.25s ease;
+  padding-left: 20px;
+  border-left: 1px solid rgba(201, 160, 71, 0.22);
+  margin-top: 0;
+}
+
+.mobile-dd-open .mobile-dd-sub {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 12px;
+}
+
+.mobile-sub-link {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #5f7180;
+  text-decoration: none;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(184, 202, 214, 0.05);
+  transition: color 0.2s;
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-sub-link:last-child { border-bottom: none; }
+.mobile-sub-link:hover { color: #c9a047; }
+
+/* ── Cruise Cards (destinos.html#cruzeiros) ── */
+.cruise-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(154, 171, 184, 0.1);
+  background: #0a1720;
+  transition:
+    transform   0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow  0.3s ease,
+    border-color 0.3s ease;
+}
+
+.cruise-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 160, 71, 0.28);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(201, 160, 71, 0.06);
+}
+
+.cruise-bg {
+  height: 175px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.cruise-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6,13,21,0.9) 0%, rgba(6,13,21,0.1) 100%);
+}
+
+/* Gradient palettes per route */
+.cruise-caribe      { background: linear-gradient(155deg, #003d6b 0%, #0077b6 35%, #00b4d8 65%, #90e0ef 100%); }
+.cruise-brasil      { background: linear-gradient(155deg, #064e3b 0%, #059669 40%, #34d399 70%, #6ee7b7 100%); }
+.cruise-mediterraneo{ background: linear-gradient(155deg, #1e3a8a 0%, #1d4ed8 35%, #c47c22 65%, #d4a537 100%); }
+.cruise-amazonia    { background: linear-gradient(155deg, #042f1a 0%, #065f46 40%, #10b981 70%, #6ee7b7 100%); }
+.cruise-fiords      { background: linear-gradient(155deg, #1e3a5f 0%, #2e6fa0 45%, #7ec8e3 75%, #b8d8f0 100%); }
+.cruise-grecia      { background: linear-gradient(155deg, #1e3a8a 0%, #2563eb 40%, #60a5fa 70%, #bfdbfe 100%); }
+.cruise-transatlantico{ background: linear-gradient(155deg, #0c1220 0%, #1e3a5f 45%, #334155 75%, #475569 100%); }
+.cruise-caribesul   { background: linear-gradient(155deg, #042f2e 0%, #0891b2 45%, #22d3ee 75%, #67e8f9 100%); }
+.cruise-alaska      { background: linear-gradient(155deg, #0c1a2e 0%, #1d4ed8 35%, #7dd3fc 65%, #e0f2fe 100%); }
+.cruise-baltico     { background: linear-gradient(155deg, #0f1729 0%, #1e40af 40%, #3b82f6 70%, #93c5fd 100%); }
+.cruise-islandia    { background: linear-gradient(155deg, #0a1020 0%, #1e3a5f 35%, #60a5fa 65%, #e2e8f0 100%); }
+.cruise-medoccidental{ background: linear-gradient(155deg, #3b0f08 0%, #b91c1c 35%, #2563eb 65%, #93c5fd 100%); }
+.cruise-antartica   { background: linear-gradient(155deg, #060d15 0%, #1e3a5f 35%, #94a3b8 65%, #e2e8f0 100%); }
+.cruise-caribeocidental{ background: linear-gradient(155deg, #042f1a 0%, #0891b2 40%, #22d3ee 70%, #a5f3fc 100%); }
+.cruise-medoriental { background: linear-gradient(155deg, #2e0560 0%, #7c3aed 40%, #2563eb 70%, #93c5fd 100%); }
+.cruise-patagonia   { background: linear-gradient(155deg, #0d1117 0%, #1e2d3f 35%, #475569 65%, #94a3b8 100%); }
+
+.cruise-info {
+  padding: 18px;
+  background: linear-gradient(140deg, rgba(10,23,32,0.98), rgba(18,34,52,0.92));
+}
+
+.cruise-route {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: #5f7180;
+  margin-bottom: 5px;
+}
+
+.cruise-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 300;
+  color: #eef2f5;
+  line-height: 1.1;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.cruise-highlight {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.74rem;
+  color: #7b8e9a;
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.cruise-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cruise-badge {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9a047;
+  background: rgba(201, 160, 71, 0.1);
+  border: 1px solid rgba(201, 160, 71, 0.22);
+  padding: 3px 9px;
+}
+
+.cruise-line {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.6rem;
+  color: #5f7180;
+  letter-spacing: 0.04em;
+}
+
+.cruise-cta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+  color: #c9a047;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.cruise-card:hover .cruise-cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Event Cards (eventos.html, feiras.html) ── */
+.event-card {
+  border: 1px solid rgba(154, 171, 184, 0.1);
+  background: linear-gradient(140deg, rgba(18, 34, 52, 0.55), rgba(26, 47, 68, 0.28));
+  padding: 24px;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  border-color: rgba(201, 160, 71, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+}
+
+.event-tag {
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border: 1px solid rgba(201, 160, 71, 0.3);
+  color: #c9a047;
+  margin-bottom: 12px;
+}
+
+.event-month {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5f7180;
+  margin-bottom: 4px;
+}
+
+.event-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #eef2f5;
+  line-height: 1.1;
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+
+.event-location {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.72rem;
+  color: #7b8e9a;
+  margin-bottom: 10px;
+}
+
+.event-desc {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.78rem;
+  color: #5f7180;
+  line-height: 1.7;
+}
+
+/* Sport tabs (eventos.html) */
+.sport-tab {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  padding: 9px 22px;
+  border: 1px solid rgba(154, 171, 184, 0.15);
+  color: rgba(184, 202, 214, 0.55);
+  cursor: pointer;
+  transition: all 0.3s;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.sport-tab:hover {
+  border-color: rgba(201, 160, 71, 0.4);
+  color: rgba(184, 202, 214, 0.9);
+}
+
+.sport-tab.active {
+  border-color: rgba(201, 160, 71, 0.6);
+  color: #c9a047;
+  background: rgba(201, 160, 71, 0.07);
+}

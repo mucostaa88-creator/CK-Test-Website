@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orlando — CK Viagens</title>
+  <meta name="description" content="Pacotes completos para Orlando com ingressos para Disney World, Universal Studios, SeaWorld e muito mais. CK Viagens cuida de tudo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{navy:{950:'#060d15',900:'#0d1b2a',800:'#122234',700:'#1a2f44',600:'#1e3a52'},silver:{50:'#f4f7f9',100:'#eef2f5',200:'#d8e2ea',300:'#b8cad6',400:'#9aabb8',500:'#7b8e9a',600:'#5f7180'},gold:{200:'#f5e8ba',300:'#e8c870',400:'#d4a537',500:'#c9a047',600:'#a07830'}},fontFamily:{display:['"Cormorant Garamond"','serif'],body:['Raleway','sans-serif']}}}}
+  </script>
+  <style>
+    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background-color:#0d1b2a;color:#eef2f5;font-family:'Raleway',sans-serif;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#060d15}::-webkit-scrollbar-thumb{background:#c9a047;border-radius:2px}
+    body::before{content:'';position:fixed;inset:0;opacity:.038;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
+    #main-nav{position:fixed;top:0;left:0;right:0;z-index:500;transition:background-color .5s cubic-bezier(.4,0,.2,1),backdrop-filter .5s cubic-bezier(.4,0,.2,1),box-shadow .5s cubic-bezier(.4,0,.2,1)}
+    #main-nav.scrolled{background-color:rgba(10,20,34,0.94);backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(154,171,184,0.08),0 6px 24px rgba(6,13,21,0.5)}
+    .nav-link{position:relative;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.15em;text-transform:uppercase;font-size:.68rem;color:rgba(184,202,214,0.75);transition:color .3s cubic-bezier(.4,0,.2,1)}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#c9a047;transition:width .35s cubic-bezier(.4,0,.2,1)}
+    .nav-link:hover,.nav-link.active{color:#eef2f5}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .btn-gold{display:inline-block;background:linear-gradient(135deg,#c9a047 0%,#d4a537 50%,#c9a047 100%);background-size:200% 100%;background-position:0% 50%;color:#060d15;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;transition:background-position .5s,transform .2s,box-shadow .35s;box-shadow:0 4px 20px rgba(201,160,71,0.28),0 1px 4px rgba(0,0,0,0.35)}
+    .btn-gold:hover{background-position:100% 50%;transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,160,71,0.42),0 2px 8px rgba(0,0,0,0.4)}
+    .btn-gold:active{transform:translateY(0)}
+    .btn-outline{display:inline-block;border:1px solid rgba(184,202,214,0.28);color:#eef2f5;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;transition:border-color .3s,background-color .3s,transform .2s}
+    .btn-outline:hover{border-color:rgba(184,202,214,0.65);background-color:rgba(184,202,214,0.06);transform:translateY(-2px)}
+    .font-display{font-family:'Cormorant Garamond',serif}
+    .text-label{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.25em;text-transform:uppercase;font-size:.68rem}
+    .line-gold-h{height:1px;background:linear-gradient(90deg,transparent,rgba(201,160,71,0.8),transparent)}
+    .line-gold-left{display:inline-block;width:36px;height:1px;background:linear-gradient(90deg,#c9a047,transparent);vertical-align:middle}
+    .hero-grid-overlay{background-image:linear-gradient(rgba(154,171,184,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(154,171,184,0.04) 1px,transparent 1px);background-size:64px 64px}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .footer-link{color:#9aabb8;font-size:.85rem;transition:color .3s}.footer-link:hover{color:#eef2f5}
+    .social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(154,171,184,0.2);display:flex;align-items:center;justify-content:center;color:#9aabb8;transition:border-color .3s,color .3s,transform .2s}
+    .social-btn:hover{border-color:rgba(201,160,71,0.55);color:#c9a047;transform:translateY(-2px)}
+    #mobile-drawer{position:fixed;inset:0;z-index:600;background:rgba(6,13,21,0.98);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1)}
+    #mobile-drawer.open{transform:translateX(0)}
+    .mobile-nav-link{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#b8cad6;letter-spacing:-.01em;transition:color .3s}
+    .mobile-nav-link:hover{color:#c9a047}
+    .page-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:62vh;padding:120px 1.5rem 5rem;}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 30%,rgba(88,40,160,0.6) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 20% 80%,rgba(18,34,52,0.55) 0%,transparent 60%),radial-gradient(ellipse 90% 70% at 80% 20%,rgba(255,200,80,0.12) 0%,transparent 60%),radial-gradient(ellipse 90% 70% at 50% 50%,rgba(16,12,32,0.9) 0%,rgba(6,13,21,1) 100%)}
+    @keyframes pageIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .p1{animation:pageIn .9s .15s both cubic-bezier(.4,0,.2,1)}.p2{animation:pageIn .9s .35s both cubic-bezier(.4,0,.2,1)}.p3{animation:pageIn .9s .55s both cubic-bezier(.4,0,.2,1)}
+    /* Park cards */
+    .park-card{position:relative;overflow:hidden;border:1px solid rgba(154,171,184,0.08);transition:border-color .35s,transform .35s,box-shadow .35s}
+    .park-card:hover{border-color:rgba(201,160,71,0.3);transform:translateY(-5px);box-shadow:0 20px 50px rgba(6,13,21,0.6)}
+    .park-bg{height:200px;background-size:cover;background-position:center;position:relative;flex-shrink:0}
+    .park-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,13,21,0.95) 0%,rgba(6,13,21,0.3) 60%,transparent 100%)}
+    .park-disney{background:radial-gradient(ellipse 70% 50% at 50% 20%,rgba(255,210,90,0.5) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 70%,rgba(80,40,180,0.35) 0%,transparent 60%),linear-gradient(160deg,#0c0818 0%,#1a1035 30%,#2e1858 55%,#5828a0 78%,#8048c8 100%)}
+    .park-universal{background:radial-gradient(ellipse 60% 40% at 40% 25%,rgba(0,180,255,0.3) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 70% 70%,rgba(255,80,30,0.2) 0%,transparent 60%),linear-gradient(160deg,#060c16 0%,#0a1828 30%,#102a48 55%,#183860 78%,#205080 100%)}
+    .park-seaworld{background:radial-gradient(ellipse 70% 45% at 45% 25%,rgba(0,220,200,0.35) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 70% 70%,rgba(0,100,180,0.3) 0%,transparent 60%),linear-gradient(160deg,#040c10 0%,#081820 30%,#0c2a38 55%,#105060 78%,#187080 100%)}
+    .park-lego{background:radial-gradient(ellipse 60% 45% at 40% 25%,rgba(255,220,0,0.35) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 75% 65%,rgba(255,80,60,0.2) 0%,transparent 60%),linear-gradient(160deg,#101008 0%,#202010 30%,#383820 55%,#585820 78%,#787830 100%)}
+    .park-kennedy{background:radial-gradient(ellipse 60% 40% at 50% 20%,rgba(200,220,255,0.2) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 60% 70%,rgba(40,60,120,0.3) 0%,transparent 60%),linear-gradient(160deg,#04060c 0%,#060c18 30%,#080e20 55%,#0c1430 78%,#101c40 100%)}
+    .park-discovery{background:radial-gradient(ellipse 70% 45% at 40% 25%,rgba(0,200,160,0.35) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 75% 65%,rgba(0,120,200,0.2) 0%,transparent 60%),linear-gradient(160deg,#040c0c 0%,#081818 30%,#0c2820 55%,#104030 78%,#186048 100%)}
+    .park-body{padding:1.5rem}
+    .park-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:#c9a047;border:1px solid rgba(201,160,71,0.3);padding:3px 8px;margin-bottom:.75rem}
+    .park-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;color:#eef2f5;line-height:1.1;margin-bottom:.4rem}
+    .park-subtitle{font-family:'Raleway',sans-serif;font-size:.68rem;color:#7b8e9a;letter-spacing:.04em;margin-bottom:.75rem;line-height:1.6}
+    .park-desc{font-family:'Raleway',sans-serif;font-size:.78rem;color:#9aabb8;line-height:1.8;margin-bottom:1rem}
+    .park-highlights{display:flex;flex-wrap:wrap;gap:6px}
+    .park-hl{font-family:'Raleway',sans-serif;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(184,202,214,0.6);background:rgba(184,202,214,0.06);border:1px solid rgba(154,171,184,0.12);padding:4px 9px}
+    /* Ticket highlight banner */
+    .ticket-banner{border:1px solid rgba(201,160,71,0.25);background:linear-gradient(135deg,rgba(201,160,71,0.06),rgba(88,40,160,0.06));position:relative;overflow:hidden}
+    .ticket-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,160,71,0.6),transparent)}
+    /* Info cards */
+    .info-card{border:1px solid rgba(154,171,184,0.08);background:linear-gradient(140deg,rgba(18,34,52,0.4),rgba(26,47,68,0.2));padding:28px 24px;transition:border-color .3s,transform .3s}
+    .info-card:hover{border-color:rgba(201,160,71,0.2);transform:translateY(-3px)}
+  </style>
+  <link rel="stylesheet" href="shiny-buttons.css">
+  <script src="hover-button.js" defer></script>
+</head>
+<body>
+
+  <nav id="main-nav" aria-label="Navegação principal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" aria-label="CK Viagens — início" class="flex-shrink-0">
+        <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-14 w-auto">
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <div class="nav-dropdown">
+          <a href="destinos.html" class="nav-link active">Destinos <svg class="nav-dd-caret" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+          <div class="nav-dd-menu">
+            <a href="destinos.html" class="nav-dd-item"><span class="nav-dd-icon">✦</span><div><span class="nav-dd-label">Principais Destinos</span><span class="nav-dd-sub">Américas, Europa, Ásia e mais</span></div></a>
+            <a href="destinos.html#cruzeiros" class="nav-dd-item"><span class="nav-dd-icon">⚓</span><div><span class="nav-dd-label">Cruzeiros</span><span class="nav-dd-sub">Brasil, Caribe, Mediterrâneo, Fiords</span></div></a>
+            <a href="eventos.html" class="nav-dd-item"><span class="nav-dd-icon">◈</span><div><span class="nav-dd-label">Eventos</span><span class="nav-dd-sub">Feiras globais · F1 · Tênis · Futebol</span></div></a>
+          </div>
+        </div>
+        <a href="hoteis.html"   class="nav-link">Hospedagem</a>
+        <a href="aereo.html"    class="nav-link">Aéreo</a>
+        <a href="vistos.html"   class="nav-link">Vistos</a>
+        <a href="seguros.html"  class="nav-link">Seguros</a>
+        <a href="rentals.html"  class="nav-link">Aluguel</a>
+        <a href="sobre.html"    class="nav-link">Sobre</a>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a href="contato.html" class="btn-gold">Fale Conosco</a>
+      </div>
+      <button id="menu-open" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span id="b1" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+        <span id="b2" class="block w-6 h-px bg-silver-300 transition-opacity duration-300"></span>
+        <span id="b3" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <button id="menu-close" class="absolute top-6 right-6 p-2 text-silver-400 hover:text-silver-100" aria-label="Fechar menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="mobile-dd-group">
+      <span class="mobile-dd-trigger">Destinos <svg width="12" height="8" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="mobile-dd-sub">
+        <a href="destinos.html" class="mobile-sub-link drawer-link">Principais Destinos</a>
+        <a href="destinos.html#cruzeiros" class="mobile-sub-link drawer-link">Cruzeiros</a>
+        <a href="eventos.html" class="mobile-sub-link drawer-link">Eventos</a>
+      </div>
+    </div>
+    <a href="hoteis.html"   class="mobile-nav-link drawer-link">Hospedagem</a>
+    <a href="aereo.html"    class="mobile-nav-link drawer-link">Aéreo</a>
+    <a href="vistos.html"   class="mobile-nav-link drawer-link">Vistos</a>
+    <a href="seguros.html"  class="mobile-nav-link drawer-link">Seguros</a>
+    <a href="rentals.html"  class="mobile-nav-link drawer-link">Aluguel</a>
+    <a href="sobre.html"    class="mobile-nav-link drawer-link">Sobre</a>
+    <a href="contato.html"  class="btn-gold drawer-link mt-2">Fale Conosco</a>
+  </div>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="hero-grid-overlay absolute inset-0 pointer-events-none"></div>
+    <!-- floating glow -->
+    <div class="absolute pointer-events-none" style="top:25%;right:15%;width:360px;height:360px;background:radial-gradient(ellipse,rgba(88,40,160,0.35),transparent 70%);filter:blur(80px);"></div>
+    <div class="absolute pointer-events-none" style="bottom:20%;left:10%;width:300px;height:300px;background:radial-gradient(ellipse,rgba(201,160,71,0.12),transparent 70%);filter:blur(60px);"></div>
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+      <div class="p1 flex items-center justify-center gap-4 mb-6">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">EUA · Américas</span>
+        <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+      </div>
+      <h1 class="p2 font-display font-light text-silver-100" style="font-size:clamp(3.5rem,8vw,6.5rem);letter-spacing:-.025em;line-height:.9;">
+        Orlando
+      </h1>
+      <p class="p3 font-display text-gold-400 mt-3" style="font-size:clamp(1.1rem,2.5vw,1.6rem);font-weight:300;font-style:italic;">
+        A Capital Mundial dos Parques Temáticos
+      </p>
+      <p class="p3 text-silver-400 mt-5 mx-auto" style="max-width:520px;font-size:.9rem;line-height:1.85;">
+        Disney, Universal, SeaWorld e muito mais — a CK Viagens monta seu pacote completo com hospedagem, traslados e ingressos para os parques da sua escolha.
+      </p>
+      <div class="p3 flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+        <a href="contato.html" class="btn-gold">Montar Meu Pacote</a>
+        <a href="#parques" class="btn-outline">Ver os Parques</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ INGRESSOS BANNER ═══════ -->
+  <section class="py-16" style="background:#060d15;">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="ticket-banner rounded-sm p-10 md:p-14 text-center reveal">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Diferencial CK Viagens</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100 mb-4" style="font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;">
+          Vendemos pacotes com<br><em class="not-italic" style="color:#c9a047;">ingressos para as atrações</em>
+        </h2>
+        <p class="text-silver-400 mx-auto mt-4 mb-8" style="max-width:580px;font-size:.88rem;line-height:1.9;">
+          Além de passagens e hospedagem, cuidamos de tudo: ingressos para os parques, Park Hopper, Lightning Lane, reservas em restaurantes exclusivos e traslados entre os complexos. Você só precisa se preocupar em aproveitar.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          <span style="font-family:'Raleway',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,160,71,0.8);background:rgba(201,160,71,0.07);border:1px solid rgba(201,160,71,0.2);padding:5px 12px;">Disney World · 4 Parques</span>
+          <span style="font-family:'Raleway',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,160,71,0.8);background:rgba(201,160,71,0.07);border:1px solid rgba(201,160,71,0.2);padding:5px 12px;">Universal · 3 Parques</span>
+          <span style="font-family:'Raleway',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,160,71,0.8);background:rgba(201,160,71,0.07);border:1px solid rgba(201,160,71,0.2);padding:5px 12px;">SeaWorld</span>
+          <span style="font-family:'Raleway',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,160,71,0.8);background:rgba(201,160,71,0.07);border:1px solid rgba(201,160,71,0.2);padding:5px 12px;">LEGOLAND</span>
+          <span style="font-family:'Raleway',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,160,71,0.8);background:rgba(201,160,71,0.07);border:1px solid rgba(201,160,71,0.2);padding:5px 12px;">Kennedy Space Center</span>
+          <span style="font-family:'Raleway',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,160,71,0.8);background:rgba(201,160,71,0.07);border:1px solid rgba(201,160,71,0.2);padding:5px 12px;">Discovery Cove</span>
+        </div>
+        <a href="contato.html" class="btn-gold">Solicitar Cotação com Ingressos</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ PARQUES ═══════ -->
+  <section id="parques" class="py-24" style="background:#0a1720;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Parques & Atrações</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          Os melhores parques<br><em class="not-italic" style="color:#c9a047;">do mundo num só destino</em>
+        </h2>
+        <p class="text-silver-400 text-sm mt-5 mx-auto" style="max-width:520px;line-height:1.85;">
+          Orlando concentra mais de 30 parques temáticos. Selecionamos os principais e montamos roteiros otimizados para cada perfil de viagem.
+        </p>
+      </div>
+
+      <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Disney World -->
+        <div class="park-card rounded-sm flex flex-col">
+          <div class="park-bg park-disney"></div>
+          <div class="park-body flex flex-col flex-1">
+            <span class="park-tag">4 Parques Temáticos</span>
+            <h3 class="park-name">Walt Disney World Resort</h3>
+            <p class="park-subtitle">Lake Buena Vista, Orlando</p>
+            <p class="park-desc">O maior complexo de entretenimento do mundo. Magia, histórias e emoção para toda a família em quatro parques distintos e dois parques aquáticos.</p>
+            <div class="park-highlights mt-auto">
+              <span class="park-hl">Magic Kingdom</span>
+              <span class="park-hl">EPCOT</span>
+              <span class="park-hl">Hollywood Studios</span>
+              <span class="park-hl">Animal Kingdom</span>
+              <span class="park-hl">Park Hopper</span>
+              <span class="park-hl">Lightning Lane</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Universal Orlando -->
+        <div class="park-card rounded-sm flex flex-col">
+          <div class="park-bg park-universal"></div>
+          <div class="park-body flex flex-col flex-1">
+            <span class="park-tag">3 Parques + CityWalk</span>
+            <h3 class="park-name">Universal Orlando Resort</h3>
+            <p class="park-subtitle">Orlando, Florida</p>
+            <p class="park-desc">De Harry Potter a Jurassic World — adrenalina e tecnologia de ponta nas atrações mais imersivas do planeta. O Epic Universe, inaugurado em 2025, é o maior parque temático já construído.</p>
+            <div class="park-highlights mt-auto">
+              <span class="park-hl">Universal Studios FL</span>
+              <span class="park-hl">Islands of Adventure</span>
+              <span class="park-hl">Epic Universe</span>
+              <span class="park-hl">Harry Potter World</span>
+              <span class="park-hl">Express Pass</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SeaWorld -->
+        <div class="park-card rounded-sm flex flex-col">
+          <div class="park-bg park-seaworld"></div>
+          <div class="park-body flex flex-col flex-1">
+            <span class="park-tag">Aquático & Aventura</span>
+            <h3 class="park-name">SeaWorld Orlando</h3>
+            <p class="park-subtitle">Orlando, Florida</p>
+            <p class="park-desc">Onde a magia do oceano encontra a adrenalina de montanhas-russas recordistas. Encontros com golfinhos, orcas e pinguins — e as melhores atrações aquáticas da Flórida.</p>
+            <div class="park-highlights mt-auto">
+              <span class="park-hl">Ice Breaker</span>
+              <span class="park-hl">Mako</span>
+              <span class="park-hl">Dolphin Encounters</span>
+              <span class="park-hl">Antarctica</span>
+              <span class="park-hl">Aquatica (Water Park)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEGOLAND -->
+        <div class="park-card rounded-sm flex flex-col">
+          <div class="park-bg park-lego"></div>
+          <div class="park-body flex flex-col flex-1">
+            <span class="park-tag">Família · Crianças</span>
+            <h3 class="park-name">LEGOLAND Florida Resort</h3>
+            <p class="park-subtitle">Winter Haven, Orlando</p>
+            <p class="park-desc">O parque perfeito para as crianças de 2 a 12 anos. Cidades construídas em LEGO, brinquedos interativos e o Legoland Water Park — diversão garantida sem filas excessivas.</p>
+            <div class="park-highlights mt-auto">
+              <span class="park-hl">Miniland USA</span>
+              <span class="park-hl">Water Park</span>
+              <span class="park-hl">LEGO Ninjago</span>
+              <span class="park-hl">Driving School</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kennedy Space Center -->
+        <div class="park-card rounded-sm flex flex-col">
+          <div class="park-bg park-kennedy"></div>
+          <div class="park-body flex flex-col flex-1">
+            <span class="park-tag">Ciência & Exploração</span>
+            <h3 class="park-name">Kennedy Space Center</h3>
+            <p class="park-subtitle">Merritt Island · 1h de Orlando</p>
+            <p class="park-desc">A história real da exploração espacial americana. Veja foguetes originais, conheça a plataforma de lançamento e descubra o futuro das missões à Lua e Marte. Uma experiência única e transformadora.</p>
+            <div class="park-highlights mt-auto">
+              <span class="park-hl">Artemis Mission</span>
+              <span class="park-hl">Shuttle Atlantis</span>
+              <span class="park-hl">Rocket Garden</span>
+              <span class="park-hl">Launch Viewing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Discovery Cove -->
+        <div class="park-card rounded-sm flex flex-col">
+          <div class="park-bg park-discovery"></div>
+          <div class="park-body flex flex-col flex-1">
+            <span class="park-tag">Experiência Exclusiva</span>
+            <h3 class="park-name">Discovery Cove</h3>
+            <p class="park-subtitle">Orlando, Florida</p>
+            <p class="park-desc">O parque mais exclusivo de Orlando — ingressos limitados por dia para garantir uma experiência íntima e inesquecível. Nado com golfinhos, mergulho com arraias e snorkeling em recife de coral artificial.</p>
+            <div class="park-highlights mt-auto">
+              <span class="park-hl">Swim with Dolphins</span>
+              <span class="park-hl">Ray Lagoon</span>
+              <span class="park-hl">Tropical River</span>
+              <span class="park-hl">SeaWorld incluso</span>
+              <span class="park-hl">All-Inclusive</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ POR QUE ORLANDO ═══════ -->
+  <section class="py-24" style="background:#060d15;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Informações Práticas</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          Tudo que você precisa<br><em class="not-italic" style="color:#c9a047;">saber sobre Orlando</em>
+        </h2>
+      </div>
+
+      <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-5">
+
+        <div class="info-card rounded-sm">
+          <div class="mb-4" style="width:40px;height:1px;background:linear-gradient(90deg,#c9a047,transparent);"></div>
+          <h3 class="font-display text-silver-100 mb-3" style="font-size:1.3rem;font-weight:300;">Melhor Época</h3>
+          <p class="text-silver-400 text-sm leading-relaxed">De setembro a novembro e de janeiro a fevereiro: clima agradável e filas menores nos parques. Evite as férias escolares americanas e o verão (junho–agosto) para uma experiência mais tranquila.</p>
+        </div>
+
+        <div class="info-card rounded-sm">
+          <div class="mb-4" style="width:40px;height:1px;background:linear-gradient(90deg,#c9a047,transparent);"></div>
+          <h3 class="font-display text-silver-100 mb-3" style="font-size:1.3rem;font-weight:300;">Hospedagem</h3>
+          <p class="text-silver-400 text-sm leading-relaxed">Os hotéis dentro dos complexos Disney e Universal oferecem benefícios exclusivos: acesso antecipado às atrações, transporte incluído e pacotes que combinam acomodação e ingressos.</p>
+        </div>
+
+        <div class="info-card rounded-sm">
+          <div class="mb-4" style="width:40px;height:1px;background:linear-gradient(90deg,#c9a047,transparent);"></div>
+          <h3 class="font-display text-silver-100 mb-3" style="font-size:1.3rem;font-weight:300;">Visto & Documentos</h3>
+          <p class="text-silver-400 text-sm leading-relaxed">Brasileiros precisam de visto americano (B1/B2) para entrar nos EUA. Nossa equipe auxilia com toda a documentação e agendamento no consulado — um processo simples com a orientação certa.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="py-20" style="background:#0a1720;">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="reveal text-center py-16 rounded-sm" style="background:linear-gradient(135deg,rgba(88,40,160,0.15),rgba(18,34,52,0.5));border:1px solid rgba(201,160,71,0.12);">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Pronto para partir?</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100 mb-4" style="font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;">
+          Seu Orlando dos sonhos<br><em class="not-italic" style="color:#c9a047;">começa aqui</em>
+        </h2>
+        <p class="text-silver-400 text-sm mb-8 mx-auto" style="max-width:500px;line-height:1.85;">
+          Conte com um consultor especializado em Orlando para montar o roteiro ideal — com os parques certos, nos dias certos, com todos os ingressos e sem imprevistos.
+        </p>
+        <a href="contato.html" class="btn-gold">Falar com um Consultor</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer style="background:#060d15;border-top:1px solid rgba(154,171,184,0.1);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+        <div class="lg:col-span-2">
+          <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-16 w-auto mb-5">
+          <p class="text-silver-500 text-sm leading-relaxed" style="max-width:320px;line-height:1.85;">Curadoria de experiências exclusivas para quem viaja em grande estilo. Seu sonho, nossa missão.</p>
+          <div class="flex gap-3 mt-7">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Navegação</h3>
+          <ul class="space-y-3.5">
+            <li><a href="destinos.html" class="footer-link">Destinos</a></li>
+            <li><a href="hoteis.html"   class="footer-link">Hospedagem</a></li>
+            <li><a href="aereo.html"    class="footer-link">Aéreo</a></li>
+            <li><a href="vistos.html"   class="footer-link">Vistos</a></li>
+            <li><a href="seguros.html"  class="footer-link">Seguros</a></li>
+            <li><a href="rentals.html"  class="footer-link">Aluguel de Carros</a></li>
+            <li><a href="sobre.html"    class="footer-link">Sobre Nós</a></li>
+            <li><a href="contato.html"  class="footer-link">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Contato</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.93h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+55 (00) 00000-0000</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contato@ckviagens.com.br</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Seg–Sex: 9h às 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="line-gold-h mb-8"></div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-silver-600 text-xs" style="letter-spacing:.06em;">© 2025 CK Viagens. Todos os direitos reservados.</p>
+        <p class="text-label text-silver-700" style="font-size:.6rem;">EXPERIÊNCIAS EXCLUSIVAS</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+    const drawer=document.getElementById('mobile-drawer'),btnOpen=document.getElementById('menu-open'),btnClose=document.getElementById('menu-close');
+    const b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+    function openDrawer(){drawer.classList.add('open');btnOpen.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';b1.style.transform='translateY(6px) rotate(45deg)';b2.style.opacity='0';b3.style.transform='translateY(-6px) rotate(-45deg)';}
+    function closeDrawer(){drawer.classList.remove('open');btnOpen.setAttribute('aria-expanded','false');document.body.style.overflow='';b1.style.transform='';b2.style.opacity='';b3.style.transform='';}
+    btnOpen.addEventListener('click',openDrawer);btnClose.addEventListener('click',closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(l=>l.addEventListener('click',closeDrawer));
+    document.querySelectorAll('.mobile-dd-trigger').forEach(t=>t.addEventListener('click',()=>t.closest('.mobile-dd-group').classList.toggle('mobile-dd-open')));
+    drawer.addEventListener('click',e=>{if(e.target===drawer)closeDrawer();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer();});
+
+    const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+  </script>
+</body>
+</html>

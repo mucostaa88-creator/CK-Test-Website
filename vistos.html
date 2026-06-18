@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vistos & Documentação — CK Viagens</title>
+  <meta name="description" content="Consultoria especializada em vistos e documentação para viagens internacionais — CK Viagens.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{navy:{950:'#060d15',900:'#0d1b2a',800:'#122234',700:'#1a2f44',600:'#1e3a52'},silver:{50:'#f4f7f9',100:'#eef2f5',200:'#d8e2ea',300:'#b8cad6',400:'#9aabb8',500:'#7b8e9a',600:'#5f7180'},gold:{200:'#f5e8ba',300:'#e8c870',400:'#d4a537',500:'#c9a047',600:'#a07830'}},fontFamily:{display:['"Cormorant Garamond"','serif'],body:['Raleway','sans-serif']}}}}
+  </script>
+  <style>
+    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background-color:#0d1b2a;color:#eef2f5;font-family:'Raleway',sans-serif;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#060d15}::-webkit-scrollbar-thumb{background:#c9a047;border-radius:2px}
+    body::before{content:'';position:fixed;inset:0;opacity:.038;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
+    #main-nav{position:fixed;top:0;left:0;right:0;z-index:500;transition:background-color .5s cubic-bezier(.4,0,.2,1),backdrop-filter .5s cubic-bezier(.4,0,.2,1),box-shadow .5s cubic-bezier(.4,0,.2,1)}
+    #main-nav.scrolled{background-color:rgba(10,20,34,0.94);backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(154,171,184,0.08),0 6px 24px rgba(6,13,21,0.5)}
+    .nav-link{position:relative;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.15em;text-transform:uppercase;font-size:.68rem;color:rgba(184,202,214,0.75);transition:color .3s cubic-bezier(.4,0,.2,1)}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#c9a047;transition:width .35s cubic-bezier(.4,0,.2,1)}
+    .nav-link:hover,.nav-link.active{color:#eef2f5}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .btn-gold{display:inline-block;background:linear-gradient(135deg,#c9a047 0%,#d4a537 50%,#c9a047 100%);background-size:200% 100%;background-position:0% 50%;color:#060d15;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;transition:background-position .5s,transform .2s,box-shadow .35s;box-shadow:0 4px 20px rgba(201,160,71,0.28),0 1px 4px rgba(0,0,0,0.35)}
+    .btn-gold:hover{background-position:100% 50%;transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,160,71,0.42),0 2px 8px rgba(0,0,0,0.4)}
+    .btn-outline{display:inline-block;border:1px solid rgba(184,202,214,0.28);color:#eef2f5;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;transition:border-color .3s,background-color .3s,transform .2s}
+    .btn-outline:hover{border-color:rgba(184,202,214,0.65);background-color:rgba(184,202,214,0.06);transform:translateY(-2px)}
+    .font-display{font-family:'Cormorant Garamond',serif}
+    .text-label{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.25em;text-transform:uppercase;font-size:.68rem}
+    .line-gold-h{height:1px;background:linear-gradient(90deg,transparent,rgba(201,160,71,0.8),transparent)}
+    .line-gold-left{display:inline-block;width:36px;height:1px;background:linear-gradient(90deg,#c9a047,transparent);vertical-align:middle}
+    .hero-grid-overlay{background-image:linear-gradient(rgba(154,171,184,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(154,171,184,0.04) 1px,transparent 1px);background-size:64px 64px}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+    .footer-link{color:#9aabb8;font-size:.85rem;transition:color .3s}.footer-link:hover{color:#eef2f5}
+    .social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(154,171,184,0.2);display:flex;align-items:center;justify-content:center;color:#9aabb8;transition:border-color .3s,color .3s,transform .2s}
+    .social-btn:hover{border-color:rgba(201,160,71,0.55);color:#c9a047;transform:translateY(-2px)}
+    #mobile-drawer{position:fixed;inset:0;z-index:600;background:rgba(6,13,21,0.98);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1)}
+    #mobile-drawer.open{transform:translateX(0)}
+    .mobile-nav-link{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#b8cad6;letter-spacing:-.01em;transition:color .3s}
+    .mobile-nav-link:hover{color:#c9a047}
+    .page-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:52vh;padding:120px 1.5rem 5rem;background:radial-gradient(ellipse 70% 55% at 15% 85%,rgba(18,50,80,0.65) 0%,transparent 65%),radial-gradient(ellipse 55% 70% at 85% 15%,rgba(14,36,62,0.55) 0%,transparent 60%),radial-gradient(ellipse 90% 70% at 50% 50%,rgba(16,32,50,0.85) 0%,rgba(6,13,21,1) 100%)}
+    @keyframes pageIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .p1{animation:pageIn .9s .15s both cubic-bezier(.4,0,.2,1)}.p2{animation:pageIn .9s .35s both cubic-bezier(.4,0,.2,1)}.p3{animation:pageIn .9s .55s both cubic-bezier(.4,0,.2,1)}
+    .feature-card{border:1px solid rgba(154,171,184,0.10);background:linear-gradient(140deg,rgba(18,34,52,0.6),rgba(26,47,68,0.35));backdrop-filter:blur(10px);transition:border-color .35s,transform .35s,box-shadow .35s}
+    .feature-card:hover{border-color:rgba(201,160,71,0.28);transform:translateY(-5px);box-shadow:0 20px 48px rgba(6,13,21,0.55)}
+    .doc-item{display:flex;align-items:flex-start;gap:16px;padding:20px 0;border-bottom:1px solid rgba(154,171,184,0.08)}
+    .doc-item:last-child{border-bottom:none}
+    .check-icon{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(201,160,71,0.12);border:1px solid rgba(201,160,71,0.3);display:flex;align-items:center;justify-content:center;margin-top:2px}
+    .accordion-item{border-bottom:1px solid rgba(154,171,184,0.1)}
+    .accordion-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:18px 0;cursor:pointer;background:transparent;border:none;text-align:left}
+    .accordion-btn:hover .accordion-title{color:#eef2f5}
+    .accordion-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:#b8cad6;transition:color .3s}
+    .accordion-icon{flex-shrink:0;width:20px;height:20px;border-radius:50%;border:1px solid rgba(154,171,184,0.2);display:flex;align-items:center;justify-content:center;transition:transform .3s,border-color .3s}
+    .accordion-item.open .accordion-icon{transform:rotate(45deg);border-color:rgba(201,160,71,0.5)}
+    .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+    .accordion-body p{padding-bottom:18px;font-size:.88rem;color:#7b8e9a;line-height:1.85;}
+  </style>
+  <link rel="stylesheet" href="shiny-buttons.css">
+  <script src="hover-button.js" defer></script>
+</head>
+<body>
+
+  <nav id="main-nav" aria-label="Navegação principal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" aria-label="CK Viagens — início" class="flex-shrink-0">
+        <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-14 w-auto">
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <div class="nav-dropdown">
+          <a href="destinos.html" class="nav-link">Destinos <svg class="nav-dd-caret" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+          <div class="nav-dd-menu">
+            <a href="destinos.html" class="nav-dd-item"><span class="nav-dd-icon">✦</span><div><span class="nav-dd-label">Principais Destinos</span><span class="nav-dd-sub">Américas, Europa, Ásia e mais</span></div></a>
+            <a href="destinos.html#cruzeiros" class="nav-dd-item"><span class="nav-dd-icon">⚓</span><div><span class="nav-dd-label">Cruzeiros</span><span class="nav-dd-sub">Brasil, Caribe, Mediterrâneo, Fiords</span></div></a>
+            <a href="eventos.html" class="nav-dd-item"><span class="nav-dd-icon">◈</span><div><span class="nav-dd-label">Eventos</span><span class="nav-dd-sub">Feiras globais · F1 · Tênis · Futebol</span></div></a>
+          </div>
+        </div>
+        <a href="hoteis.html"   class="nav-link">Hospedagem</a>
+        <a href="aereo.html"    class="nav-link">Aéreo</a>
+        <a href="vistos.html"   class="nav-link">Vistos</a>
+        <a href="seguros.html"  class="nav-link">Seguros</a>
+        <a href="rentals.html"  class="nav-link">Aluguel</a>
+        <a href="sobre.html"    class="nav-link">Sobre</a>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a href="contato.html" class="btn-gold">Fale Conosco</a>
+      </div>
+      <button id="menu-open" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span id="b1" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+        <span id="b2" class="block w-6 h-px bg-silver-300 transition-opacity duration-300"></span>
+        <span id="b3" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <button id="menu-close" class="absolute top-6 right-6 p-2 text-silver-400 hover:text-silver-100" aria-label="Fechar menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="mobile-dd-group">
+      <span class="mobile-dd-trigger">Destinos <svg width="12" height="8" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="mobile-dd-sub">
+        <a href="destinos.html" class="mobile-sub-link drawer-link">Principais Destinos</a>
+        <a href="destinos.html#cruzeiros" class="mobile-sub-link drawer-link">Cruzeiros</a>
+        <a href="eventos.html" class="mobile-sub-link drawer-link">Eventos</a>
+      </div>
+    </div>
+    <a href="hoteis.html"   class="mobile-nav-link drawer-link">Hospedagem</a>
+    <a href="aereo.html"    class="mobile-nav-link drawer-link">Aéreo</a>
+    <a href="vistos.html"   class="mobile-nav-link drawer-link">Vistos</a>
+    <a href="seguros.html"  class="mobile-nav-link drawer-link">Seguros</a>
+    <a href="rentals.html"  class="mobile-nav-link drawer-link">Aluguel</a>
+    <a href="sobre.html"    class="mobile-nav-link drawer-link">Sobre</a>
+    <a href="contato.html"  class="btn-gold drawer-link mt-2">Fale Conosco</a>
+  </div>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero-grid-overlay absolute inset-0 pointer-events-none"></div>
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+      <div class="p1 flex items-center justify-center gap-4 mb-6">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">Assessoria completa</span>
+        <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+      </div>
+      <h1 class="p2 font-display font-light text-silver-100" style="font-size:clamp(3rem,7vw,5.5rem);letter-spacing:-.025em;line-height:.95;">
+        Vistos &<br><em class="not-italic" style="color:#c9a047;">Documentação</em>
+      </h1>
+      <p class="p3 text-silver-400 mt-6 mx-auto" style="max-width:520px;font-size:.95rem;line-height:1.85;">
+        Burocracia não é obstáculo quando você tem quem entende. Cuidamos de toda a documentação para que você foque apenas na viagem.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- INTRO + DOCS LIST -->
+  <section class="py-24" style="background:#0a1720;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div class="reveal">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="line-gold-left"></span>
+            <span class="text-label text-gold-500">O que cobrimos</span>
+          </div>
+          <h2 class="font-display font-light text-silver-100 mb-8" style="font-size:clamp(2rem,4vw,3rem);line-height:1.05;">
+            Do passaporte ao<br><em class="not-italic" style="color:#c9a047;">visto aprovado</em>
+          </h2>
+
+          <div class="doc-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="text-silver-200 text-sm font-medium mb-1">Vistos Turísticos</div>
+              <div class="text-silver-500 text-xs" style="line-height:1.7;">EUA, Canadá, Schengen, Austrália, Reino Unido e demais destinos com exigência de visto prévio.</div>
+            </div>
+          </div>
+          <div class="doc-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="text-silver-200 text-sm font-medium mb-1">Vistos de Negócios</div>
+              <div class="text-silver-500 text-xs" style="line-height:1.7;">Documentação para viagens corporativas, incluindo cartas-convite e comprovantes de vínculo empresarial.</div>
+            </div>
+          </div>
+          <div class="doc-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="text-silver-200 text-sm font-medium mb-1">Autorização Eletrônica (ETA/ESTA)</div>
+              <div class="text-silver-500 text-xs" style="line-height:1.7;">Pedidos de autorização digital para EUA, Canadá, Austrália, Reino Unido e países do Golfo.</div>
+            </div>
+          </div>
+          <div class="doc-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="text-silver-200 text-sm font-medium mb-1">Passaporte & Renovações</div>
+              <div class="text-silver-500 text-xs" style="line-height:1.7;">Orientação para emissão e renovação de passaporte, inclusive em caráter de urgência.</div>
+            </div>
+          </div>
+          <div class="doc-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="text-silver-200 text-sm font-medium mb-1">Tradução & Apostilamento</div>
+              <div class="text-silver-500 text-xs" style="line-height:1.7;">Tradução juramentada e apostilamento de documentos para uso internacional.</div>
+            </div>
+          </div>
+          <div class="doc-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="text-silver-200 text-sm font-medium mb-1">Vacinas & Certificados</div>
+              <div class="text-silver-500 text-xs" style="line-height:1.7;">Orientação sobre exigências sanitárias e certificados de vacinação por país de destino.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-d2">
+          <div class="feature-card rounded-sm p-8 mb-6">
+            <div class="flex items-center gap-3 mb-5">
+              <div style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,160,71,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg style="width:18px;height:18px;color:#d4a537;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <span class="font-display text-silver-100" style="font-size:1.3rem;font-weight:300;">Taxa de aprovação</span>
+            </div>
+            <div class="font-display text-gold-400 mb-2" style="font-size:3.5rem;font-weight:300;line-height:1;">98<span style="font-size:1.8rem;">%</span></div>
+            <p class="text-silver-500 text-sm" style="line-height:1.75;">Em mais de 1.000 processos de visto conduzidos desde nossa fundação — com acompanhamento próximo do consulado ao visto em mãos.</p>
+          </div>
+          <div class="feature-card rounded-sm p-8">
+            <div class="text-label text-gold-500 mb-4">Prazo médio de atendimento</div>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center">
+                <span class="text-silver-300 text-sm">ESTA (EUA)</span>
+                <span class="text-label text-silver-500" style="font-size:.6rem;">24–72 horas</span>
+              </div>
+              <div class="h-px" style="background:rgba(154,171,184,0.1)"></div>
+              <div class="flex justify-between items-center">
+                <span class="text-silver-300 text-sm">Schengen</span>
+                <span class="text-label text-silver-500" style="font-size:.6rem;">15 dias úteis</span>
+              </div>
+              <div class="h-px" style="background:rgba(154,171,184,0.1)"></div>
+              <div class="flex justify-between items-center">
+                <span class="text-silver-300 text-sm">Visto EUA (B1/B2)</span>
+                <span class="text-label text-silver-500" style="font-size:.6rem;">Conforme consulado</span>
+              </div>
+              <div class="h-px" style="background:rgba(154,171,184,0.1)"></div>
+              <div class="flex justify-between items-center">
+                <span class="text-silver-300 text-sm">Canadá (eTA)</span>
+                <span class="text-label text-silver-500" style="font-size:.6rem;">Minutos a dias</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ ACCORDION -->
+  <section class="py-24" style="background:radial-gradient(ellipse 80% 50% at 50% 50%,rgba(18,34,52,0.8),rgba(6,13,21,1));">
+    <div class="max-w-3xl mx-auto px-6 lg:px-10">
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Dúvidas frequentes</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4vw,3.2rem);">Perguntas & <em class="not-italic" style="color:#c9a047;">Respostas</em></h2>
+      </div>
+      <div class="reveal" id="faq">
+        <div class="accordion-item">
+          <button class="accordion-btn">
+            <span class="accordion-title">Preciso mesmo de visto para ir aos EUA?</span>
+            <span class="accordion-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1v10M1 6h10"/></svg></span>
+          </button>
+          <div class="accordion-body"><p>Cidadãos brasileiros precisam de visto B1/B2 para entrar nos EUA como turistas ou para negócios. Não há isenção para passaportes brasileiros. O processo pode ser conduzido por nós, do agendamento ao ensaio para a entrevista consular.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-btn">
+            <span class="accordion-title">O que é o visto Schengen e quais países cobre?</span>
+            <span class="accordion-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1v10M1 6h10"/></svg></span>
+          </button>
+          <div class="accordion-body"><p>O visto Schengen permite circulação livre por 27 países europeus com uma única autorização: Alemanha, França, Itália, Espanha, Portugal, Grécia, Holanda, entre outros. Deve ser solicitado no consulado do país onde você ficará mais tempo.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-btn">
+            <span class="accordion-title">Com quanto de antecedência devo iniciar o processo?</span>
+            <span class="accordion-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1v10M1 6h10"/></svg></span>
+          </button>
+          <div class="accordion-body"><p>Recomendamos iniciar o processo com no mínimo 60 dias de antecedência para destinos que exigem entrevista consular (EUA, Canadá). Para visto Schengen, 30 dias costuma ser suficiente. Para autorizações eletrônicas, 7 dias bastam — mas não deixe para última hora.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-btn">
+            <span class="accordion-title">Vocês garantem a aprovação do visto?</span>
+            <span class="accordion-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1v10M1 6h10"/></svg></span>
+          </button>
+          <div class="accordion-body"><p>A decisão final é sempre do consulado. O que garantimos é que o processo será conduzido com máxima diligência — documentação completa, correta e otimizada para o perfil do solicitante. Nossa taxa histórica de aprovação é de 98%.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-btn">
+            <span class="accordion-title">Atendem casos urgentes e passaporte de emergência?</span>
+            <span class="accordion-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1v10M1 6h10"/></svg></span>
+          </button>
+          <div class="accordion-body"><p>Sim. Temos parceiros e protocolos para situações de urgência — passaporte perdido, viagem inesperada ou prazo curto. Entre em contato imediatamente e analisaremos as opções disponíveis para o seu caso.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="py-24" style="background:#0a1720;">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <div class="reveal flex items-center justify-center gap-4 mb-5">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">Sem burocracia para você</span>
+        <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+      </div>
+      <h2 class="reveal font-display font-light text-silver-100 mb-5" style="font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;">
+        Pronto para resolver<br>seu <em class="not-italic" style="color:#c9a047;">visto hoje?</em>
+      </h2>
+      <p class="reveal text-silver-400 text-sm mb-10" style="line-height:1.85;">
+        Fale com nosso time de documentação e receba em minutos um plano de ação personalizado para o seu destino.
+      </p>
+      <div class="reveal flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="contato.html" class="btn-gold">Iniciar processo de visto</a>
+        <a href="destinos.html" class="btn-outline">Ver destinos</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer style="background:#060d15;border-top:1px solid rgba(154,171,184,0.1);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+        <div class="lg:col-span-2">
+          <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-16 w-auto mb-5">
+          <p class="text-silver-500 text-sm leading-relaxed" style="max-width:320px;line-height:1.85;">Curadoria de experiências exclusivas para quem viaja em grande estilo. Seu sonho, nossa missão.</p>
+          <div class="flex gap-3 mt-7">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Navegação</h3>
+          <ul class="space-y-3.5">
+            <li><a href="destinos.html" class="footer-link">Destinos</a></li>
+            <li><a href="hoteis.html"   class="footer-link">Hospedagem</a></li>
+            <li><a href="aereo.html"    class="footer-link">Aéreo</a></li>
+            <li><a href="vistos.html"   class="footer-link">Vistos</a></li>
+            <li><a href="seguros.html"  class="footer-link">Seguros</a></li>
+            <li><a href="sobre.html"    class="footer-link">Sobre Nós</a></li>
+            <li><a href="contato.html"  class="footer-link">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Contato</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.93h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+55 (00) 00000-0000</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contato@ckviagens.com.br</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Seg–Sex: 9h às 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="line-gold-h mb-8"></div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-silver-600 text-xs" style="letter-spacing:.06em;">© 2025 CK Viagens. Todos os direitos reservados.</p>
+        <p class="text-label text-silver-700" style="font-size:.6rem;">EXPERIÊNCIAS EXCLUSIVAS</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+    const drawer=document.getElementById('mobile-drawer'),btnOpen=document.getElementById('menu-open'),btnClose=document.getElementById('menu-close');
+    const b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+    function openDrawer(){drawer.classList.add('open');btnOpen.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';b1.style.transform='translateY(6px) rotate(45deg)';b2.style.opacity='0';b3.style.transform='translateY(-6px) rotate(-45deg)';}
+    function closeDrawer(){drawer.classList.remove('open');btnOpen.setAttribute('aria-expanded','false');document.body.style.overflow='';b1.style.transform='';b2.style.opacity='';b3.style.transform='';}
+    btnOpen.addEventListener('click',openDrawer);btnClose.addEventListener('click',closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(l=>l.addEventListener('click',closeDrawer));
+    document.querySelectorAll('.mobile-dd-trigger').forEach(t=>t.addEventListener('click',()=>t.closest('.mobile-dd-group').classList.toggle('mobile-dd-open')));
+    drawer.addEventListener('click',e=>{if(e.target===drawer)closeDrawer();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer();});
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    const cur=window.location.pathname.split('/').pop()||'index.html';
+    document.querySelectorAll('.nav-link').forEach(l=>{if(l.getAttribute('href')===cur)l.classList.add('active');});
+    // Accordion
+    document.querySelectorAll('.accordion-btn').forEach(btn=>{
+      btn.addEventListener('click',function(){
+        const item=this.closest('.accordion-item');
+        const body=item.querySelector('.accordion-body');
+        const isOpen=item.classList.contains('open');
+        document.querySelectorAll('.accordion-item').forEach(i=>{
+          i.classList.remove('open');
+          i.querySelector('.accordion-body').style.maxHeight='0';
+        });
+        if(!isOpen){item.classList.add('open');body.style.maxHeight=body.scrollHeight+'px';}
+      });
+    });
+  </script>
+</body>
+</html>

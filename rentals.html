@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aluguel de Carros — CK Viagens</title>
+  <meta name="description" content="Aluguel de carros para destinos nacionais e internacionais. CK Viagens em parceria com Mobility para a melhor frota ao melhor preço.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{navy:{950:'#060d15',900:'#0d1b2a',800:'#122234',700:'#1a2f44',600:'#1e3a52'},silver:{50:'#f4f7f9',100:'#eef2f5',200:'#d8e2ea',300:'#b8cad6',400:'#9aabb8',500:'#7b8e9a',600:'#5f7180'},gold:{200:'#f5e8ba',300:'#e8c870',400:'#d4a537',500:'#c9a047',600:'#a07830'}},fontFamily:{display:['"Cormorant Garamond"','serif'],body:['Raleway','sans-serif']}}}}
+  </script>
+  <style>
+    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background-color:#0d1b2a;color:#eef2f5;font-family:'Raleway',sans-serif;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#060d15}::-webkit-scrollbar-thumb{background:#c9a047;border-radius:2px}
+    body::before{content:'';position:fixed;inset:0;opacity:.038;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
+    #main-nav{position:fixed;top:0;left:0;right:0;z-index:500;transition:background-color .5s cubic-bezier(.4,0,.2,1),backdrop-filter .5s cubic-bezier(.4,0,.2,1),box-shadow .5s cubic-bezier(.4,0,.2,1)}
+    #main-nav.scrolled{background-color:rgba(10,20,34,0.94);backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(154,171,184,0.08),0 6px 24px rgba(6,13,21,0.5)}
+    .nav-link{position:relative;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.15em;text-transform:uppercase;font-size:.68rem;color:rgba(184,202,214,0.75);transition:color .3s cubic-bezier(.4,0,.2,1)}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#c9a047;transition:width .35s cubic-bezier(.4,0,.2,1)}
+    .nav-link:hover,.nav-link.active{color:#eef2f5}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .btn-gold{display:inline-block;background:linear-gradient(135deg,#c9a047 0%,#d4a537 50%,#c9a047 100%);background-size:200% 100%;background-position:0% 50%;color:#060d15;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;transition:background-position .5s,transform .2s,box-shadow .35s;box-shadow:0 4px 20px rgba(201,160,71,0.28),0 1px 4px rgba(0,0,0,0.35)}
+    .btn-gold:hover{background-position:100% 50%;transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,160,71,0.42),0 2px 8px rgba(0,0,0,0.4)}
+    .btn-gold:active{transform:translateY(0)}
+    .btn-outline{display:inline-block;border:1px solid rgba(184,202,214,0.28);color:#eef2f5;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;transition:border-color .3s,background-color .3s,transform .2s;position:relative;overflow:hidden}
+    .btn-outline:hover{border-color:rgba(184,202,214,0.65);background-color:rgba(184,202,214,0.06);transform:translateY(-2px)}
+    .font-display{font-family:'Cormorant Garamond',serif}
+    .text-label{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.25em;text-transform:uppercase;font-size:.68rem}
+    .line-gold-h{height:1px;background:linear-gradient(90deg,transparent,rgba(201,160,71,0.8),transparent)}
+    .line-gold-left{display:inline-block;width:36px;height:1px;background:linear-gradient(90deg,#c9a047,transparent);vertical-align:middle}
+    .hero-grid-overlay{background-image:linear-gradient(rgba(154,171,184,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(154,171,184,0.04) 1px,transparent 1px);background-size:64px 64px}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .footer-link{color:#9aabb8;font-size:.85rem;transition:color .3s}.footer-link:hover{color:#eef2f5}
+    .social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(154,171,184,0.2);display:flex;align-items:center;justify-content:center;color:#9aabb8;transition:border-color .3s,color .3s,transform .2s}
+    .social-btn:hover{border-color:rgba(201,160,71,0.55);color:#c9a047;transform:translateY(-2px)}
+    #mobile-drawer{position:fixed;inset:0;z-index:600;background:rgba(6,13,21,0.98);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1)}
+    #mobile-drawer.open{transform:translateX(0)}
+    .mobile-nav-link{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#b8cad6;letter-spacing:-.01em;transition:color .3s}
+    .mobile-nav-link:hover{color:#c9a047}
+    .page-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:58vh;padding:120px 1.5rem 5rem;}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 60% 30%,rgba(18,52,28,0.55) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 20% 80%,rgba(14,36,52,0.55) 0%,transparent 60%),radial-gradient(ellipse 90% 70% at 50% 50%,rgba(10,22,14,0.9) 0%,rgba(6,13,21,1) 100%)}
+    @keyframes pageIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .p1{animation:pageIn .9s .15s both cubic-bezier(.4,0,.2,1)}.p2{animation:pageIn .9s .35s both cubic-bezier(.4,0,.2,1)}.p3{animation:pageIn .9s .55s both cubic-bezier(.4,0,.2,1)}
+    /* Feature cards */
+    .feature-card{border:1px solid rgba(154,171,184,0.08);background:linear-gradient(140deg,rgba(18,34,52,0.4),rgba(26,47,68,0.2));padding:32px 28px;transition:border-color .35s,transform .35s,box-shadow .35s}
+    .feature-card:hover{border-color:rgba(201,160,71,0.25);transform:translateY(-4px);box-shadow:0 20px 50px rgba(6,13,21,0.5)}
+    .feature-icon{width:48px;height:48px;border:1px solid rgba(201,160,71,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;background:rgba(201,160,71,0.04)}
+    /* Category cards */
+    .cat-card{border:1px solid rgba(154,171,184,0.08);background:linear-gradient(140deg,rgba(12,22,34,0.6),rgba(18,34,52,0.3));padding:24px;transition:border-color .3s,transform .3s}
+    .cat-card:hover{border-color:rgba(201,160,71,0.2);transform:translateY(-3px)}
+    /* Partnership banner */
+    .partner-banner{border:1px solid rgba(201,160,71,0.2);background:linear-gradient(135deg,rgba(201,160,71,0.05),rgba(18,52,28,0.05));position:relative;overflow:hidden}
+    .partner-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,160,71,0.6),transparent)}
+    /* Road graphic */
+    .road-graphic{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+    .road-graphic::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:3px;height:100%;background:repeating-linear-gradient(to top,rgba(201,160,71,0.3) 0px,rgba(201,160,71,0.3) 20px,transparent 20px,transparent 40px)}
+  </style>
+  <link rel="stylesheet" href="shiny-buttons.css">
+  <script src="hover-button.js" defer></script>
+</head>
+<body>
+
+  <nav id="main-nav" aria-label="Navegação principal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" aria-label="CK Viagens — início" class="flex-shrink-0">
+        <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-14 w-auto">
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <div class="nav-dropdown">
+          <a href="destinos.html" class="nav-link">Destinos <svg class="nav-dd-caret" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+          <div class="nav-dd-menu">
+            <a href="destinos.html" class="nav-dd-item"><span class="nav-dd-icon">✦</span><div><span class="nav-dd-label">Principais Destinos</span><span class="nav-dd-sub">Américas, Europa, Ásia e mais</span></div></a>
+            <a href="destinos.html#cruzeiros" class="nav-dd-item"><span class="nav-dd-icon">⚓</span><div><span class="nav-dd-label">Cruzeiros</span><span class="nav-dd-sub">Brasil, Caribe, Mediterrâneo, Fiords</span></div></a>
+            <a href="eventos.html" class="nav-dd-item"><span class="nav-dd-icon">◈</span><div><span class="nav-dd-label">Eventos</span><span class="nav-dd-sub">Feiras globais · F1 · Tênis · Futebol</span></div></a>
+          </div>
+        </div>
+        <a href="hoteis.html"   class="nav-link">Hospedagem</a>
+        <a href="aereo.html"    class="nav-link">Aéreo</a>
+        <a href="vistos.html"   class="nav-link">Vistos</a>
+        <a href="seguros.html"  class="nav-link">Seguros</a>
+        <a href="rentals.html"  class="nav-link active">Aluguel</a>
+        <a href="sobre.html"    class="nav-link">Sobre</a>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a href="contato.html" class="btn-gold">Fale Conosco</a>
+      </div>
+      <button id="menu-open" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span id="b1" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+        <span id="b2" class="block w-6 h-px bg-silver-300 transition-opacity duration-300"></span>
+        <span id="b3" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <button id="menu-close" class="absolute top-6 right-6 p-2 text-silver-400 hover:text-silver-100" aria-label="Fechar menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="mobile-dd-group">
+      <span class="mobile-dd-trigger">Destinos <svg width="12" height="8" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="mobile-dd-sub">
+        <a href="destinos.html" class="mobile-sub-link drawer-link">Principais Destinos</a>
+        <a href="destinos.html#cruzeiros" class="mobile-sub-link drawer-link">Cruzeiros</a>
+        <a href="eventos.html" class="mobile-sub-link drawer-link">Eventos</a>
+      </div>
+    </div>
+    <a href="hoteis.html"   class="mobile-nav-link drawer-link">Hospedagem</a>
+    <a href="aereo.html"    class="mobile-nav-link drawer-link">Aéreo</a>
+    <a href="vistos.html"   class="mobile-nav-link drawer-link">Vistos</a>
+    <a href="seguros.html"  class="mobile-nav-link drawer-link">Seguros</a>
+    <a href="rentals.html"  class="mobile-nav-link drawer-link" style="color:#c9a047;">Aluguel</a>
+    <a href="sobre.html"    class="mobile-nav-link drawer-link">Sobre</a>
+    <a href="contato.html"  class="btn-gold drawer-link mt-2">Fale Conosco</a>
+  </div>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="hero-grid-overlay absolute inset-0 pointer-events-none"></div>
+    <div class="absolute pointer-events-none" style="top:20%;right:10%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(20,60,30,0.4),transparent 70%);filter:blur(80px);"></div>
+    <div class="absolute pointer-events-none" style="bottom:15%;left:15%;width:300px;height:300px;background:radial-gradient(ellipse,rgba(201,160,71,0.1),transparent 70%);filter:blur(60px);"></div>
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+      <div class="p1 flex items-center justify-center gap-4 mb-6">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">Serviços de Mobilidade</span>
+        <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+      </div>
+      <h1 class="p2 font-display font-light text-silver-100" style="font-size:clamp(3rem,7vw,5.5rem);letter-spacing:-.025em;line-height:.95;">
+        Aluguel de<br><em class="not-italic" style="color:#c9a047;">Carros</em>
+      </h1>
+      <p class="p3 text-silver-400 mt-6 mx-auto" style="max-width:520px;font-size:.9rem;line-height:1.85;">
+        Liberdade total no seu destino — veículos de qualidade, preço competitivo e suporte completo para viagens nacionais e internacionais.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════ FEATURES ═══════ -->
+  <section class="py-24" style="background:#060d15;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Por que alugar com a CK Viagens?</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          Mobilidade integrada à<br><em class="not-italic" style="color:#c9a047;">sua experiência de viagem</em>
+        </h2>
+        <p class="text-silver-400 text-sm mt-5 mx-auto" style="max-width:520px;line-height:1.85;">
+          Coordenamos o aluguel com o restante da sua viagem — chegada, hospedagem e itinerário — para que tudo funcione sem imprevistos.
+        </p>
+      </div>
+
+      <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <div class="feature-card rounded-sm">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="font-display text-silver-100 mb-2" style="font-size:1.2rem;font-weight:300;">Retirada em qualquer lugar</h3>
+          <p class="text-silver-400" style="font-size:.8rem;line-height:1.8;">Aeroportos, hotéis e centros urbanos em todo o Brasil e nos principais destinos internacionais.</p>
+        </div>
+
+        <div class="feature-card rounded-sm">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          </div>
+          <h3 class="font-display text-silver-100 mb-2" style="font-size:1.2rem;font-weight:300;">Seguro incluso</h3>
+          <p class="text-silver-400" style="font-size:.8rem;line-height:1.8;">Todos os veículos saem com cobertura básica. Oferecemos upgrades de proteção total para quem viaja com mais tranquilidade.</p>
+        </div>
+
+        <div class="feature-card rounded-sm">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="font-display text-silver-100 mb-2" style="font-size:1.2rem;font-weight:300;">Disponibilidade 24/7</h3>
+          <p class="text-silver-400" style="font-size:.8rem;line-height:1.8;">Suporte de assistência a qualquer hora, em qualquer lugar. Nossos parceiros operam sem interrupções para que sua viagem não pare.</p>
+        </div>
+
+        <div class="feature-card rounded-sm">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="font-display text-silver-100 mb-2" style="font-size:1.2rem;font-weight:300;">Melhor preço garantido</h3>
+          <p class="text-silver-400" style="font-size:.8rem;line-height:1.8;">Acesso às melhores tarifas da plataforma Mobility, com condições exclusivas para clientes CK Viagens.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ CATEGORIAS ═══════ -->
+  <section class="py-24" style="background:#0a1720;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Frota Disponível</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          Um veículo para<br><em class="not-italic" style="color:#c9a047;">cada tipo de viagem</em>
+        </h2>
+      </div>
+
+      <div class="reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <div class="cat-card rounded-sm">
+          <div class="flex items-start gap-4">
+            <div style="flex-shrink:0;width:42px;height:42px;border:1px solid rgba(201,160,71,0.2);display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><rect x="1" y="9" width="22" height="9" rx="1"/><path d="M5 9V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-silver-100 mb-1" style="font-size:1.15rem;font-weight:300;">Econômicos & Compactos</h3>
+              <p class="text-silver-500" style="font-size:.75rem;line-height:1.7;">Ideal para cidades e roteiros curtos. Baixo consumo, fácil estacionamento e ótimo custo-benefício.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-card rounded-sm">
+          <div class="flex items-start gap-4">
+            <div style="flex-shrink:0;width:42px;height:42px;border:1px solid rgba(201,160,71,0.2);display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v5"/><circle cx="16" cy="17" r="3"/><circle cx="9" cy="17" r="3"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-silver-100 mb-1" style="font-size:1.15rem;font-weight:300;">SUVs & Familiares</h3>
+              <p class="text-silver-500" style="font-size:.75rem;line-height:1.7;">Conforto para grupos e famílias. Porta-malas amplo para bagagens e espaço para todos viajarem com conforto.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-card rounded-sm">
+          <div class="flex items-start gap-4">
+            <div style="flex-shrink:0;width:42px;height:42px;border:1px solid rgba(201,160,71,0.2);display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-silver-100 mb-1" style="font-size:1.15rem;font-weight:300;">Premium & Executivos</h3>
+              <p class="text-silver-500" style="font-size:.75rem;line-height:1.7;">Para quem viaja com estilo. Sedãs e SUVs de luxo com acabamento superior, ideais para viagens de negócios.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-card rounded-sm">
+          <div class="flex items-start gap-4">
+            <div style="flex-shrink:0;width:42px;height:42px;border:1px solid rgba(201,160,71,0.2);display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-silver-100 mb-1" style="font-size:1.15rem;font-weight:300;">4x4 & Off-Road</h3>
+              <p class="text-silver-500" style="font-size:.75rem;line-height:1.7;">Para aventuras fora do asfalto. Trilhas, estradas de terra e destinos remotos com veículos de alta tração.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-card rounded-sm">
+          <div class="flex items-start gap-4">
+            <div style="flex-shrink:0;width:42px;height:42px;border:1px solid rgba(201,160,71,0.2);display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-silver-100 mb-1" style="font-size:1.15rem;font-weight:300;">Aluguel de Longa Duração</h3>
+              <p class="text-silver-500" style="font-size:.75rem;line-height:1.7;">Tarifas especiais para viagens acima de 7 dias. Ideal para expatriados, intercambistas e viajantes de temporada.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-card rounded-sm">
+          <div class="flex items-start gap-4">
+            <div style="flex-shrink:0;width:42px;height:42px;border:1px solid rgba(201,160,71,0.2);display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a047" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-silver-100 mb-1" style="font-size:1.15rem;font-weight:300;">Internacional</h3>
+              <p class="text-silver-500" style="font-size:.75rem;line-height:1.7;">Aluguel nos principais destinos do mundo — EUA, Europa, Caribe e América do Sul — com suporte em português.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ PARTNERSHIP / CTA PRINCIPAL ═══════ -->
+  <section class="py-24" style="background:#060d15;">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="partner-banner rounded-sm p-10 md:p-16 text-center reveal" style="position:relative;">
+
+        <!-- subtle car silhouette -->
+        <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);opacity:.03;pointer-events:none;">
+          <svg width="600" height="200" viewBox="0 0 600 200" fill="white"><path d="M550 130 H50 L80 100 L120 60 L200 50 H380 L440 70 L500 100 L550 130Z"/><circle cx="150" cy="150" r="35"/><circle cx="430" cy="150" r="35"/></svg>
+        </div>
+
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Parceria Exclusiva</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100 mb-4" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          CK Viagens &<br><em class="not-italic" style="color:#c9a047;">Mobility</em>
+        </h2>
+        <p class="text-silver-400 mx-auto mt-4 mb-3" style="max-width:580px;font-size:.88rem;line-height:1.9;">
+          Em parceria com a <strong style="color:#eef2f5;font-weight:500;">Mobility</strong> — uma das maiores plataformas de aluguel de veículos do Brasil — oferecemos acesso a uma frota completa com as melhores tarifas do mercado.
+        </p>
+        <p class="text-silver-500 mx-auto mb-10" style="max-width:540px;font-size:.82rem;line-height:1.85;">
+          Reserve diretamente pela plataforma Mobility utilizando o botão abaixo, ou entre em contato com nossa equipe para integrar o aluguel ao seu pacote de viagem completo.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://mobility.com.br/" target="_blank" rel="noopener noreferrer" class="btn-gold" style="display:inline-flex;align-items:center;gap:10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="9" width="22" height="9" rx="1"/><path d="M5 9V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+            Reservar na Mobility
+          </a>
+          <a href="contato.html" class="btn-outline">Incluir no Meu Pacote</a>
+        </div>
+
+        <p class="text-silver-700 mt-8" style="font-size:.6rem;letter-spacing:.06em;">
+          Você será redirecionado ao site da Mobility para realizar a reserva. As condições comerciais são definidas pela plataforma parceira.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ DESTINOS POPULARES ═══════ -->
+  <section class="py-20" style="background:#0a1720;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="reveal text-center mb-10">
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1.1;">
+          Destinos mais procurados para <em class="not-italic" style="color:#c9a047;">aluguel de carros</em>
+        </h2>
+      </div>
+      <div class="reveal flex flex-wrap justify-center gap-3">
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Orlando, EUA</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Miami, EUA</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Lisboa, Portugal</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Barcelona, Espanha</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Buenos Aires, Argentina</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">São Paulo, Brasil</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Cancún, México</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Rio de Janeiro, Brasil</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Dubai, EAU</span>
+        <span style="font-family:'Raleway',sans-serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,202,214,0.7);border:1px solid rgba(154,171,184,0.12);padding:8px 16px;">Paris, França</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer style="background:#060d15;border-top:1px solid rgba(154,171,184,0.1);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+        <div class="lg:col-span-2">
+          <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-16 w-auto mb-5">
+          <p class="text-silver-500 text-sm leading-relaxed" style="max-width:320px;line-height:1.85;">Curadoria de experiências exclusivas para quem viaja em grande estilo. Seu sonho, nossa missão.</p>
+          <div class="flex gap-3 mt-7">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Navegação</h3>
+          <ul class="space-y-3.5">
+            <li><a href="destinos.html" class="footer-link">Destinos</a></li>
+            <li><a href="hoteis.html"   class="footer-link">Hospedagem</a></li>
+            <li><a href="aereo.html"    class="footer-link">Aéreo</a></li>
+            <li><a href="vistos.html"   class="footer-link">Vistos</a></li>
+            <li><a href="seguros.html"  class="footer-link">Seguros</a></li>
+            <li><a href="rentals.html"  class="footer-link">Aluguel de Carros</a></li>
+            <li><a href="sobre.html"    class="footer-link">Sobre Nós</a></li>
+            <li><a href="contato.html"  class="footer-link">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Contato</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.93h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+55 (00) 00000-0000</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contato@ckviagens.com.br</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Seg–Sex: 9h às 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="line-gold-h mb-8"></div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-silver-600 text-xs" style="letter-spacing:.06em;">© 2025 CK Viagens. Todos os direitos reservados.</p>
+        <p class="text-label text-silver-700" style="font-size:.6rem;">EXPERIÊNCIAS EXCLUSIVAS</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+    const drawer=document.getElementById('mobile-drawer'),btnOpen=document.getElementById('menu-open'),btnClose=document.getElementById('menu-close');
+    const b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+    function openDrawer(){drawer.classList.add('open');btnOpen.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';b1.style.transform='translateY(6px) rotate(45deg)';b2.style.opacity='0';b3.style.transform='translateY(-6px) rotate(-45deg)';}
+    function closeDrawer(){drawer.classList.remove('open');btnOpen.setAttribute('aria-expanded','false');document.body.style.overflow='';b1.style.transform='';b2.style.opacity='';b3.style.transform='';}
+    btnOpen.addEventListener('click',openDrawer);btnClose.addEventListener('click',closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(l=>l.addEventListener('click',closeDrawer));
+    document.querySelectorAll('.mobile-dd-trigger').forEach(t=>t.addEventListener('click',()=>t.closest('.mobile-dd-group').classList.toggle('mobile-dd-open')));
+    drawer.addEventListener('click',e=>{if(e.target===drawer)closeDrawer();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer();});
+
+    const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinos — CK Viagens</title>
+  <meta name="description" content="Explore destinos exclusivos ao redor do mundo com a curadoria personalizada da CK Viagens.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{navy:{950:'#060d15',900:'#0d1b2a',800:'#122234',700:'#1a2f44',600:'#1e3a52'},silver:{50:'#f4f7f9',100:'#eef2f5',200:'#d8e2ea',300:'#b8cad6',400:'#9aabb8',500:'#7b8e9a',600:'#5f7180'},gold:{200:'#f5e8ba',300:'#e8c870',400:'#d4a537',500:'#c9a047',600:'#a07830'}},fontFamily:{display:['"Cormorant Garamond"','serif'],body:['Raleway','sans-serif']}}}}
+  </script>
+  <style>
+    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background-color:#0d1b2a;color:#eef2f5;font-family:'Raleway',sans-serif;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#060d15}::-webkit-scrollbar-thumb{background:#c9a047;border-radius:2px}
+    body::before{content:'';position:fixed;inset:0;opacity:.038;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
+    #main-nav{position:fixed;top:0;left:0;right:0;z-index:500;transition:background-color .5s cubic-bezier(.4,0,.2,1),backdrop-filter .5s cubic-bezier(.4,0,.2,1),box-shadow .5s cubic-bezier(.4,0,.2,1)}
+    #main-nav.scrolled{background-color:rgba(10,20,34,0.94);backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(154,171,184,0.08),0 6px 24px rgba(6,13,21,0.5)}
+    .nav-link{position:relative;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.15em;text-transform:uppercase;font-size:.68rem;color:rgba(184,202,214,0.75);transition:color .3s cubic-bezier(.4,0,.2,1)}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#c9a047;transition:width .35s cubic-bezier(.4,0,.2,1)}
+    .nav-link:hover,.nav-link.active{color:#eef2f5}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .btn-gold{display:inline-block;background:linear-gradient(135deg,#c9a047 0%,#d4a537 50%,#c9a047 100%);background-size:200% 100%;background-position:0% 50%;color:#060d15;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;transition:background-position .5s,transform .2s,box-shadow .35s;box-shadow:0 4px 20px rgba(201,160,71,0.28),0 1px 4px rgba(0,0,0,0.35)}
+    .btn-gold:hover{background-position:100% 50%;transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,160,71,0.42),0 2px 8px rgba(0,0,0,0.4)}
+    .btn-gold:active{transform:translateY(0)}
+    .btn-outline{display:inline-block;border:1px solid rgba(184,202,214,0.28);color:#eef2f5;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;transition:border-color .3s,background-color .3s,transform .2s}
+    .btn-outline:hover{border-color:rgba(184,202,214,0.65);background-color:rgba(184,202,214,0.06);transform:translateY(-2px)}
+    .font-display{font-family:'Cormorant Garamond',serif}
+    .text-label{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.25em;text-transform:uppercase;font-size:.68rem}
+    .line-gold-h{height:1px;background:linear-gradient(90deg,transparent,rgba(201,160,71,0.8),transparent)}
+    .line-gold-left{display:inline-block;width:36px;height:1px;background:linear-gradient(90deg,#c9a047,transparent);vertical-align:middle}
+    .hero-grid-overlay{background-image:linear-gradient(rgba(154,171,184,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(154,171,184,0.04) 1px,transparent 1px);background-size:64px 64px}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    /* Destination cards */
+    .dest-card{position:relative;overflow:hidden;cursor:pointer}
+    .dest-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,13,21,0.92) 0%,rgba(6,13,21,0.45) 45%,rgba(6,13,21,0.05) 100%);z-index:1;transition:opacity .5s}
+    .dest-card:hover::after{opacity:.72}
+    .dest-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.4,0,.2,1)}
+    .dest-card:hover .dest-bg{transform:scale(1.07)}
+    .dest-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;z-index:2}
+    .dest-more{display:flex;align-items:center;gap:6px;opacity:0;transform:translateY(8px);transition:opacity .4s .05s,transform .4s .05s}
+    .dest-card:hover .dest-more{opacity:1;transform:translateY(0)}
+    /* Destination gradient backgrounds */
+    .dest-cancun{background-image:url('IMG_3354.JPEG')}
+    .dest-santorini{background:radial-gradient(ellipse 70% 50% at 50% 15%,rgba(255,255,255,0.12) 0%,transparent 60%),linear-gradient(170deg,#1c1550 0%,#2e3a90 35%,#5070c0 60%,#90b8e0 90%,#c8daf0 100%)}
+    .dest-toscana{background:radial-gradient(ellipse 60% 40% at 30% 30%,rgba(200,180,50,0.3) 0%,transparent 65%),linear-gradient(170deg,#18280a 0%,#3a5a10 30%,#6a9020 58%,#c0b040 80%,#ddd080 100%)}
+    .dest-paris{background:radial-gradient(ellipse 60% 40% at 40% 20%,rgba(255,220,180,0.2) 0%,transparent 65%),linear-gradient(170deg,#1a0a28 0%,#3a2060 35%,#7060a0 60%,#c0a8d8 85%,#e8d8f0 100%)}
+    .dest-dubai{background:radial-gradient(ellipse 70% 40% at 50% 25%,rgba(255,200,80,0.3) 0%,transparent 65%),linear-gradient(170deg,#1a1000 0%,#3a2800 30%,#7a5010 55%,#c8901a 78%,#e8c060 100%)}
+    .dest-maldivas{background:radial-gradient(ellipse 60% 40% at 40% 30%,rgba(6,180,212,0.4) 0%,transparent 70%),linear-gradient(170deg,#063a5c 0%,#0a6090 35%,#0d98b8 65%,#10cad8 100%)}
+    .dest-bali{background:radial-gradient(ellipse 60% 40% at 35% 25%,rgba(80,200,120,0.3) 0%,transparent 65%),linear-gradient(170deg,#041808 0%,#0c3818 30%,#186030 55%,#2a9850 78%,#60c890 100%)}
+    .dest-buenosaires{background:radial-gradient(ellipse 60% 40% at 40% 30%,rgba(200,80,80,0.3) 0%,transparent 65%),linear-gradient(170deg,#1a0808 0%,#3a1818 30%,#783838 55%,#c05858 78%,#e08888 100%)}
+    .dest-montevideo{background:radial-gradient(ellipse 60% 40% at 35% 25%,rgba(80,150,200,0.25) 0%,transparent 65%),linear-gradient(170deg,#080c1a 0%,#101e38 30%,#1a3060 55%,#204888 78%,#3060a8 100%)}
+    .dest-ushuaia{background:radial-gradient(ellipse 70% 50% at 50% 20%,rgba(180,220,255,0.2) 0%,transparent 65%),linear-gradient(170deg,#08101a 0%,#102030 30%,#184060 55%,#207090 78%,#40a0c0 100%)}
+    .dest-machupicchu{background:radial-gradient(ellipse 60% 40% at 35% 25%,rgba(80,180,80,0.3) 0%,transparent 65%),linear-gradient(170deg,#081008 0%,#102218 30%,#1a4010 55%,#286018 78%,#508040 100%)}
+    .dest-barcelona{background:radial-gradient(ellipse 70% 40% at 50% 20%,rgba(255,180,60,0.25) 0%,transparent 65%),linear-gradient(170deg,#180800 0%,#381808 30%,#703010 55%,#c05820 78%,#e09040 100%)}
+    .dest-abudhabi{background:radial-gradient(ellipse 70% 40% at 50% 25%,rgba(255,220,100,0.3) 0%,transparent 65%),linear-gradient(170deg,#0a0800 0%,#201800 30%,#503800 55%,#906010 78%,#c08830 100%)}
+    .dest-miami{background:radial-gradient(ellipse 60% 40% at 40% 20%,rgba(100,220,255,0.3) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 70% 75%,rgba(255,80,180,0.15) 0%,transparent 60%),linear-gradient(170deg,#06101e 0%,#0a2038 30%,#106080 55%,#20a0c0 78%,#40d0e0 100%)}
+    .dest-lisboa{background:radial-gradient(ellipse 60% 40% at 35% 25%,rgba(255,160,60,0.25) 0%,transparent 65%),linear-gradient(170deg,#180800 0%,#301408 30%,#602818 55%,#a05030 78%,#d08050 100%)}
+    .dest-quito{background:radial-gradient(ellipse 60% 40% at 35% 25%,rgba(60,180,100,0.25) 0%,transparent 65%),linear-gradient(170deg,#060e08 0%,#101e10 30%,#1a3818 55%,#285830 78%,#408050 100%)}
+    .dest-orlando{background:radial-gradient(ellipse 65% 45% at 50% 20%,rgba(255,210,90,0.45) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 25% 70%,rgba(120,60,220,0.25) 0%,transparent 60%),linear-gradient(170deg,#0c0818 0%,#1a1035 30%,#2e1858 55%,#5828a0 78%,#8048d0 100%)}
+    /* Filter tabs */
+    .filter-tab{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.18em;text-transform:uppercase;font-size:.62rem;padding:9px 20px;border:1px solid rgba(154,171,184,0.15);color:rgba(184,202,214,0.55);cursor:pointer;transition:all .3s;background:transparent;white-space:nowrap}
+    .filter-tab:hover{border-color:rgba(201,160,71,0.4);color:rgba(184,202,214,0.9)}
+    .filter-tab.active{border-color:rgba(201,160,71,0.6);color:#c9a047;background:rgba(201,160,71,0.07)}
+    .dest-wrap{transition:opacity .25s}
+    .dest-wrap.hidden{display:none}
+    /* Style selector */
+    .style-card{border:1px solid rgba(154,171,184,0.10);background:linear-gradient(140deg,rgba(18,34,52,0.5),rgba(26,47,68,0.25));cursor:pointer;padding:24px 16px;text-align:center;transition:border-color .3s,transform .3s,box-shadow .3s;width:100%}
+    .style-card:hover{border-color:rgba(201,160,71,0.3);transform:translateY(-4px);box-shadow:0 16px 40px rgba(6,13,21,0.5)}
+    .style-card.active{border-color:rgba(201,160,71,0.65);background:linear-gradient(140deg,rgba(30,52,78,0.7),rgba(40,65,90,0.5));box-shadow:0 12px 36px rgba(6,13,21,0.5)}
+    .style-card.active .style-icon{color:#c9a047}
+    .style-card.active .style-name{color:#eef2f5}
+    .style-icon{font-size:1.5rem;margin-bottom:10px;display:block;color:#5f7180;transition:color .3s}
+    .style-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:#9aabb8;transition:color .3s;display:block;margin-bottom:3px}
+    .style-sub{font-family:'Raleway',sans-serif;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(154,171,184,0.4)}
+    /* Recommendations panel */
+    #style-panel{display:none;animation:fadeInUp .5s cubic-bezier(.4,0,.2,1) both}
+    #style-panel.visible{display:block}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .rec-card{border:1px solid rgba(154,171,184,0.10);overflow:hidden;transition:border-color .35s,transform .35s}
+    .rec-card:hover{border-color:rgba(201,160,71,0.3);transform:translateY(-4px)}
+    .rec-bg{height:190px;background-size:cover;background-position:center;position:relative}
+    .rec-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,13,21,0.88) 0%,rgba(6,13,21,0.15) 100%)}
+    .rec-label{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;z-index:2}
+    /* Footer */
+    .footer-link{color:#9aabb8;font-size:.85rem;transition:color .3s}.footer-link:hover{color:#eef2f5}
+    .social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(154,171,184,0.2);display:flex;align-items:center;justify-content:center;color:#9aabb8;transition:border-color .3s,color .3s,transform .2s}
+    .social-btn:hover{border-color:rgba(201,160,71,0.55);color:#c9a047;transform:translateY(-2px)}
+    #mobile-drawer{position:fixed;inset:0;z-index:600;background:rgba(6,13,21,0.98);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1)}
+    #mobile-drawer.open{transform:translateX(0)}
+    .mobile-nav-link{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#b8cad6;letter-spacing:-.01em;transition:color .3s}
+    .mobile-nav-link:hover{color:#c9a047}
+    .page-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:52vh;padding:120px 1.5rem 5rem;background:radial-gradient(ellipse 70% 55% at 15% 85%,rgba(18,50,80,0.65) 0%,transparent 65%),radial-gradient(ellipse 55% 70% at 85% 15%,rgba(14,36,62,0.55) 0%,transparent 60%),radial-gradient(ellipse 90% 70% at 50% 50%,rgba(16,32,50,0.85) 0%,rgba(6,13,21,1) 100%)}
+    @keyframes pageIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .p1{animation:pageIn .9s .15s both cubic-bezier(.4,0,.2,1)}.p2{animation:pageIn .9s .35s both cubic-bezier(.4,0,.2,1)}.p3{animation:pageIn .9s .55s both cubic-bezier(.4,0,.2,1)}
+  </style>
+  <link rel="stylesheet" href="shiny-buttons.css">
+  <script src="hover-button.js" defer></script>
+</head>
+<body>
+
+  <nav id="main-nav" aria-label="Navegação principal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" aria-label="CK Viagens — início" class="flex-shrink-0">
+        <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-14 w-auto">
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <div class="nav-dropdown">
+          <a href="destinos.html" class="nav-link active">Destinos <svg class="nav-dd-caret" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+          <div class="nav-dd-menu">
+            <a href="destinos.html" class="nav-dd-item"><span class="nav-dd-icon">✦</span><div><span class="nav-dd-label">Principais Destinos</span><span class="nav-dd-sub">Américas, Europa, Ásia e mais</span></div></a>
+            <a href="destinos.html#cruzeiros" class="nav-dd-item"><span class="nav-dd-icon">⚓</span><div><span class="nav-dd-label">Cruzeiros</span><span class="nav-dd-sub">Brasil, Caribe, Mediterrâneo, Fiords</span></div></a>
+            <a href="eventos.html" class="nav-dd-item"><span class="nav-dd-icon">◈</span><div><span class="nav-dd-label">Eventos</span><span class="nav-dd-sub">Feiras globais · F1 · Tênis · Futebol</span></div></a>
+          </div>
+        </div>
+        <a href="hoteis.html"   class="nav-link">Hospedagem</a>
+        <a href="aereo.html"    class="nav-link">Aéreo</a>
+        <a href="vistos.html"   class="nav-link">Vistos</a>
+        <a href="seguros.html"  class="nav-link">Seguros</a>
+        <a href="rentals.html"  class="nav-link">Aluguel</a>
+        <a href="sobre.html"    class="nav-link">Sobre</a>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a href="contato.html" class="btn-gold">Fale Conosco</a>
+      </div>
+      <button id="menu-open" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span id="b1" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+        <span id="b2" class="block w-6 h-px bg-silver-300 transition-opacity duration-300"></span>
+        <span id="b3" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <button id="menu-close" class="absolute top-6 right-6 p-2 text-silver-400 hover:text-silver-100" aria-label="Fechar menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="mobile-dd-group">
+      <span class="mobile-dd-trigger">Destinos <svg width="12" height="8" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="mobile-dd-sub">
+        <a href="destinos.html" class="mobile-sub-link drawer-link">Principais Destinos</a>
+        <a href="destinos.html#cruzeiros" class="mobile-sub-link drawer-link">Cruzeiros</a>
+        <a href="eventos.html" class="mobile-sub-link drawer-link">Eventos</a>
+      </div>
+    </div>
+    <a href="hoteis.html"   class="mobile-nav-link drawer-link">Hospedagem</a>
+    <a href="aereo.html"    class="mobile-nav-link drawer-link">Aéreo</a>
+    <a href="vistos.html"   class="mobile-nav-link drawer-link">Vistos</a>
+    <a href="seguros.html"  class="mobile-nav-link drawer-link">Seguros</a>
+    <a href="rentals.html"  class="mobile-nav-link drawer-link">Aluguel</a>
+    <a href="sobre.html"    class="mobile-nav-link drawer-link">Sobre</a>
+    <a href="contato.html"  class="btn-gold drawer-link mt-2">Fale Conosco</a>
+  </div>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero-grid-overlay absolute inset-0 pointer-events-none"></div>
+    <div class="absolute pointer-events-none" style="top:20%;left:10%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(24,60,96,0.45),transparent 70%);filter:blur(60px);"></div>
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+      <div class="p1 flex items-center justify-center gap-4 mb-6">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">Curadoria exclusiva</span>
+        <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+      </div>
+      <h1 class="p2 font-display font-light text-silver-100" style="font-size:clamp(3.2rem,7vw,6rem);letter-spacing:-.025em;line-height:.95;">
+        Nossos<br><em class="not-italic" style="color:#c9a047;">Destinos</em>
+      </h1>
+      <p class="p3 text-silver-400 mt-6 mx-auto" style="max-width:520px;font-size:.95rem;line-height:1.85;">
+        Cada destino selecionado a dedo para proporcionar experiências que ficam para sempre na memória.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════ DESTINATIONS GRID ═══════ -->
+  <section class="py-20" style="background:#0a1720;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Filter tabs -->
+      <div class="reveal mb-10">
+        <div class="flex flex-wrap gap-2">
+          <button class="filter-tab active" data-continent="americas">Américas</button>
+          <button class="filter-tab" data-continent="europa">Europa</button>
+          <button class="filter-tab" data-continent="caribe">Caribe</button>
+          <button class="filter-tab" data-continent="asia">Ásia</button>
+          <button class="filter-tab" data-continent="oriente-medio">Oriente Médio</button>
+        </div>
+      </div>
+
+      <!-- Count line -->
+      <p class="text-label text-silver-600 mb-6" style="font-size:.58rem;">
+        Exibindo <span id="count-num">15</span> destinos
+      </p>
+
+      <!-- Grid -->
+      <div id="dest-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <div class="dest-wrap" data-continents="caribe,americas">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-cancun"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">México · Caribe</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Cancún</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Praias turquesa e ruínas maias</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="americas">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-buenosaires"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Argentina · Américas</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Buenos Aires</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Tango, cultura e gastronomia portenha</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="europa">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-santorini"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Grécia · Europa</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Santorini</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Pôr do sol sobre o Mar Egeu</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="americas">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-montevideo"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Uruguai · Américas</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Montevideo</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Charme europeu à beira do Río de la Plata</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="europa">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-toscana"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Itália · Europa</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Toscana</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Vinhedos dourados e castelos medievais</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="americas">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-ushuaia"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Argentina · Américas</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Ushuaia</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">O fim do mundo — glaciares e silêncio polar</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="europa">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-paris"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">França · Europa</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Paris</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">A cidade da luz e da haute gastronomie</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="americas">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-machupicchu"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Peru · Américas</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Machu Picchu</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">A cidadela inca nas nuvens dos Andes</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="asia">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-maldivas"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Oceano Índico · Ásia</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Maldivas</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Bangalôs sobre águas cristalinas</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="europa">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-barcelona"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Espanha · Europa</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Barcelona</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Gaudí, tapas e o Mediterrâneo</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="oriente-medio">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-dubai"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">EAU · Oriente Médio</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Dubai</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Luxo e arquitetura do futuro</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="americas">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-quito"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Equador · Américas</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Quito</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Centro histórico patrimônio da humanidade</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="asia">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-bali"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Indonésia · Ásia</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Bali</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Templos, arrozais e praias de sonho</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="americas,caribe">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-miami"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">EUA · Américas</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Miami</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Art Deco, Miami Open e praias icônicas</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="oriente-medio">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-abudhabi"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">EAU · Oriente Médio</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Abu Dhabi</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Grande Prêmio de F1 e cultura árabe</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="europa">
+          <a href="contato.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-lisboa"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">Portugal · Europa</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Lisboa</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Fado, pastéis e miradouros eternos</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Consultar</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="dest-wrap" data-continents="americas">
+          <a href="orlando.html" class="block dest-card rounded-sm" style="height:360px;">
+            <div class="dest-bg dest-orlando"></div>
+            <div class="dest-info">
+              <span class="text-label text-gold-400 mb-1 block" style="font-size:.56rem;">EUA · Américas</span>
+              <h3 class="font-display font-light text-silver-50" style="font-size:1.9rem;letter-spacing:-.01em;line-height:1.05;">Orlando</h3>
+              <p class="text-silver-400 mt-0.5" style="font-size:.74rem;">Disney, Universal & parques com ingressos inclusos</p>
+              <div class="dest-more mt-3 text-gold-400"><span class="text-label" style="font-size:.56rem;">Ver destino</span><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+
+      </div><!-- /dest-grid -->
+
+      <div id="dest-empty" class="hidden text-center py-20">
+        <p class="font-display text-silver-400" style="font-size:1.5rem;font-weight:300;">Nenhum destino nesta categoria.</p>
+        <p class="text-silver-600 text-sm mt-2">Fale conosco — levamos você a qualquer destino do mundo.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════ TRIP STYLE SELECTOR ═══════ -->
+  <section class="py-24" style="background:radial-gradient(ellipse 80% 50% at 50% 50%,rgba(18,34,52,0.88),rgba(6,13,21,1));">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Que tipo de viagem é a sua?</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          Descubra destinos pelo<br><em class="not-italic" style="color:#c9a047;">estilo da sua viagem</em>
+        </h2>
+        <p class="text-silver-400 text-sm mt-5 mx-auto" style="max-width:480px;line-height:1.85;">
+          Selecione o perfil que mais combina com você e veja recomendações personalizadas de destinos.
+        </p>
+      </div>
+
+      <!-- Style cards grid -->
+      <div class="reveal grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-10">
+
+        <button class="style-card rounded-sm" data-style="romantica">
+          <span class="style-icon">✦</span>
+          <span class="style-name">Romântica</span>
+          <span class="style-sub">Casal & Lua de Mel</span>
+        </button>
+
+        <button class="style-card rounded-sm" data-style="aventura">
+          <span class="style-icon">◈</span>
+          <span class="style-name">Aventura</span>
+          <span class="style-sub">Natureza & Trilhas</span>
+        </button>
+
+        <button class="style-card rounded-sm" data-style="familia">
+          <span class="style-icon">◇</span>
+          <span class="style-name">Família</span>
+          <span class="style-sub">Para todas as idades</span>
+        </button>
+
+        <button class="style-card rounded-sm" data-style="historica">
+          <span class="style-icon">▲</span>
+          <span class="style-name">Histórica</span>
+          <span class="style-sub">Arte & Cultura</span>
+        </button>
+
+        <button class="style-card rounded-sm" data-style="gastronomia">
+          <span class="style-icon">◉</span>
+          <span class="style-name">Gastronomia</span>
+          <span class="style-sub">Sabores do Mundo</span>
+        </button>
+
+        <button class="style-card rounded-sm" data-style="eventos">
+          <span class="style-icon">⬡</span>
+          <span class="style-name">Eventos</span>
+          <span class="style-sub">F1 · Miami Open · +</span>
+        </button>
+
+        <button class="style-card rounded-sm" data-style="relaxamento">
+          <span class="style-icon">◯</span>
+          <span class="style-name">Relaxamento</span>
+          <span class="style-sub">Spa & Bem-estar</span>
+        </button>
+
+      </div>
+
+      <!-- Recommendations panel (hidden until style clicked) -->
+      <div id="style-panel">
+
+        <div class="flex items-center gap-4 mb-8" style="border-top:1px solid rgba(154,171,184,0.08);padding-top:32px;">
+          <span class="line-gold-left"></span>
+          <span id="style-panel-label" class="text-label text-gold-500" style="font-size:.6rem;"></span>
+        </div>
+
+        <div id="style-recs" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+
+        <div class="text-center mt-10 pt-8" style="border-top:1px solid rgba(154,171,184,0.08);">
+          <p class="text-silver-400 text-sm mb-5" style="line-height:1.85;">
+            Quer que montemos um roteiro completo para este estilo de viagem?
+          </p>
+          <a href="contato.html" class="btn-gold">Falar com um Consultor</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════ CRUZEIROS ═══════ -->
+  <section id="cruzeiros" class="py-24" style="background:#060d15;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Header -->
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Cruzeiros Exclusivos</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          Navegue o mundo com<br><em class="not-italic" style="color:#c9a047;">estilo e conforto</em>
+        </h2>
+        <p class="text-silver-400 text-sm mt-5 mx-auto" style="max-width:520px;line-height:1.85;">
+          Selecionamos os melhores roteiros de cruzeiro por temporada — do Caribe às Ilhas Gregas, dos Fiords Noruegueses à Antártica.
+        </p>
+      </div>
+
+      <!-- Season tabs -->
+      <div class="reveal mb-4">
+        <div class="flex flex-wrap gap-2">
+          <button class="filter-tab active" data-season="verao">Verão</button>
+          <button class="filter-tab" data-season="outono">Outono</button>
+          <button class="filter-tab" data-season="inverno">Inverno</button>
+          <button class="filter-tab" data-season="primavera">Primavera</button>
+        </div>
+        <p id="season-desc" class="text-silver-600 mt-3" style="font-size:.68rem;letter-spacing:.04em;line-height:1.7;font-family:'Raleway',sans-serif;"></p>
+      </div>
+
+      <!-- Cruise grid (rendered by JS) -->
+      <div id="cruise-grid" class="reveal grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-10"></div>
+
+      <p class="text-silver-700 text-center" style="font-size:.62rem;letter-spacing:.04em;font-style:italic;font-family:'Raleway',sans-serif;">
+        Disponibilidade e itinerários sujeitos a confirmação pelas companhias de cruzeiro. A CK Viagens acompanha todo o planejamento da sua viagem.
+      </p>
+
+      <div class="text-center mt-10">
+        <a href="contato.html" class="btn-gold">Solicitar Cotação de Cruzeiro</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="py-20" style="background:#0a1720;">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="reveal text-center py-16 rounded-sm" style="background:linear-gradient(135deg,rgba(18,34,52,0.6),rgba(26,47,68,0.3));border:1px solid rgba(154,171,184,0.08);">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Ainda não encontrou?</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100 mb-4" style="font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;">
+          Encontramos o destino<br><em class="not-italic" style="color:#c9a047;">ideal para você</em>
+        </h2>
+        <p class="text-silver-400 text-sm mb-8 mx-auto" style="max-width:500px;line-height:1.85;">
+          Fale com um de nossos consultores e encontremos juntos o match perfeito entre o seu perfil, o seu ritmo e o destino que irá marcar a sua vida.
+        </p>
+        <a href="contato.html" class="btn-gold">Falar com um Consultor</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer style="background:#060d15;border-top:1px solid rgba(154,171,184,0.1);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+        <div class="lg:col-span-2">
+          <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-16 w-auto mb-5">
+          <p class="text-silver-500 text-sm leading-relaxed" style="max-width:320px;line-height:1.85;">Curadoria de experiências exclusivas para quem viaja em grande estilo. Seu sonho, nossa missão.</p>
+          <div class="flex gap-3 mt-7">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Navegação</h3>
+          <ul class="space-y-3.5">
+            <li><a href="destinos.html" class="footer-link">Destinos</a></li>
+            <li><a href="hoteis.html"   class="footer-link">Hospedagem</a></li>
+            <li><a href="aereo.html"    class="footer-link">Aéreo</a></li>
+            <li><a href="vistos.html"   class="footer-link">Vistos</a></li>
+            <li><a href="seguros.html"  class="footer-link">Seguros</a></li>
+            <li><a href="sobre.html"    class="footer-link">Sobre Nós</a></li>
+            <li><a href="contato.html"  class="footer-link">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Contato</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.93h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+55 (00) 00000-0000</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contato@ckviagens.com.br</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Seg–Sex: 9h às 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="line-gold-h mb-8"></div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-silver-600 text-xs" style="letter-spacing:.06em;">© 2025 CK Viagens. Todos os direitos reservados.</p>
+        <p class="text-label text-silver-700" style="font-size:.6rem;">EXPERIÊNCIAS EXCLUSIVAS</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // ── Nav scroll ──
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+    // ── Mobile drawer ──
+    const drawer=document.getElementById('mobile-drawer'),btnOpen=document.getElementById('menu-open'),btnClose=document.getElementById('menu-close');
+    const b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+    function openDrawer(){drawer.classList.add('open');btnOpen.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';b1.style.transform='translateY(6px) rotate(45deg)';b2.style.opacity='0';b3.style.transform='translateY(-6px) rotate(-45deg)';}
+    function closeDrawer(){drawer.classList.remove('open');btnOpen.setAttribute('aria-expanded','false');document.body.style.overflow='';b1.style.transform='';b2.style.opacity='';b3.style.transform='';}
+    btnOpen.addEventListener('click',openDrawer);btnClose.addEventListener('click',closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(l=>l.addEventListener('click',closeDrawer));
+    document.querySelectorAll('.mobile-dd-trigger').forEach(t=>t.addEventListener('click',()=>t.closest('.mobile-dd-group').classList.toggle('mobile-dd-open')));
+    drawer.addEventListener('click',e=>{if(e.target===drawer)closeDrawer();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer();});
+
+    // ── Scroll reveal ──
+    const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+    // ── Active nav ──
+    const curPage=window.location.pathname.split('/').pop()||'index.html';
+    document.querySelectorAll('.nav-link').forEach(l=>{if(l.getAttribute('href')===curPage)l.classList.add('active');});
+
+    // ── Continent filter ──
+    const wraps=document.querySelectorAll('.dest-wrap');
+    // trigger initial filter on page load after listeners attached (called below)
+    const countEl=document.getElementById('count-num');
+    const emptyEl=document.getElementById('dest-empty');
+
+    document.querySelectorAll('.filter-tab').forEach(tab=>{
+      tab.addEventListener('click',function(){
+        document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+        this.classList.add('active');
+        const continent=this.dataset.continent;
+        let visible=0;
+        wraps.forEach(wrap=>{
+          const continents=wrap.dataset.continents.split(',');
+          const show=continents.includes(continent);
+          wrap.classList.toggle('hidden',!show);
+          if(show)visible++;
+        });
+        countEl.textContent=visible;
+        emptyEl.classList.toggle('hidden',visible>0);
+      });
+    });
+
+    // fire initial continent filter
+    document.querySelector('[data-continent].filter-tab.active')?.click();
+
+    // ── Cruzeiros — season filter ──
+    const cruiseData=[
+      // VERÃO (Dez–Mar)
+      {season:'verao',name:'Caribe Oriental',route:'Miami · St. Maarten · St. Thomas · Barbados',duration:'7–14 noites',line:'Royal Caribbean / MSC',highlight:'Praias turquesa e cultura afro-caribenha sob o sol do Caribe.',bg:'cruise-caribe'},
+      {season:'verao',name:'Costa Brasileira',route:'Rio de Janeiro · Búzios · Ilhabela · Santos',duration:'7 noites',line:'MSC Cruzeiros',highlight:'Sol, praia e cultura carioca ao longo do litoral.',bg:'cruise-brasil'},
+      {season:'verao',name:'Mediterrâneo de Verão',route:'Barcelona · Cannes · Roma · Dubrovnik',duration:'10–14 noites',line:'MSC / Costa Cruzeiros',highlight:'Arte, gastronomia e sol europeu nas capitais do Mediterrâneo.',bg:'cruise-mediterraneo'},
+      {season:'verao',name:'Amazônia Profunda',route:'Manaus · Santarém · Parintins · Belém',duration:'4–7 noites',line:'Iberocruceros / Silversea',highlight:'Natureza intocada e fauna extraordinária da floresta amazônica.',bg:'cruise-amazonia'},
+      // OUTONO (Mar–Mai)
+      {season:'outono',name:'Fiords Noruegueses',route:'Bergen · Flåm · Geiranger · Ålesund · Stavanger',duration:'7–10 noites',line:'AIDA / Hurtigruten',highlight:'Paisagens dramáticas de geleiras, montanhas e fiordes.',bg:'cruise-fiords'},
+      {season:'outono',name:'Ilhas Gregas',route:'Atenas · Mykonos · Santorini · Creta · Rodes',duration:'7–10 noites',line:'Costa / Celestyal Cruises',highlight:'Civilização milenar e mar Egeu cristalino.',bg:'cruise-grecia'},
+      {season:'outono',name:'Transatlântico',route:'Lisboa · Funchal · Tenerife · Salvador · Santos',duration:'14–21 noites',line:'MSC / Costa Cruzeiros',highlight:'Grande travessia atlântica com paradas históricas.',bg:'cruise-transatlantico'},
+      {season:'outono',name:'Caribe do Sul',route:'Aruba · Curaçao · Trinidad · Grenada · Barbados',duration:'7–10 noites',line:'Norwegian / Celebrity',highlight:'Caribe menos explorado, abundante em charme e cultura.',bg:'cruise-caribesul'},
+      // INVERNO (Jun–Ago)
+      {season:'inverno',name:'Alaska',route:'Seward · Juneau · Ketchikan · Glacier Bay · Skagway',duration:'7 noites',line:'Princess / Holland America',highlight:'Geleiras majestuosas, baleias e natureza selvagem do Pacífico norte.',bg:'cruise-alaska'},
+      {season:'inverno',name:'Escandinávia & Báltico',route:'Copenhague · Estocolmo · Tallinn · Helsinki · São Petersburgo',duration:'10–14 noites',line:'MSC / Silversea',highlight:'Capitais nórdicas, palácios imperiais e noites brancas.',bg:'cruise-baltico'},
+      {season:'inverno',name:'Islândia & Groenlândia',route:'Reykjavik · Akureyri · Disco Bay · Ilulissat',duration:'10–12 noites',line:'Hurtigruten / Silversea',highlight:'Aurora boreal, icebergs imensos e paisagens de outro mundo.',bg:'cruise-islandia'},
+      {season:'inverno',name:'Mediterrâneo Ocidental',route:'Barcelona · Palma · Nápoles · Civitavecchia · Marseille',duration:'7–10 noites',line:'MSC / Royal Caribbean',highlight:'Cultura, praia e gastronomia italiana em baixa temporada.',bg:'cruise-medoccidental'},
+      // PRIMAVERA (Set–Nov)
+      {season:'primavera',name:'Antártica',route:'Ushuaia · Estreito de Drake · Península Antártica',duration:'10–15 noites',line:'Silversea / Lindblad Expeditions',highlight:'A expedição mais exclusiva do planeta — banquisa, pinguins e silêncio eterno.',bg:'cruise-antartica'},
+      {season:'primavera',name:'Caribe Ocidental',route:'Miami · Cozumel · Belize · Roatán · Grand Cayman',duration:'7 noites',line:'Royal Caribbean / Carnival',highlight:'Recifes de coral, ruínas maias e praias de areia branca.',bg:'cruise-caribeocidental'},
+      {season:'primavera',name:'Mediterrâneo Oriental',route:'Istanbul · Atenas · Dubrovnik · Split · Veneza',duration:'10–14 noites',line:'MSC / Costa / Celebrity',highlight:'Onde o Oriente encontra a Europa — história viva em cada porto.',bg:'cruise-medoriental'},
+      {season:'primavera',name:'Patagônia & Magalhães',route:'Buenos Aires · Puerto Madryn · Punta Arenas · Ushuaia',duration:'10–14 noites',line:'Silversea / Ponant',highlight:'Glaciares milenares, fauna selvagem e o mítico Estreito de Magalhães.',bg:'cruise-patagonia'},
+    ];
+
+    const seasonMeta={
+      verao:    {period:'Dezembro – Março',desc:'Alto verão no hemisfério sul — temporada ideal para o Caribe e costa brasileira.'},
+      outono:   {period:'Março – Maio',    desc:'Primavera na Europa — período perfeito para Mediterrâneo e Fiords Noruegueses.'},
+      inverno:  {period:'Junho – Agosto',  desc:'Verão no hemisfério norte — Alaska, Báltico e Escandinávia na melhor época.'},
+      primavera:{period:'Setembro – Novembro',desc:'Início do verão austral — Antártica e Patagônia abrem sua temporada de expedição.'},
+    };
+
+    const cruiseGrid=document.getElementById('cruise-grid');
+    const seasonDescEl=document.getElementById('season-desc');
+
+    function renderCruises(season){
+      const data=cruiseData.filter(c=>c.season===season);
+      cruiseGrid.innerHTML=data.map(c=>`
+        <a href="contato.html" class="cruise-card block">
+          <div class="cruise-bg ${c.bg}"></div>
+          <div class="cruise-info">
+            <div class="cruise-route">${c.route}</div>
+            <h3 class="cruise-name">${c.name}</h3>
+            <p class="cruise-highlight">${c.highlight}</p>
+            <div class="cruise-meta">
+              <span class="cruise-badge">${c.duration}</span>
+              <span class="cruise-line">${c.line}</span>
+            </div>
+            <div class="cruise-cta">
+              <span>Consultar</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // Season tab listeners (separate from continent tabs)
+    document.querySelectorAll('[data-season]').forEach(tab=>{
+      tab.addEventListener('click',function(){
+        document.querySelectorAll('[data-season]').forEach(t=>t.classList.remove('active'));
+        this.classList.add('active');
+        const season=this.dataset.season;
+        const meta=seasonMeta[season];
+        seasonDescEl.innerHTML=`<strong style="color:#c9a047;">${meta.period}</strong> — ${meta.desc}`;
+        renderCruises(season);
+      });
+    });
+
+    // Initial cruise render
+    const firstSeason=document.querySelector('[data-season]');
+    if(firstSeason){
+      const s=firstSeason.dataset.season;
+      seasonDescEl.innerHTML=`<strong style="color:#c9a047;">${seasonMeta[s].period}</strong> — ${seasonMeta[s].desc}`;
+      renderCruises(s);
+    }
+
+    // ── Trip style recommendations ──
+    const styleData={
+      romantica:{
+        label:'Recomendações · Viagem Romântica',
+        recs:[
+          {name:'Santorini',sub:'Grécia · Europa',desc:'Suítes com vista infinita e jacuzzi sobre o Mar Egeu.',cls:'dest-santorini'},
+          {name:'Paris',sub:'França · Europa',desc:'A cidade mais romântica do mundo. Um jantar no Eiffel, e pronto.',cls:'dest-paris'},
+          {name:'Maldivas',sub:'Oceano Índico',desc:'Bangalô privativo sobre o oceano — para dois, com spa incluso.',cls:'dest-maldivas'},
+          {name:'Toscana',sub:'Itália · Europa',desc:'Vinho, trufas e couchers de soleil entre os vinhedos.',cls:'dest-toscana'},
+        ]
+      },
+      aventura:{
+        label:'Recomendações · Viagem de Aventura',
+        recs:[
+          {name:'Ushuaia',sub:'Argentina · Américas',desc:'Trekking nos glaciares do Parque Nacional Tierra del Fuego.',cls:'dest-ushuaia'},
+          {name:'Machu Picchu',sub:'Peru · Américas',desc:'A Trilha Inca — quatro dias entre montanhas sagradas.',cls:'dest-machupicchu'},
+          {name:'Bali',sub:'Indonésia · Ásia',desc:'Surf no Bukit, rafting no Ayung e escalada no Batur.',cls:'dest-bali'},
+          {name:'Quito',sub:'Equador · Américas',desc:'Base para Galápagos, Cotopaxi e a Amazônia equatoriana.',cls:'dest-quito'},
+        ]
+      },
+      familia:{
+        label:'Recomendações · Viagem em Família',
+        recs:[
+          {name:'Cancún',sub:'México · Caribe',desc:'Resorts all-inclusive com kids club e parques aquáticos.',cls:'dest-cancun'},
+          {name:'Miami',sub:'EUA · Américas',desc:'Parques, beaches, aquários e entretenimento sem parar.',cls:'dest-miami'},
+          {name:'Buenos Aires',sub:'Argentina · Américas',desc:'Cidade vibrante, com excelente gastronomia e cultura.',cls:'dest-buenosaires'},
+          {name:'Barcelona',sub:'Espanha · Europa',desc:'Praias, Sagrada Família e a magia do Parque Güell.',cls:'dest-barcelona'},
+        ]
+      },
+      historica:{
+        label:'Recomendações · Viagem Histórica & Cultural',
+        recs:[
+          {name:'Lisboa',sub:'Portugal · Europa',desc:'Cinco séculos de descobertas vivas nos seus castelos e bairros.',cls:'dest-lisboa'},
+          {name:'Quito',sub:'Equador · Américas',desc:'Centro histórico patrimônio mundial da UNESCO, intacto.',cls:'dest-quito'},
+          {name:'Machu Picchu',sub:'Peru · Américas',desc:'A maior maravilha arqueológica da América do Sul.',cls:'dest-machupicchu'},
+          {name:'Barcelona',sub:'Espanha · Europa',desc:'Modernismo, Gaudí e 2.000 anos de camadas urbanas.',cls:'dest-barcelona'},
+        ]
+      },
+      gastronomia:{
+        label:'Recomendações · Gastronomia de Alto Nível',
+        recs:[
+          {name:'Toscana',sub:'Itália · Europa',desc:'Brunello di Montalcino, pecorino e trufa branca de Alba.',cls:'dest-toscana'},
+          {name:'Paris',sub:'França · Europa',desc:'Bistrôs, boulangeries e restaurantes com estrela Michelin.',cls:'dest-paris'},
+          {name:'Buenos Aires',sub:'Argentina · Américas',desc:'Churrasco portenho, malbec e bodegones históricos.',cls:'dest-buenosaires'},
+          {name:'Lisboa',sub:'Portugal · Europa',desc:'Pastéis, bacalhau e uma nova cena gastronômica vibrante.',cls:'dest-lisboa'},
+        ]
+      },
+      eventos:{
+        label:'Recomendações · Viagens de Eventos Especiais',
+        recs:[
+          {name:'Abu Dhabi',sub:'EAU · Oriente Médio',desc:'Grande Prêmio de F1 de Abu Dhabi — o encerramento épico da temporada.',cls:'dest-abudhabi'},
+          {name:'Miami',sub:'EUA · Américas',desc:'Miami Open de tênis e Grande Prêmio de Miami de F1.',cls:'dest-miami'},
+          {name:'Barcelona',sub:'Espanha · Europa',desc:'Grande Prêmio da Espanha de F1 no Circuito de Catalunya.',cls:'dest-barcelona'},
+          {name:'Dubai',sub:'EAU · Oriente Médio',desc:'Dubai Sevens, Fashion Week e eventos globais de alto nível.',cls:'dest-dubai'},
+        ]
+      },
+      relaxamento:{
+        label:'Recomendações · Relaxamento & Bem-estar',
+        recs:[
+          {name:'Maldivas',sub:'Oceano Índico',desc:'Spa overwater, silêncio absoluto e pôr do sol sobre o atol.',cls:'dest-maldivas'},
+          {name:'Cancún',sub:'México · Caribe',desc:'Riviera Maya, cenotes sagrados e resorts de ultra luxo.',cls:'dest-cancun'},
+          {name:'Bali',sub:'Indonésia · Ásia',desc:'Retiros de yoga, massagens balinesas e Uluwatu ao entardecer.',cls:'dest-bali'},
+          {name:'Santorini',sub:'Grécia · Europa',desc:'Infinity pools com vista para a caldera e dias sem pressa.',cls:'dest-santorini'},
+        ]
+      }
+    };
+
+    const panel=document.getElementById('style-panel');
+    const panelLabel=document.getElementById('style-panel-label');
+    const recsEl=document.getElementById('style-recs');
+
+    document.querySelectorAll('.style-card').forEach(card=>{
+      card.addEventListener('click',function(){
+        const style=this.dataset.style;
+        const isAlreadyActive=this.classList.contains('active');
+        document.querySelectorAll('.style-card').forEach(c=>c.classList.remove('active'));
+        if(isAlreadyActive){
+          panel.style.display='none';
+          return;
+        }
+        this.classList.add('active');
+        const data=styleData[style];
+        panelLabel.textContent=data.label;
+        recsEl.innerHTML=data.recs.map(r=>`
+          <a href="contato.html" class="rec-card rounded-sm block">
+            <div class="rec-bg ${r.cls}">
+              <div class="rec-label">
+                <div class="text-label text-gold-400" style="font-size:.52rem;margin-bottom:2px;">${r.sub}</div>
+                <div class="font-display text-silver-50" style="font-size:1.5rem;font-weight:300;line-height:1.1;">${r.name}</div>
+              </div>
+            </div>
+            <div style="padding:14px 16px;background:linear-gradient(140deg,rgba(18,34,52,0.55),rgba(26,47,68,0.3));">
+              <p class="text-silver-400" style="font-size:.78rem;line-height:1.7;">${r.desc}</p>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:10px;color:#c9a047;font-family:'Raleway',sans-serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;">
+                Consultar <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+            </div>
+          </a>
+        `).join('');
+        panel.style.display='block';
+        setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
+      });
+    });
+  </script>
+</body>
+</html>

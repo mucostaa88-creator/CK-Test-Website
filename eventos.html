@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventos — CK Viagens</title>
+  <meta name="description" content="Planeje sua viagem para as principais feiras comerciais e eventos esportivos do mundo com a CK Viagens.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{navy:{950:'#060d15',900:'#0d1b2a',800:'#122234',700:'#1a2f44',600:'#1e3a52'},silver:{50:'#f4f7f9',100:'#eef2f5',200:'#d8e2ea',300:'#b8cad6',400:'#9aabb8',500:'#7b8e9a',600:'#5f7180'},gold:{200:'#f5e8ba',300:'#e8c870',400:'#d4a537',500:'#c9a047',600:'#a07830'}},fontFamily:{display:['"Cormorant Garamond"','serif'],body:['Raleway','sans-serif']}}}}
+  </script>
+  <style>
+    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background-color:#0d1b2a;color:#eef2f5;font-family:'Raleway',sans-serif;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#060d15}::-webkit-scrollbar-thumb{background:#c9a047;border-radius:2px}
+    body::before{content:'';position:fixed;inset:0;opacity:.038;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
+    /* Nav */
+    #main-nav{position:fixed;top:0;left:0;right:0;z-index:500;transition:background .4s,backdrop-filter .4s,box-shadow .4s}
+    #main-nav.scrolled{background:rgba(6,13,21,0.92);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(154,171,184,0.08)}
+    .nav-link{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.65rem;color:#9aabb8;transition:color .3s;text-decoration:none}
+    .nav-link:hover,.nav-link.active{color:#eef2f5}
+    .line-gold-left{display:inline-block;width:32px;height:1px;background:linear-gradient(to right,transparent,#c9a047)}
+    .line-gold-h{height:1px;background:linear-gradient(to right,transparent,rgba(201,160,71,0.4),transparent)}
+    .text-label{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.2em;text-transform:uppercase;font-size:.6rem}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+    /* Drawer */
+    #mobile-drawer{position:fixed;inset:0;z-index:600;background:rgba(6,13,21,0.98);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1)}
+    #mobile-drawer.open{transform:translateX(0)}
+    .mobile-nav-link{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#b8cad6;letter-spacing:-.01em;transition:color .3s}
+    .mobile-nav-link:hover{color:#c9a047}
+    /* Page hero */
+    .page-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:52vh;padding:120px 1.5rem 5rem;background:radial-gradient(ellipse 70% 55% at 15% 85%,rgba(18,50,80,0.65) 0%,transparent 65%),radial-gradient(ellipse 55% 70% at 85% 15%,rgba(14,36,62,0.55) 0%,transparent 60%),radial-gradient(ellipse 90% 70% at 50% 50%,rgba(16,32,50,0.85) 0%,rgba(6,13,21,1) 100%)}
+    @keyframes pageIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .p1{animation:pageIn .9s .15s both cubic-bezier(.4,0,.2,1)}.p2{animation:pageIn .9s .35s both cubic-bezier(.4,0,.2,1)}.p3{animation:pageIn .9s .55s both cubic-bezier(.4,0,.2,1)}
+    /* Buttons */
+    .btn-gold{display:inline-block;color:#060d15;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;text-decoration:none;box-shadow:0 4px 20px rgba(201,160,71,0.28),0 1px 4px rgba(0,0,0,0.35)}
+    .btn-outline{display:inline-block;color:#eef2f5;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;text-decoration:none}
+    /* Footer */
+    .footer-link{color:#9aabb8;font-size:.85rem;transition:color .3s}.footer-link:hover{color:#eef2f5}
+    .social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(154,171,184,0.2);display:flex;align-items:center;justify-content:center;color:#9aabb8;transition:border-color .3s,color .3s,transform .2s}
+    .social-btn:hover{border-color:rgba(201,160,71,0.55);color:#c9a047;transform:translateY(-2px)}
+    /* Hero grid */
+    .hero-grid-overlay{background-image:linear-gradient(rgba(154,171,184,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(154,171,184,0.03) 1px,transparent 1px);background-size:80px 80px}
+    /* Fair category pill */
+    .cat-pill{display:inline-flex;align-items:center;gap:6px;font-family:'Raleway',sans-serif;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(154,171,184,0.15);color:rgba(184,202,214,0.55);cursor:pointer;transition:all .25s;background:transparent;white-space:nowrap}
+    .cat-pill:hover{border-color:rgba(201,160,71,0.4);color:rgba(184,202,214,0.9)}
+    .cat-pill.active{border-color:rgba(201,160,71,0.6);color:#c9a047;background:rgba(201,160,71,0.07)}
+    /* Faire card accent bar */
+    .fair-card{border:1px solid rgba(154,171,184,0.1);background:linear-gradient(140deg,rgba(18,34,52,0.55),rgba(26,47,68,0.28));padding:24px;transition:border-color .3s,transform .3s,box-shadow .3s;cursor:default;position:relative;overflow:hidden}
+    .fair-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,#c9a047,transparent)}
+    .fair-card:hover{border-color:rgba(201,160,71,0.28);transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,0.35)}
+    /* Ticket disclaimer */
+    .ticket-note{font-family:'Raleway',sans-serif;font-size:.65rem;letter-spacing:.04em;line-height:1.8;color:#5f7180;border-left:2px solid rgba(201,160,71,0.25);padding-left:14px;font-style:italic}
+  </style>
+  <link rel="stylesheet" href="shiny-buttons.css">
+  <script src="hover-button.js" defer></script>
+</head>
+<body>
+
+  <nav id="main-nav" aria-label="Navegação principal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" aria-label="CK Viagens — início" class="flex-shrink-0">
+        <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-14 w-auto">
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <div class="nav-dropdown">
+          <a href="destinos.html" class="nav-link">Destinos <svg class="nav-dd-caret" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+          <div class="nav-dd-menu">
+            <a href="destinos.html" class="nav-dd-item"><span class="nav-dd-icon">✦</span><div><span class="nav-dd-label">Principais Destinos</span><span class="nav-dd-sub">Américas, Europa, Ásia e mais</span></div></a>
+            <a href="destinos.html#cruzeiros" class="nav-dd-item"><span class="nav-dd-icon">⚓</span><div><span class="nav-dd-label">Cruzeiros</span><span class="nav-dd-sub">Brasil, Caribe, Mediterrâneo, Fiords</span></div></a>
+            <a href="eventos.html" class="nav-dd-item"><span class="nav-dd-icon">◈</span><div><span class="nav-dd-label">Eventos</span><span class="nav-dd-sub">Feiras globais · F1 · Tênis · Futebol</span></div></a>
+          </div>
+        </div>
+        <a href="hoteis.html"   class="nav-link">Hospedagem</a>
+        <a href="aereo.html"    class="nav-link">Aéreo</a>
+        <a href="vistos.html"   class="nav-link">Vistos</a>
+        <a href="seguros.html"  class="nav-link">Seguros</a>
+        <a href="rentals.html"  class="nav-link">Aluguel</a>
+        <a href="sobre.html"    class="nav-link">Sobre</a>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a href="contato.html" class="btn-gold">Fale Conosco</a>
+      </div>
+      <button id="menu-open" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span id="b1" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+        <span id="b2" class="block w-6 h-px bg-silver-300 transition-opacity duration-300"></span>
+        <span id="b3" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <button id="menu-close" class="absolute top-6 right-6 p-2 text-silver-400 hover:text-silver-100" aria-label="Fechar menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="mobile-dd-group">
+      <span class="mobile-dd-trigger">Destinos <svg width="12" height="8" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="mobile-dd-sub">
+        <a href="destinos.html" class="mobile-sub-link drawer-link">Principais Destinos</a>
+        <a href="destinos.html#cruzeiros" class="mobile-sub-link drawer-link">Cruzeiros</a>
+        <a href="eventos.html" class="mobile-sub-link drawer-link">Eventos</a>
+      </div>
+    </div>
+    <a href="hoteis.html"   class="mobile-nav-link drawer-link">Hospedagem</a>
+    <a href="aereo.html"    class="mobile-nav-link drawer-link">Aéreo</a>
+    <a href="vistos.html"   class="mobile-nav-link drawer-link">Vistos</a>
+    <a href="seguros.html"  class="mobile-nav-link drawer-link">Seguros</a>
+    <a href="rentals.html"  class="mobile-nav-link drawer-link">Aluguel</a>
+    <a href="sobre.html"    class="mobile-nav-link drawer-link">Sobre</a>
+    <a href="contato.html"  class="btn-gold drawer-link mt-2">Fale Conosco</a>
+  </div>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero-grid-overlay absolute inset-0 pointer-events-none"></div>
+    <div class="absolute pointer-events-none" style="top:20%;left:10%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(24,60,96,0.45),transparent 70%);filter:blur(60px);"></div>
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+      <div class="p1 flex items-center justify-center gap-4 mb-6">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">Experiências únicas ao redor do mundo</span>
+        <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+      </div>
+      <h1 class="p2 font-display font-light text-silver-100" style="font-size:clamp(3.2rem,7vw,6rem);letter-spacing:-.025em;line-height:.95;">
+        Eventos<br><em class="not-italic" style="color:#c9a047;">Globais</em>
+      </h1>
+      <p class="p3 text-silver-400 mt-6 mx-auto" style="max-width:520px;font-size:.95rem;line-height:1.85;">
+        Da Feira de Cantão à Fórmula 1 em Mônaco — planejamos cada detalhe da sua viagem para os maiores eventos do mundo.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════ FEIRAS COMERCIAIS ═══════ -->
+  <section class="py-24" style="background:#0a1720;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Negócios & Inovação</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          Principais Feiras<br><em class="not-italic" style="color:#c9a047;">Comerciais do Mundo</em>
+        </h2>
+        <p class="text-silver-400 text-sm mt-5 mx-auto" style="max-width:540px;line-height:1.85;">
+          Combinamos o melhor do turismo corporativo com acesso às feiras mais influentes do planeta. Acomodação, transfers e suporte completo para suas missões internacionais.
+        </p>
+      </div>
+
+      <!-- Featured fairs (3 highlights) -->
+      <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+
+        <!-- Canton Fair -->
+        <div class="fair-card rounded-sm">
+          <span class="event-tag">Comércio Geral</span>
+          <div class="event-month">Abril & Outubro · Bienal</div>
+          <h3 class="event-name">Canton Fair</h3>
+          <p class="event-location" style="color:#c9a047;">Guangzhou, China</p>
+          <p class="event-desc">A maior feira de comércio do mundo, com mais de 200.000 expositores de todos os setores. Dois ciclos anuais — a maior oportunidade de negócios entre Brasil e China.</p>
+        </div>
+
+        <!-- Salone del Mobile -->
+        <div class="fair-card rounded-sm">
+          <span class="event-tag">Design & Mobiliário</span>
+          <div class="event-month">Abril · Anual</div>
+          <h3 class="event-name">Salone del Mobile</h3>
+          <p class="event-location" style="color:#c9a047;">Milão, Itália</p>
+          <p class="event-desc">A referência mundial em design de interiores e mobiliário de luxo. Milão se transforma durante a Fuorisalone — uma semana que define tendências globais.</p>
+        </div>
+
+        <!-- ADIPEC -->
+        <div class="fair-card rounded-sm">
+          <span class="event-tag">Petróleo & Energia</span>
+          <div class="event-month">Novembro · Anual</div>
+          <h3 class="event-name">ADIPEC</h3>
+          <p class="event-location" style="color:#c9a047;">Abu Dhabi, EAU</p>
+          <p class="event-desc">A maior conferência do setor de energia do mundo. Mais de 160.000 profissionais e líderes globais reunidos no coração do Oriente Médio.</p>
+        </div>
+
+      </div>
+
+      <div class="reveal text-center">
+        <p class="text-silver-500 text-sm mb-6" style="line-height:1.85;">
+          Trabalhamos com mais de 30 feiras internacionais — de logística a moda, de agronegócio a tecnologia.
+        </p>
+        <a href="feiras.html" class="btn-gold" style="margin-right:16px;">Ver Todas as Feiras</a>
+        <a href="contato.html" class="btn-outline">Planejar Missão</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════ EVENTOS ESPORTIVOS ═══════ -->
+  <section class="py-24" style="background:#060d15;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="reveal text-center mb-14">
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Esporte & Emoção</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;">
+          Os Maiores Eventos<br><em class="not-italic" style="color:#c9a047;">Esportivos do Mundo</em>
+        </h2>
+        <p class="text-silver-400 text-sm mt-5 mx-auto" style="max-width:540px;line-height:1.85;">
+          Estar presente é uma experiência única. Cuidamos de tudo — hospedagem, transfers e roteiros completos — para que você vivencie cada momento ao máximo.
+        </p>
+      </div>
+
+      <!-- Sport filter tabs -->
+      <div class="reveal mb-10">
+        <div class="flex flex-wrap gap-2">
+          <button class="sport-tab active" data-sport="f1">Fórmula 1</button>
+          <button class="sport-tab" data-sport="tenis">Tênis</button>
+          <button class="sport-tab" data-sport="futebol">Futebol</button>
+          <button class="sport-tab" data-sport="outros">Outros</button>
+        </div>
+      </div>
+
+      <!-- Sports grid (rendered by JS) -->
+      <div id="sport-grid" class="reveal grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-12"></div>
+
+      <!-- Ticket disclaimer -->
+      <div class="reveal max-w-2xl mx-auto mt-6 mb-12">
+        <p class="ticket-note">
+          Os ingressos para os eventos listados são comercializados exclusivamente pelos organizadores e plataformas oficiais de cada evento — e não pela CK Viagens. Nossa especialidade é o planejamento completo da sua viagem: hospedagem, transfers, roteiros e suporte durante todo o evento.
+        </p>
+      </div>
+
+      <div class="reveal text-center">
+        <a href="contato.html" class="btn-gold">Planejar Viagem para um Evento</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="relative py-28 overflow-hidden" style="background:#0a1720;">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div style="width:600px;height:300px;background:radial-gradient(ellipse,rgba(201,160,71,0.06),transparent 70%);filter:blur(50px);"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+      <div class="reveal flex items-center justify-center gap-4 mb-6">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">Vamos Planejar Juntos</span>
+        <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+      </div>
+      <h2 class="reveal reveal-d1 font-display font-light text-silver-100 mb-6" style="font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:1.0;letter-spacing:-0.02em;">
+        Seu evento,<br><em class="not-italic" style="color:#c9a047;">nossa curadoria</em>
+      </h2>
+      <p class="reveal reveal-d2 text-silver-400 leading-relaxed mb-10 mx-auto" style="font-size:.93rem;line-height:1.85;max-width:460px;">
+        Seja uma feira de negócios em Xangai ou o GP de Mônaco — nossos consultores desenham uma experiência completa, do voo ao check-out.
+      </p>
+      <div class="reveal reveal-d3 flex flex-wrap gap-4 justify-center">
+        <a href="contato.html" class="btn-gold">Falar com um Consultor</a>
+        <a href="destinos.html" class="btn-outline">Explorar Destinos</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer style="background:#060d15;border-top:1px solid rgba(154,171,184,0.1);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+        <div class="lg:col-span-2">
+          <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-16 w-auto mb-5">
+          <p class="text-silver-500 text-sm leading-relaxed" style="max-width:320px;line-height:1.85;">Curadoria de experiências exclusivas para quem viaja em grande estilo. Seu sonho, nossa missão.</p>
+          <div class="flex gap-3 mt-7">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Navegação</h3>
+          <ul class="space-y-3.5">
+            <li><a href="destinos.html" class="footer-link">Destinos</a></li>
+            <li><a href="destinos.html#cruzeiros" class="footer-link">Cruzeiros</a></li>
+            <li><a href="eventos.html"  class="footer-link">Eventos</a></li>
+            <li><a href="feiras.html"   class="footer-link">Feiras Comerciais</a></li>
+            <li><a href="hoteis.html"   class="footer-link">Hospedagem</a></li>
+            <li><a href="aereo.html"    class="footer-link">Aéreo</a></li>
+            <li><a href="vistos.html"   class="footer-link">Vistos</a></li>
+            <li><a href="seguros.html"  class="footer-link">Seguros</a></li>
+            <li><a href="sobre.html"    class="footer-link">Sobre Nós</a></li>
+            <li><a href="contato.html"  class="footer-link">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Contato</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.93h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+55 (00) 00000-0000</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contato@ckviagens.com.br</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Seg–Sex: 9h às 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="line-gold-h mb-8"></div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-silver-600 text-xs" style="letter-spacing:.06em;">© 2025 CK Viagens. Todos os direitos reservados.</p>
+        <p class="text-label text-silver-700" style="font-size:.6rem;">EXPERIÊNCIAS EXCLUSIVAS</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // ── Nav scroll ──
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+    // ── Mobile drawer ──
+    const drawer=document.getElementById('mobile-drawer'),btnOpen=document.getElementById('menu-open'),btnClose=document.getElementById('menu-close');
+    const b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+    function openDrawer(){drawer.classList.add('open');btnOpen.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';b1.style.transform='translateY(6px) rotate(45deg)';b2.style.opacity='0';b3.style.transform='translateY(-6px) rotate(-45deg)';}
+    function closeDrawer(){drawer.classList.remove('open');btnOpen.setAttribute('aria-expanded','false');document.body.style.overflow='';b1.style.transform='';b2.style.opacity='';b3.style.transform='';}
+    btnOpen.addEventListener('click',openDrawer);btnClose.addEventListener('click',closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(l=>l.addEventListener('click',closeDrawer));
+    drawer.addEventListener('click',e=>{if(e.target===drawer)closeDrawer();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer();});
+
+    // ── Mobile drawer sub-menu toggle ──
+    document.querySelectorAll('.mobile-dd-trigger').forEach(trigger=>{
+      trigger.addEventListener('click',()=>trigger.closest('.mobile-dd-group').classList.toggle('mobile-dd-open'));
+    });
+
+    // ── Scroll reveal ──
+    const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+    // ── Active nav ──
+    const curPage=window.location.pathname.split('/').pop()||'index.html';
+    document.querySelectorAll('.nav-link').forEach(l=>{if(l.getAttribute('href')===curPage)l.classList.add('active');});
+
+    // ── Sports data ──
+    const sportsData={
+      f1:[
+        {name:'GP de Mônaco',location:'Monte Carlo, Mônaco',month:'Maio',desc:'O circuito mais icônico do automobilismo. Glamour, velocidade e o Mediterrâneo como pano de fundo.'},
+        {name:'GP do Brasil',location:'Interlagos, São Paulo',month:'Novembro',desc:'A corrida mais apaixonada do calendário. Fanáticos brasileiros e a despedida épica da temporada.'},
+        {name:'GP de Miami',location:'Miami International Autodrome',month:'Maio',desc:'Uma das novidades mais glamourosas do calendário — F1 encontra o lifestyle de Miami.'},
+        {name:'GP da Grã-Bretanha',location:'Silverstone, Reino Unido',month:'Julho',desc:'A corrida mais tradicional da F1. Um dia de corrida em Silverstone é uma experiência histórica.'},
+        {name:'GP de Las Vegas',location:'Las Vegas Strip Circuit',month:'Novembro',desc:'O espetáculo definitivo — corrida noturna pelas famosas ruas de Las Vegas.'},
+        {name:'GP de Abu Dhabi',location:'Yas Marina Circuit',month:'Dezembro',desc:'O encerramento épico da temporada, com a luxuosa ilha de Yas Marina como cenário.'},
+        {name:'GP da Itália',location:'Monza, Itália',month:'Setembro',desc:'O Templo da Velocidade — Monza é o circuito mais rápido e mais histórico do calendário.'},
+        {name:'GP do Japão',location:'Suzuka Circuit',month:'Setembro',desc:'Uma pista desafiante e uma torcida apaixonada — o GP do Japão é favorito dos pilotos.'},
+        {name:'GP de Singapura',location:'Marina Bay Street Circuit',month:'Setembro',desc:'A única corrida noturna da F1, com o skyline de Singapura como cenário deslumbrante.'},
+        {name:'GP da Austrália',location:'Albert Park, Melbourne',month:'Março',desc:'A abertura do campeonato num dos circuitos de rua mais belos do mundo.'},
+      ],
+      tenis:[
+        {name:'Roland Garros',location:'Stade Roland Garros, Paris',month:'Maio – Junho',desc:'O único Grand Slam em saibro — Paris transforma-se na capital do tênis durante duas semanas.'},
+        {name:'Wimbledon',location:'All England Club, Londres',month:'Junho – Julho',desc:'O torneio mais antigo e mais elegante do mundo. Morango com creme e gramado impecável.'},
+        {name:'US Open',location:'Billie Jean King National Tennis Center, Nova York',month:'Agosto – Setembro',desc:'O Grand Slam mais animado — Nova York em pleno calor e a energia inconfundível de Flushing Meadows.'},
+        {name:'Australian Open',location:'Melbourne Park, Melbourne',month:'Janeiro',desc:'O primeiro Grand Slam do ano, em Melbourne, com o calor do verão australiano.'},
+        {name:'Miami Open',location:'Hard Rock Stadium, Miami',month:'Março – Abril',desc:'Um dos Masters 1000 mais disputados — calor, praia e o melhor tênis do mundo em Miami.'},
+        {name:'Brasil Open',location:'Ginásio do Ibirapuera, São Paulo',month:'Fevereiro',desc:'O único torneio ATP no Brasil — uma oportunidade de ver o melhor tênis perto de casa.'},
+        {name:'Estoril Open',location:'Clube de Tênis do Estoril, Portugal',month:'Abril',desc:'Tênis de alto nível a poucos minutos de Lisboa, numa das instalações mais bonitas da Europa.'},
+      ],
+      futebol:[
+        {name:'FIFA World Cup 2026',location:'EUA, Canadá & México',month:'Junho – Julho 2026',desc:'O maior evento esportivo do planeta volta à América do Norte com 48 seleções e 16 cidades-sede.'},
+        {name:'UEFA Champions League',location:'Final · Cidade varia anualmente',month:'Maio',desc:'A decisão máxima do futebol europeu — a final da Champions é um dos eventos mais concorridos do mundo.'},
+        {name:'Copa CONMEBOL Libertadores',location:'Final · Cidade varia anualmente',month:'Novembro',desc:'A maior competição de clubes da América do Sul, com uma final que une paixão continental.'},
+        {name:'UEFA Euro',location:'Alemanha 2024 · Local 2028 a definir',month:'Junho – Julho',desc:'O campeonato europeu de seleções — um mês de futebol de alto nível e cultura europeia.'},
+        {name:'Copa América',location:'EUA 2024 · Local 2028 a definir',month:'Junho – Julho',desc:'A competição mais tradicional das Américas, com Brasil, Argentina e as grandes seleções sul-americanas.'},
+        {name:'FIFA Club World Cup',location:'EUA 2025',month:'Junho – Julho 2025',desc:'O novo formato ampliado reúne os 32 melhores clubes do mundo num torneio histórico nos EUA.'},
+      ],
+      outros:[
+        {name:'MotoGP — GP do Brasil',location:'Autódromo de Deodoro, Rio de Janeiro',month:'A confirmar',desc:'O MotoGP retorna ao Brasil com uma das etapas mais aguardadas do calendário internacional.'},
+        {name:'NBA Finals',location:'EUA · Cidade varia',month:'Junho',desc:'A decisão do basquete norte-americano, num ambiente de entretenimento sem igual.'},
+        {name:'Olimpíadas de Los Angeles',location:'Los Angeles, EUA',month:'Julho – Agosto 2028',desc:'Os Jogos Olímpicos chegam à Califórnia em 2028 — planeje com antecedência para esta experiência única.'},
+        {name:'Rugby World Cup',location:'Austrália 2027',month:'Setembro – Novembro 2027',desc:'O segundo maior evento esportivo do mundo, num país que respira rugby.'},
+        {name:'The Masters — Augusta',location:'Augusta National Golf Club, Georgia, EUA',month:'Abril',desc:'O mais prestigioso torneio de golfe do mundo — convites são raros e a experiência é impagável.'},
+        {name:'Tour de France',location:'França · Percurso varia',month:'Julho',desc:'Três semanas percorrendo os paisagens mais belas da França — um espetáculo esportivo ao ar livre.'},
+      ]
+    };
+
+    const sportGrid=document.getElementById('sport-grid');
+
+    function renderSports(sport){
+      const data=sportsData[sport];
+      sportGrid.innerHTML=data.map(e=>`
+        <div class="event-card">
+          <div class="event-month">${e.month}</div>
+          <h3 class="event-name">${e.name}</h3>
+          <p class="event-location">${e.location}</p>
+          <p class="event-desc">${e.desc}</p>
+          <a href="contato.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;color:#c9a047;font-family:'Raleway',sans-serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;">
+            Planejar viagem <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      `).join('');
+    }
+
+    document.querySelectorAll('.sport-tab').forEach(tab=>{
+      tab.addEventListener('click',function(){
+        document.querySelectorAll('.sport-tab').forEach(t=>t.classList.remove('active'));
+        this.classList.add('active');
+        renderSports(this.dataset.sport);
+      });
+    });
+
+    // initial render
+    renderSports('f1');
+  </script>
+</body>
+</html>

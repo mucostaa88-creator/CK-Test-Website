@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feiras Comerciais — CK Viagens</title>
+  <meta name="description" content="Planeje sua viagem para as principais feiras comerciais do mundo — tecnologia, design, logística, agronegócio e muito mais.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{navy:{950:'#060d15',900:'#0d1b2a',800:'#122234',700:'#1a2f44',600:'#1e3a52'},silver:{50:'#f4f7f9',100:'#eef2f5',200:'#d8e2ea',300:'#b8cad6',400:'#9aabb8',500:'#7b8e9a',600:'#5f7180'},gold:{200:'#f5e8ba',300:'#e8c870',400:'#d4a537',500:'#c9a047',600:'#a07830'}},fontFamily:{display:['"Cormorant Garamond"','serif'],body:['Raleway','sans-serif']}}}}
+  </script>
+  <style>
+    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background-color:#0d1b2a;color:#eef2f5;font-family:'Raleway',sans-serif;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#060d15}::-webkit-scrollbar-thumb{background:#c9a047;border-radius:2px}
+    body::before{content:'';position:fixed;inset:0;opacity:.038;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
+    #main-nav{position:fixed;top:0;left:0;right:0;z-index:500;transition:background .4s,backdrop-filter .4s,box-shadow .4s}
+    #main-nav.scrolled{background:rgba(6,13,21,0.92);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(154,171,184,0.08)}
+    .nav-link{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.65rem;color:#9aabb8;transition:color .3s;text-decoration:none}
+    .nav-link:hover,.nav-link.active{color:#eef2f5}
+    .line-gold-left{display:inline-block;width:32px;height:1px;background:linear-gradient(to right,transparent,#c9a047)}
+    .line-gold-h{height:1px;background:linear-gradient(to right,transparent,rgba(201,160,71,0.4),transparent)}
+    .text-label{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.2em;text-transform:uppercase;font-size:.6rem}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+    #mobile-drawer{position:fixed;inset:0;z-index:600;background:rgba(6,13,21,0.98);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1)}
+    #mobile-drawer.open{transform:translateX(0)}
+    .mobile-nav-link{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#b8cad6;letter-spacing:-.01em;transition:color .3s}
+    .mobile-nav-link:hover{color:#c9a047}
+    .page-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:52vh;padding:120px 1.5rem 5rem;background:radial-gradient(ellipse 70% 55% at 15% 85%,rgba(18,50,80,0.65) 0%,transparent 65%),radial-gradient(ellipse 55% 70% at 85% 15%,rgba(14,36,62,0.55) 0%,transparent 60%),radial-gradient(ellipse 90% 70% at 50% 50%,rgba(16,32,50,0.85) 0%,rgba(6,13,21,1) 100%)}
+    @keyframes pageIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .p1{animation:pageIn .9s .15s both cubic-bezier(.4,0,.2,1)}.p2{animation:pageIn .9s .35s both cubic-bezier(.4,0,.2,1)}.p3{animation:pageIn .9s .55s both cubic-bezier(.4,0,.2,1)}
+    .btn-gold{display:inline-block;color:#060d15;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;text-decoration:none;box-shadow:0 4px 20px rgba(201,160,71,0.28),0 1px 4px rgba(0,0,0,0.35)}
+    .btn-outline{display:inline-block;color:#eef2f5;font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;padding:14px 34px;cursor:pointer;text-decoration:none}
+    .footer-link{color:#9aabb8;font-size:.85rem;transition:color .3s}.footer-link:hover{color:#eef2f5}
+    .social-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(154,171,184,0.2);display:flex;align-items:center;justify-content:center;color:#9aabb8;transition:border-color .3s,color .3s,transform .2s}
+    .social-btn:hover{border-color:rgba(201,160,71,0.55);color:#c9a047;transform:translateY(-2px)}
+    .hero-grid-overlay{background-image:linear-gradient(rgba(154,171,184,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(154,171,184,0.03) 1px,transparent 1px);background-size:80px 80px}
+    /* Category pill filter */
+    .cat-pill{font-family:'Raleway',sans-serif;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.6rem;padding:8px 18px;border:1px solid rgba(154,171,184,0.15);color:rgba(184,202,214,0.55);cursor:pointer;transition:all .25s;background:transparent;white-space:nowrap}
+    .cat-pill:hover{border-color:rgba(201,160,71,0.4);color:rgba(184,202,214,0.9)}
+    .cat-pill.active{border-color:rgba(201,160,71,0.6);color:#c9a047;background:rgba(201,160,71,0.07)}
+    /* Fair card */
+    .fair-card{border:1px solid rgba(154,171,184,0.1);background:linear-gradient(140deg,rgba(18,34,52,0.55),rgba(26,47,68,0.28));padding:26px;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+    .fair-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,#c9a047,transparent)}
+    .fair-card:hover{border-color:rgba(201,160,71,0.28);transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,0.35)}
+    .fair-wrap{transition:opacity .25s}
+    .fair-wrap.hidden{display:none}
+    .ticket-note{font-family:'Raleway',sans-serif;font-size:.65rem;letter-spacing:.04em;line-height:1.8;color:#5f7180;border-left:2px solid rgba(201,160,71,0.25);padding-left:14px;font-style:italic}
+  </style>
+  <link rel="stylesheet" href="shiny-buttons.css">
+  <script src="hover-button.js" defer></script>
+</head>
+<body>
+
+  <nav id="main-nav" aria-label="Navegação principal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" aria-label="CK Viagens — início" class="flex-shrink-0">
+        <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-14 w-auto">
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <div class="nav-dropdown">
+          <a href="destinos.html" class="nav-link">Destinos <svg class="nav-dd-caret" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+          <div class="nav-dd-menu">
+            <a href="destinos.html" class="nav-dd-item"><span class="nav-dd-icon">✦</span><div><span class="nav-dd-label">Principais Destinos</span><span class="nav-dd-sub">Américas, Europa, Ásia e mais</span></div></a>
+            <a href="destinos.html#cruzeiros" class="nav-dd-item"><span class="nav-dd-icon">⚓</span><div><span class="nav-dd-label">Cruzeiros</span><span class="nav-dd-sub">Brasil, Caribe, Mediterrâneo, Fiords</span></div></a>
+            <a href="eventos.html" class="nav-dd-item"><span class="nav-dd-icon">◈</span><div><span class="nav-dd-label">Eventos</span><span class="nav-dd-sub">Feiras globais · F1 · Tênis · Futebol</span></div></a>
+          </div>
+        </div>
+        <a href="hoteis.html"   class="nav-link">Hospedagem</a>
+        <a href="aereo.html"    class="nav-link">Aéreo</a>
+        <a href="vistos.html"   class="nav-link">Vistos</a>
+        <a href="seguros.html"  class="nav-link">Seguros</a>
+        <a href="rentals.html"  class="nav-link">Aluguel</a>
+        <a href="sobre.html"    class="nav-link">Sobre</a>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a href="contato.html" class="btn-gold">Fale Conosco</a>
+      </div>
+      <button id="menu-open" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span id="b1" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+        <span id="b2" class="block w-6 h-px bg-silver-300 transition-opacity duration-300"></span>
+        <span id="b3" class="block w-6 h-px bg-silver-300 transition-transform duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <button id="menu-close" class="absolute top-6 right-6 p-2 text-silver-400 hover:text-silver-100" aria-label="Fechar menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="mobile-dd-group">
+      <span class="mobile-dd-trigger">Destinos <svg width="12" height="8" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="mobile-dd-sub">
+        <a href="destinos.html" class="mobile-sub-link drawer-link">Principais Destinos</a>
+        <a href="destinos.html#cruzeiros" class="mobile-sub-link drawer-link">Cruzeiros</a>
+        <a href="eventos.html" class="mobile-sub-link drawer-link">Eventos</a>
+      </div>
+    </div>
+    <a href="hoteis.html"   class="mobile-nav-link drawer-link">Hospedagem</a>
+    <a href="aereo.html"    class="mobile-nav-link drawer-link">Aéreo</a>
+    <a href="vistos.html"   class="mobile-nav-link drawer-link">Vistos</a>
+    <a href="seguros.html"  class="mobile-nav-link drawer-link">Seguros</a>
+    <a href="rentals.html"  class="mobile-nav-link drawer-link">Aluguel</a>
+    <a href="sobre.html"    class="mobile-nav-link drawer-link">Sobre</a>
+    <a href="contato.html"  class="btn-gold drawer-link mt-2">Fale Conosco</a>
+  </div>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero-grid-overlay absolute inset-0 pointer-events-none"></div>
+    <div class="absolute pointer-events-none" style="top:30%;right:15%;width:350px;height:350px;background:radial-gradient(ellipse,rgba(24,60,96,0.4),transparent 70%);filter:blur(55px);"></div>
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+      <div class="p1 flex items-center justify-center gap-4 mb-6">
+        <span class="line-gold-left"></span>
+        <span class="text-label text-gold-500">Turismo Corporativo</span>
+        <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+      </div>
+      <h1 class="p2 font-display font-light text-silver-100" style="font-size:clamp(3rem,7vw,5.8rem);letter-spacing:-.025em;line-height:.95;">
+        Feiras<br><em class="not-italic" style="color:#c9a047;">Comerciais</em>
+      </h1>
+      <p class="p3 text-silver-400 mt-6 mx-auto" style="max-width:520px;font-size:.93rem;line-height:1.85;">
+        Das feiras de tecnologia em Las Vegas ao Cantão Fair na China — planejamos cada detalhe da sua missão internacional.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════ FAIRS GRID ═══════ -->
+  <section class="py-20" style="background:#0a1720;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Category filter pills -->
+      <div class="reveal mb-10">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button class="cat-pill active" data-cat="all">Todas</button>
+          <button class="cat-pill" data-cat="tech">Tecnologia</button>
+          <button class="cat-pill" data-cat="design">Design & Mobiliário</button>
+          <button class="cat-pill" data-cat="construcao">Construção</button>
+          <button class="cat-pill" data-cat="logistica">Logística</button>
+          <button class="cat-pill" data-cat="comercio">Comércio Geral</button>
+          <button class="cat-pill" data-cat="agro">Agronegócio</button>
+          <button class="cat-pill" data-cat="energia">Energia & Petróleo</button>
+          <button class="cat-pill" data-cat="alimentacao">Alimentação</button>
+          <button class="cat-pill" data-cat="moda">Moda & Têxtil</button>
+          <button class="cat-pill" data-cat="imoveis">Imóveis</button>
+        </div>
+        <p class="text-silver-600" style="font-size:.62rem;letter-spacing:.04em;font-family:'Raleway',sans-serif;">
+          Exibindo <span id="fair-count">30</span> feiras internacionais
+        </p>
+      </div>
+
+      <!-- Fairs grid (rendered by JS) -->
+      <div id="fairs-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-14"></div>
+
+      <!-- Ticket note -->
+      <div class="max-w-2xl mx-auto mb-14">
+        <p class="ticket-note">
+          As inscrições e credenciais para feiras comerciais são processadas diretamente pelos organizadores de cada evento — e não pela CK Viagens. Oferecemos o planejamento completo da missão: passagens aéreas, hospedagem estratégica, transfers e suporte durante toda a feira.
+        </p>
+      </div>
+
+      <div class="text-center">
+        <a href="contato.html" class="btn-gold">Planejar Minha Missão</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════ WHY CK ═══════ -->
+  <section class="py-20" style="background:#060d15;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="reveal text-center mb-12">
+        <h2 class="font-display font-light text-silver-100" style="font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;">
+          Por que planejar com a<br><em class="not-italic" style="color:#c9a047;">CK Viagens?</em>
+        </h2>
+      </div>
+      <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center px-4">
+          <div class="text-gold-500 mb-4" style="font-size:1.5rem;">✦</div>
+          <h3 class="font-display font-light text-silver-100 mb-3" style="font-size:1.4rem;">Hospedagem Estratégica</h3>
+          <p class="text-silver-500 text-sm" style="line-height:1.85;">Hotéis próximos ao local da feira, com disponibilidade garantida mesmo em alta temporada corporativa.</p>
+        </div>
+        <div class="text-center px-4">
+          <div class="text-gold-500 mb-4" style="font-size:1.5rem;">◈</div>
+          <h3 class="font-display font-light text-silver-100 mb-3" style="font-size:1.4rem;">Logística Completa</h3>
+          <p class="text-silver-500 text-sm" style="line-height:1.85;">Transfers aeroporto-feira-hotel, roteiros otimizados e suporte 24h para imprevistos durante a missão.</p>
+        </div>
+        <div class="text-center px-4">
+          <div class="text-gold-500 mb-4" style="font-size:1.5rem;">◇</div>
+          <h3 class="font-display font-light text-silver-100 mb-3" style="font-size:1.4rem;">Grupos & Delegações</h3>
+          <p class="text-silver-500 text-sm" style="line-height:1.85;">Especialistas em organizar missões empresariais para grupos — de 2 a 50 participantes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="py-24" style="background:#0a1720;">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <div class="reveal py-16 rounded-sm" style="background:linear-gradient(135deg,rgba(18,34,52,0.6),rgba(26,47,68,0.3));border:1px solid rgba(154,171,184,0.08);">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="line-gold-left"></span>
+          <span class="text-label text-gold-500">Missão Internacional</span>
+          <span class="line-gold-left" style="transform:rotate(180deg)"></span>
+        </div>
+        <h2 class="font-display font-light text-silver-100 mb-4" style="font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;">
+          Planejamos sua viagem<br><em class="not-italic" style="color:#c9a047;">da A ao Z</em>
+        </h2>
+        <p class="text-silver-400 text-sm mb-8 mx-auto" style="max-width:440px;line-height:1.85;">
+          Fale com um de nossos consultores e deixe que cuidemos de cada detalhe da sua missão — para que você foque no que importa.
+        </p>
+        <a href="contato.html" class="btn-gold">Falar com um Consultor</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer style="background:#060d15;border-top:1px solid rgba(154,171,184,0.1);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+        <div class="lg:col-span-2">
+          <img src="brand_assets/CK_Viagens_logo_transparent.png" alt="CK Viagens" class="h-16 w-auto mb-5">
+          <p class="text-silver-500 text-sm leading-relaxed" style="max-width:320px;line-height:1.85;">Curadoria de experiências exclusivas para quem viaja em grande estilo. Seu sonho, nossa missão.</p>
+          <div class="flex gap-3 mt-7">
+            <a href="#" class="social-btn" aria-label="Instagram"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Navegação</h3>
+          <ul class="space-y-3.5">
+            <li><a href="destinos.html" class="footer-link">Destinos</a></li>
+            <li><a href="destinos.html#cruzeiros" class="footer-link">Cruzeiros</a></li>
+            <li><a href="eventos.html"  class="footer-link">Eventos</a></li>
+            <li><a href="feiras.html"   class="footer-link">Feiras Comerciais</a></li>
+            <li><a href="hoteis.html"   class="footer-link">Hospedagem</a></li>
+            <li><a href="aereo.html"    class="footer-link">Aéreo</a></li>
+            <li><a href="vistos.html"   class="footer-link">Vistos</a></li>
+            <li><a href="seguros.html"  class="footer-link">Seguros</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-label text-gold-500 mb-6">Contato</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.93h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>+55 (00) 00000-0000</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contato@ckviagens.com.br</li>
+            <li class="flex items-start gap-2.5 text-silver-500 text-sm"><svg class="w-4 h-4 mt-px flex-shrink-0" style="color:rgba(201,160,71,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Seg–Sex: 9h às 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="line-gold-h mb-8"></div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-silver-600 text-xs" style="letter-spacing:.06em;">© 2025 CK Viagens. Todos os direitos reservados.</p>
+        <p class="text-label text-silver-700" style="font-size:.6rem;">EXPERIÊNCIAS EXCLUSIVAS</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Nav
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+    const drawer=document.getElementById('mobile-drawer'),btnOpen=document.getElementById('menu-open'),btnClose=document.getElementById('menu-close');
+    const b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+    function openDrawer(){drawer.classList.add('open');btnOpen.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';b1.style.transform='translateY(6px) rotate(45deg)';b2.style.opacity='0';b3.style.transform='translateY(-6px) rotate(-45deg)';}
+    function closeDrawer(){drawer.classList.remove('open');btnOpen.setAttribute('aria-expanded','false');document.body.style.overflow='';b1.style.transform='';b2.style.opacity='';b3.style.transform='';}
+    btnOpen.addEventListener('click',openDrawer);btnClose.addEventListener('click',closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(l=>l.addEventListener('click',closeDrawer));
+    drawer.addEventListener('click',e=>{if(e.target===drawer)closeDrawer();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer();});
+    document.querySelectorAll('.mobile-dd-trigger').forEach(t=>t.addEventListener('click',()=>t.closest('.mobile-dd-group').classList.toggle('mobile-dd-open')));
+
+    const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+    const curPage=window.location.pathname.split('/').pop()||'index.html';
+    document.querySelectorAll('.nav-link').forEach(l=>{if(l.getAttribute('href')===curPage)l.classList.add('active');});
+
+    // ── Fairs data ──
+    const fairs=[
+      // Tecnologia
+      {cat:'tech',name:'CES',fullname:'Consumer Electronics Show',location:'Las Vegas, EUA',month:'Janeiro',freq:'Anual',desc:'A maior feira de tecnologia e inovação do mundo. Lançamentos globais de eletrônicos, automação e inteligência artificial.'},
+      {cat:'tech',name:'MWC',fullname:'Mobile World Congress',location:'Barcelona, Espanha',month:'Fevereiro',freq:'Anual',desc:'A cúpula mundial do setor de telecomunicações e mobilidade. O futuro do 5G, IoT e dispositivos móveis em Barcelona.'},
+      {cat:'tech',name:'GITEX',fullname:'GITEX Global',location:'Dubai, EAU',month:'Outubro',freq:'Anual',desc:'O maior evento de tecnologia do Oriente Médio e África, com mais de 100.000 participantes de 170 países.'},
+      {cat:'tech',name:'Hannover Messe',fullname:'Hannover Messe',location:'Hannover, Alemanha',month:'Abril',freq:'Anual',desc:'A maior feira industrial do mundo, focada em automação, energia e manufatura do futuro.'},
+      // Design & Mobiliário
+      {cat:'design',name:'Salone del Mobile',fullname:'Salone Internazionale del Mobile',location:'Milão, Itália',month:'Abril',freq:'Anual',desc:'A referência mundial em design de interiores e mobiliário de luxo. Milão transforma-se na capital criativa do mundo.'},
+      {cat:'design',name:'Maison et Objet',fullname:'Maison & Objet Paris',location:'Paris, França',month:'Janeiro / Setembro',freq:'Semestral',desc:'O salão de design de interiores e lifestyle mais influente da Europa, realizado duas vezes por ano em Paris.'},
+      {cat:'design',name:'NeoCon',fullname:'NeoCon',location:'Chicago, EUA',month:'Junho',freq:'Anual',desc:'A principal plataforma norte-americana para design de interiores comerciais e mobiliário corporativo.'},
+      // Construção & Materiais
+      {cat:'construcao',name:'Revestir',fullname:'Revestir',location:'São Paulo, Brasil',month:'Março',freq:'Anual',desc:'A maior feira de revestimentos, superfícies e design de piso da América Latina, realizada no Expo Center Norte.'},
+      {cat:'construcao',name:'Cersaie',fullname:'Cersaie — Cerâmica e Banheiro',location:'Bolonha, Itália',month:'Setembro',freq:'Anual',desc:'A referência mundial em cerâmica e design de banheiros, com mais de 800 expositores em Bolonha.'},
+      {cat:'construcao',name:'BAU',fullname:'BAU — Weltleitmesse für Architektur, Materialien, Systeme',location:'Munique, Alemanha',month:'Janeiro',freq:'Bienal',desc:'A maior feira de arquitetura, materiais e sistemas construtivos do mundo, realizada a cada dois anos em Munique.'},
+      {cat:'construcao',name:'Feicon',fullname:'Feicon Batimat',location:'São Paulo, Brasil',month:'Abril',freq:'Bienal',desc:'A principal feira da construção civil da América Latina, reunindo mais de 1.200 expositores.'},
+      // Logística
+      {cat:'logistica',name:'Intermodal',fullname:'Intermodal South America',location:'São Paulo, Brasil',month:'Junho',freq:'Anual',desc:'A maior feira de logística, transporte e comércio exterior da América Latina, no Expo Center Norte.'},
+      {cat:'logistica',name:'Transport Logistic',fullname:'transport logistic Munich',location:'Munique, Alemanha',month:'Maio',freq:'Bienal',desc:'A feira líder mundial para logística, mobilidade, TI e gestão da cadeia de abastecimento.'},
+      {cat:'logistica',name:'TPMTEC',fullname:'TPMTEC',location:'Rotterdam, Holanda',month:'Março',freq:'Anual',desc:'O encontro europeu de gestão de frotas, manutenção e mobilidade industrial.'},
+      // Comércio Geral
+      {cat:'comercio',name:'Canton Fair',fullname:'China Import and Export Fair',location:'Guangzhou, China',month:'Abril / Outubro',freq:'Bienal',desc:'A maior feira de comércio do mundo, com mais de 200.000 expositores. Dois ciclos anuais no coração do comércio China-mundo.'},
+      {cat:'comercio',name:'Expo Dubai',fullname:'Expo 2025 Osaka / World Expo',location:'Osaka, Japão',month:'Abril – Outubro 2025',freq:'Quinquenal',desc:'A Exposição Universal de 2025 reúne pavilhões de 150 países para celebrar inovação e cultura global.'},
+      // Agronegócio
+      {cat:'agro',name:'AGRISHOW',fullname:'AGRISHOW',location:'Ribeirão Preto, Brasil',month:'Abril',freq:'Anual',desc:'A maior feira de tecnologia agrícola das Américas, com mais de 700 expositores no interior paulista.'},
+      {cat:'agro',name:'SIMA Paris',fullname:'SIMA — Salon International de l\'Agriculture',location:'Paris, França',month:'Fevereiro',freq:'Bienal',desc:'A maior exposição agrícola do mundo, realizada no Parc des Expositions de Paris — Villepinte.'},
+      {cat:'agro',name:'Agritechnica',fullname:'Agritechnica',location:'Hannover, Alemanha',month:'Novembro',freq:'Bienal',desc:'A referência mundial em máquinas e tecnologia para o agronegócio, com mais de 2.700 expositores.'},
+      // Energia & Petróleo
+      {cat:'energia',name:'ADIPEC',fullname:'Abu Dhabi International Petroleum Exhibition and Conference',location:'Abu Dhabi, EAU',month:'Novembro',freq:'Anual',desc:'A maior conferência do setor de energia do mundo, com mais de 160.000 profissionais e líderes globais reunidos.'},
+      {cat:'energia',name:'OTC',fullname:'Offshore Technology Conference',location:'Houston, EUA',month:'Maio',freq:'Anual',desc:'A conferência líder mundial em tecnologia offshore de petróleo e gás — essencial para o mercado do pré-sal.'},
+      {cat:'energia',name:'WindEnergy Hamburg',fullname:'WindEnergy Hamburg',location:'Hamburgo, Alemanha',month:'Setembro',freq:'Bienal',desc:'A feira líder mundial de energia eólica, com foco em onshore, offshore e a transição energética global.'},
+      // Alimentação & Bebidas
+      {cat:'alimentacao',name:'ANUGA',fullname:'ANUGA',location:'Colônia, Alemanha',month:'Outubro',freq:'Bienal',desc:'A maior feira de alimentos e bebidas do mundo, com mais de 7.000 expositores de 100 países em Colônia.'},
+      {cat:'alimentacao',name:'SIAL Paris',fullname:'SIAL Paris',location:'Paris, França',month:'Outubro',freq:'Bienal',desc:'Um dos maiores salões do setor alimentar mundial — tendências, inovação e negócios em Paris.'},
+      {cat:'alimentacao',name:'Alimentaria',fullname:'Alimentaria Barcelona',location:'Barcelona, Espanha',month:'Março',freq:'Bienal',desc:'A principal feira do setor agroalimentar do Sul da Europa, reunindo mais de 4.000 expositores.'},
+      // Moda & Têxtil
+      {cat:'moda',name:'Première Vision',fullname:'Première Vision Paris',location:'Paris, França',month:'Fevereiro / Setembro',freq:'Semestral',desc:'O salão de referência mundial para a indústria têxtil e de moda, realizado duas vezes ao ano em Paris.'},
+      {cat:'moda',name:'MAGIC',fullname:'MAGIC Las Vegas',location:'Las Vegas, EUA',month:'Fevereiro / Agosto',freq:'Semestral',desc:'A maior feira de vestuário e moda da América do Norte, reunindo 60.000 compradores por edição.'},
+      {cat:'moda',name:'Munich Fabric Start',fullname:'Munich Fabric Start',location:'Munique, Alemanha',month:'Fevereiro / Setembro',freq:'Semestral',desc:'O principal salão europeu de tecidos, aviamentos e tendências para a indústria da moda.'},
+      // Imóveis
+      {cat:'imoveis',name:'MIPIM',fullname:'Marché International des Professionnels de l\'Immobilier',location:'Cannes, França',month:'Março',freq:'Anual',desc:'O evento mais influente do mercado imobiliário global, com 26.000 profissionais de 90 países em Cannes.'},
+      {cat:'imoveis',name:'EXPO REAL',fullname:'EXPO REAL',location:'Munique, Alemanha',month:'Outubro',freq:'Anual',desc:'A principal feira de imóveis comerciais e investimentos da Europa, com 40.000 participantes em Munique.'},
+    ];
+
+    const fairsGrid=document.getElementById('fairs-grid');
+    const fairCountEl=document.getElementById('fair-count');
+
+    function renderFairs(cat){
+      const filtered=cat==='all'?fairs:fairs.filter(f=>f.cat===cat);
+      fairCountEl.textContent=filtered.length;
+      fairsGrid.innerHTML=filtered.map(f=>`
+        <div class="fair-card rounded-sm fair-wrap">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <span style="font-family:'Raleway',sans-serif;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(201,160,71,0.3);color:#c9a047;">${f.freq}</span>
+            <span style="font-family:'Raleway',sans-serif;font-size:.6rem;color:#5f7180;letter-spacing:.04em;">${f.month}</span>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:#eef2f5;line-height:1.05;letter-spacing:-.01em;margin-bottom:3px;">${f.name}</h3>
+          <p style="font-family:'Raleway',sans-serif;font-size:.62rem;color:#5f7180;margin-bottom:3px;letter-spacing:.04em;">${f.fullname}</p>
+          <p style="font-family:'Raleway',sans-serif;font-size:.74rem;color:#c9a047;margin-bottom:10px;">${f.location}</p>
+          <p style="font-family:'Raleway',sans-serif;font-size:.78rem;color:#5f7180;line-height:1.7;">${f.desc}</p>
+          <a href="contato.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:18px;color:#c9a047;font-family:'Raleway',sans-serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;">
+            Planejar visita <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      `).join('');
+    }
+
+    document.querySelectorAll('.cat-pill').forEach(pill=>{
+      pill.addEventListener('click',function(){
+        document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+        this.classList.add('active');
+        renderFairs(this.dataset.cat);
+      });
+    });
+
+    renderFairs('all');
+  </script>
+</body>
+</html>
